@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://o1vk2kj7ychs"]
+
+[ext_resource type="Script" uid="uid://34rb4h0dtlbs" path="res://scenes/moss_test_scenes/moss_drawing_test.gd" id="1_nw4pi"]
+[ext_resource type="Texture2D" uid="uid://5vveqv5p53nw" path="res://scenes/moss_test_scenes/hitdabricks.jpg" id="2_uv476"]
+
+[node name="MossDrawingTest" type="Node2D"]
+script = ExtResource("1_nw4pi")
+
+[node name="TestSprite" type="Sprite2D" parent="."]
+position = Vector2(596, 309)
+texture = ExtResource("2_uv476")
