@@ -1,17 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx003asolw0md"]
+[gd_scene load_steps=5 format=3 uid="uid://cx003asolw0md"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_a4lc5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a4lc5"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_a4lc5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_as66i"]
+
 [node name="cylidrical_world" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="world" type="StaticBody3D" parent="."]
+
+[node name="world_mesh" type="MeshInstance3D" parent="world"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
 mesh = SubResource("CylinderMesh_a4lc5")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_a4lc5")
+
+[node name="house" type="StaticBody3D" parent="world"]
+transform = Transform3D(-3.93403e-09, 0.09, -3.93403e-09, -1.32349e-23, -3.93403e-09, -0.09, -0.09, -3.93403e-09, 1.71962e-16, -0.35967, 0.534202, -2.79705e-15)
+
+[node name="house_mesh" type="MeshInstance3D" parent="world/house"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35189e-23, 0, -8.35188e-23, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_a4lc5")
+skeleton = NodePath("../../world_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/house"]
+shape = SubResource("BoxShape3D_as66i")
