@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmntqmst7dncx"]
+
+[ext_resource type="Script" uid="uid://cualdggafdc7q" path="res://scenes/moss_test_scenes/moss_test_3d.gd" id="1_mjsgg"]
+[ext_resource type="PackedScene" uid="uid://cdnhrug7prd0b" path="res://scenes/moss_test_scenes/test_drawing_UI.tscn" id="2_0a632"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0a632"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0a632"]
+
+[node name="MossTest3D" type="Node3D"]
+script = ExtResource("1_mjsgg")
+
+[node name="PlaceholderFloor" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.12394, 0, 0, 0, 1, 0, 0, 0, 3.80739, 0, 0, 0)
+mesh = SubResource("PlaneMesh_0a632")
+
+[node name="TestPainting" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.514026, 0, 0, 0, 0.195125, -0.475551, 0, 0.475551, 0.195125, 0, 0.549891, 0)
+material_override = SubResource("StandardMaterial3D_0a632")
+mesh = SubResource("PlaneMesh_0a632")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999999, -0.000839958, 0.00109864, 0.000492036, 0.958538, 0.284963, -0.00129245, -0.284962, 0.958538, -0.232278, 0.803682, 2.6579)
+
+[node name="TestDrawingUi" parent="." instance=ExtResource("2_0a632")]
+brushPath = "res://scenes/moss_test_scenes/test_brush.png"
+
+[node name="Button" type="Button" parent="TestDrawingUi"]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 538.0
+offset_right = 723.0
+offset_bottom = 591.0
+text = "accept
+"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999995, -0.00284915, -0.0015549, 0.00323951, 0.90598, 0.423308, 0.000202635, -0.423311, 0.905985, 0, 0, 0)
+
+[connection signal="pressed" from="TestDrawingUi/Button" to="." method="_on_button_pressed"]

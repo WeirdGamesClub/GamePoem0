@@ -1,33 +1,31 @@
-extends Node2D
+extends TextureRect
 
 @export var brushPath: String
-@export var imageBackgroundColor = Color(1, 1, 1)
+@export var imageBackgroundColor: Color = Color(1, 1, 1)
 var brushImage: Image
 var brushImageRect: Rect2i
 var drawingImage: Image
 var drawingTexture: ImageTexture
 
-# TODO: figure out what variables should be global or whatever idk how to make "clean code"
-# TODO: figure out how to save final image to a resource that can be used as textures on many different sprites
-# STRETCH TODO: more colors?
+# STRETCH TODO: colors?
 # STRETCH TODO: limit the number of times this draws (as opposed to once per frame)
+# if we want different brush sizes, probably easiest way to do that is by swapping brush texture
 # with love, moss
 
-func _ready():
+func _ready() -> void:
 	setup_image()
 
-func _process(_delta):
+func _process(_delta) -> void:
 	# get mouse position when mouse button is pressed down
 	# call update image
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		
-		# use local space of sprite we're drawing on
-		var mousePos = $TestSprite.get_local_mouse_position()
-		print("mouse click at", mousePos)
-		
+	
+		# use local space of texture we're drawing on
+		var mousePos: Vector2 = get_local_mouse_position()	
+		print("mouse position: ", mousePos)
 		update_image(mousePos)
 
-func setup_image():
+func setup_image() -> void:
 	# initialize variables and make default image
 	brushImage = Image.load_from_file(brushPath)
 	brushImageRect = brushImage.get_used_rect()
@@ -39,16 +37,14 @@ func setup_image():
 	# make ImageTexture from image
 	# assign to sprite texture
 	drawingTexture = ImageTexture.create_from_image(drawingImage)
-	$TestSprite.set_texture(drawingTexture)
+	set_texture(drawingTexture)
 	
-	print("yeah this runs")
-
-func update_image(clickPos):
+func update_image(clickPos) -> void:
 	#clickPos should be the mouse clicked position in local space of parent sprite
 	
 	# account for offset 
-	# 250,250 is currently a magic number that should be adjusted to 1/2 image size
-	var editedCoords = Vector2i(clickPos) + Vector2i(250, 250) - brushImageRect.get_center()
+	# TODO: pretty sure this doesn't work for non-square images
+	var editedCoords: Vector2i = Vector2i(clickPos) - brushImageRect.get_center()
 	print("edited coordinates are", editedCoords)
 	
 	# this adds our "brush image" onto our "drawing image"
@@ -56,8 +52,8 @@ func update_image(clickPos):
 	
 	# update image texture (which will update sprite)
 	drawingTexture.update(drawingImage)
-
-func finish_image():
-	var finishedImage = drawingImage.save_png_to_buffer()
+ 
+func finish_image() -> PackedByteArray:
+	# called by outer scene on a button click / other trigger
+	var finishedImage: PackedByteArray = drawingImage.save_png_to_buffer()
 	return finishedImage
-	

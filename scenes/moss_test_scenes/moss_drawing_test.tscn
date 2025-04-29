@@ -5,6 +5,7 @@
 
 [node name="MossDrawingTest" type="Node2D"]
 script = ExtResource("1_nw4pi")
+brushPath = "res://scenes/moss_test_scenes/test_brush.png"
 
 [node name="TestSprite" type="Sprite2D" parent="."]
 position = Vector2(596, 309)
