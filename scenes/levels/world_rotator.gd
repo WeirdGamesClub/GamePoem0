@@ -22,9 +22,9 @@ func _process(delta: float) -> void:
 	
 	#if outside, rotate world
 	
-	if(position.y < bounds.x):
+	#if(position.y < bounds.x):
 		#rotate world negatively
-		world.transform = world.transform.rotated(Vector3.RIGHT, -rotateSpeed * delta)
-	elif(position.y > bounds.y):
+	#world.transform = world.transform.rotated(Vector3.RIGHT, -rotateSpeed * delta)
+	#elif(position.y > bounds.y):
 		#rotate world positively
-		world.transform = world.transform.rotated(Vector3.RIGHT, rotateSpeed * delta)
+		#world.transform = world.transform.rotated(Vector3.RIGHT, rotateSpeed * delta)
