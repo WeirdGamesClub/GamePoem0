@@ -1,8 +1,12 @@
 extends CharacterBody3D
 
 @export var world : Node3D
-@export var speed: float
-@export var rotateSpeed : float 
+@export var walkSpeed: float = 0.5
+@export var rotateSpeed : float = 1.0 #TODO: this should be scaled off of walkSpeed
+
+var cyllinderRadius : float
+var cyllinderCenter : Vector3
+var cyllinder_rotate_axis : Vector3
 
 func _get_cyllinder_normal(playerPos: Vector3, cyllinderCenter: Vector3, cyllinder_rotate_axis: Vector3 ) -> Vector3:
 	var centerToPlayer = playerPos - cyllinderCenter
@@ -20,15 +24,13 @@ func _get_cyllinder_corrected_position(playerPos: Vector3, cyllinderCenter: Vect
 	var playerPosOnCylinder = playerPosOnCircle + playerOffsetAlongCyllinderRotateAxis
 	return playerPosOnCylinder
 	
+func _ready() -> void:
+	cyllinderRadius = world.transform.basis.get_scale().x/2 + 0.05 #TODO: this should be off of initial player distance :)
+	cyllinderCenter = Vector3(0,0,0)
+	cyllinder_rotate_axis = Vector3.RIGHT
+	
+	
 func _physics_process(delta: float) -> void:
-	
-
-	#Calculate the direction which the player can move
-	
-	#TODO: get input from player
-	var cyllinderRadius = 0.55
-	var cyllinderCenter = Vector3(0,0,0)
-	var cyllinder_rotate_axis = Vector3.RIGHT
 	
 	var playerPos =  self.global_position
 
@@ -42,24 +44,24 @@ func _physics_process(delta: float) -> void:
 	if(playerPos.x <= -0.95 && horInput < 0):
 		horInput = 0	
 		
-	if(playerAngleFromUp >= deg_to_rad(80) && vertInput < 0):
+	if(playerAngleFromUp >= deg_to_rad(60) && vertInput < 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, -rotateSpeed * delta)
 	elif(playerAngleFromUp <= deg_to_rad(10) && vertInput > 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, rotateSpeed * delta)
 	else:	
 		get_parent().transform.basis.y = currentCylNormal #sets transform up vector
 		get_parent().transform.basis.z = currentCylNormal.cross(get_parent().transform.basis.x)
-		var forward = get_parent().transform.basis.z 
+		#var forward = get_parent().transform.basis.z 
 
 	
-		var inputStep = ((horInput * get_parent().transform.basis.x ) + (vertInput * get_parent().transform.basis.z )).normalized() * speed * delta 
+		var inputStep = ((horInput * get_parent().transform.basis.x ) + (vertInput * get_parent().transform.basis.z )).normalized() * walkSpeed * delta 
 		var movedPlayer = playerPos + inputStep
 	
 		var newCylNormal = _get_cyllinder_normal(movedPlayer,cyllinderCenter,cyllinder_rotate_axis)
 		#fix the player position so they dont run off the cyllinders radius
-		self.global_position =  _get_cyllinder_corrected_position(movedPlayer,cyllinderCenter,cyllinder_rotate_axis,newCylNormal,cyllinderRadius)
+		self.global_position = _get_cyllinder_corrected_position(movedPlayer,cyllinderCenter,cyllinder_rotate_axis,newCylNormal,cyllinderRadius)
 	
-
+		move_and_slide()
 		
 	
 

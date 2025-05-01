@@ -2,37 +2,32 @@
 
 [ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylidrical_world.tscn" id="1_bovvr"]
 [ext_resource type="PackedScene" uid="uid://brcfccn3ndiuo" path="res://scenes/player/player_avatar.tscn" id="2_b2cq8"]
-[ext_resource type="Script" uid="uid://dk7xvt28ttqp2" path="res://scenes/levels/world_rotator.gd" id="3_b2cq8"]
+[ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="3_b2cq8"]
 
 [node name="Level" type="Node3D"]
 
 [node name="player_avatar" parent="." instance=ExtResource("2_b2cq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00227845, 0.086549, -0.00548458)
 
 [node name="CharacterBody3D" parent="player_avatar" index="0" node_paths=PackedStringArray("world")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479562, 0)
 world = NodePath("../../cylidrical_world")
-speed = 0.5
-rotateSpeed = 1.0
+walkSpeed = 0.4
+rotateSpeed = 0.3
 
 [node name="Sprite3D" parent="player_avatar/CharacterBody3D" index="1"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-billboard = 0
-
-[node name="RayCast3D" parent="player_avatar/CharacterBody3D" index="2"]
-script = null
+billboard = 2
 
 [node name="cylidrical_world" parent="." instance=ExtResource("1_bovvr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player", "world")]
-transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0.565, 0.966)
-script = ExtResource("3_b2cq8")
-player = NodePath("../player_avatar/CharacterBody3D")
-world = NodePath("../cylidrical_world")
-rotateSpeed = 1.0
-boundsScale = Vector2(2.5, 1.5)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0.693817, 0.904534)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.052336, 0.99863, 0, -0.99863, 0.052336, 0, 0, 0)
+
+[node name="DrawingMenu" parent="." instance=ExtResource("3_b2cq8")]
+visible = false
 
 [editable path="player_avatar"]
