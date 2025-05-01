@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1vxwqaomwfl7"]
+
+[ext_resource type="Script" uid="uid://bu3ng7mmi1fnr" path="res://scenes/moss_test_scenes/test_painting.gd" id="1_ftuwp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0a632"]
+resource_local_to_scene = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0a632"]
+resource_local_to_scene = true
+
+[node name="TestPainting" type="MeshInstance3D"]
+transform = Transform3D(0.514026, 0, 0, 0, 0.195125, -0.475551, 0, 0.475551, 0.195125, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_0a632")
+mesh = SubResource("PlaneMesh_0a632")
+script = ExtResource("1_ftuwp")

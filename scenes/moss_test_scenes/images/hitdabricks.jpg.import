@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5vveqv5p53nw"
-path="res://.godot/imported/hitdabricks.jpg-6ddcb65356095c8d58bb1baf1a3f9649.ctex"
+path="res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/moss_test_scenes/hitdabricks.jpg"
-dest_files=["res://.godot/imported/hitdabricks.jpg-6ddcb65356095c8d58bb1baf1a3f9649.ctex"]
+source_file="res://scenes/moss_test_scenes/images/hitdabricks.jpg"
+dest_files=["res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.ctex"]
 
 [params]
 

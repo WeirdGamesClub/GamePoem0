@@ -1,11 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmntqmst7dncx"]
+[gd_scene load_steps=11 format=3 uid="uid://bmntqmst7dncx"]
 
 [ext_resource type="Script" uid="uid://cualdggafdc7q" path="res://scenes/moss_test_scenes/moss_test_3d.gd" id="1_mjsgg"]
-[ext_resource type="PackedScene" uid="uid://cdnhrug7prd0b" path="res://scenes/moss_test_scenes/test_drawing_UI.tscn" id="2_0a632"]
+[ext_resource type="PackedScene" uid="uid://cdnhrug7prd0b" path="res://scenes/moss_test_scenes/UI_drawing_interface.tscn" id="2_0a632"]
+[ext_resource type="PackedScene" uid="uid://c1vxwqaomwfl7" path="res://scenes/moss_test_scenes/test_painting.tscn" id="2_mv35v"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0a632"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0a632"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv35v"]
+resource_local_to_scene = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mv35v"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w271o"]
+resource_local_to_scene = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w271o"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1emm"]
+resource_local_to_scene = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g1emm"]
+resource_local_to_scene = true
 
 [node name="MossTest3D" type="Node3D"]
 script = ExtResource("1_mjsgg")
@@ -14,27 +31,49 @@ script = ExtResource("1_mjsgg")
 transform = Transform3D(5.12394, 0, 0, 0, 1, 0, 0, 0, 3.80739, 0, 0, 0)
 mesh = SubResource("PlaneMesh_0a632")
 
-[node name="TestPainting" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.514026, 0, 0, 0, 0.195125, -0.475551, 0, 0.475551, 0.195125, 0, 0.549891, 0)
-material_override = SubResource("StandardMaterial3D_0a632")
-mesh = SubResource("PlaneMesh_0a632")
+[node name="TestPainting3" parent="." instance=ExtResource("2_mv35v")]
+transform = Transform3D(0.389707, 0.3101, 0.127238, 0, 0.195125, -0.475551, -0.335189, 0.360537, 0.147933, -1.17043, 0.549891, 0.872602)
+material_override = SubResource("StandardMaterial3D_mv35v")
+mesh = SubResource("PlaneMesh_mv35v")
+
+[node name="TestPainting4" parent="." instance=ExtResource("2_mv35v")]
+transform = Transform3D(0.514014, -0.00320387, -0.00131457, -5.80708e-09, 0.195125, -0.475551, 0.00346297, 0.47554, 0.195121, -0.295304, 0.549891, 0.22164)
+material_override = SubResource("StandardMaterial3D_w271o")
+mesh = SubResource("PlaneMesh_w271o")
+receivesPaintingNumber = 1
+
+[node name="TestPainting5" parent="." instance=ExtResource("2_mv35v")]
+transform = Transform3D(0.408997, -0.288053, -0.118192, -5.80708e-09, 0.195125, -0.475551, 0.311358, 0.378384, 0.155256, 0.944041, 0.549891, 0.713671)
+material_override = SubResource("StandardMaterial3D_g1emm")
+mesh = SubResource("PlaneMesh_g1emm")
+receivesPaintingNumber = 2
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.999999, -0.000839958, 0.00109864, 0.000492036, 0.958538, 0.284963, -0.00129245, -0.284962, 0.958538, -0.232278, 0.803682, 2.6579)
 
 [node name="TestDrawingUi" parent="." instance=ExtResource("2_0a632")]
+visible = false
 brushPath = "res://scenes/moss_test_scenes/test_brush.png"
+imageBackgroundColor = Color(0.698039, 0.933333, 0.984314, 1)
 
-[node name="Button" type="Button" parent="TestDrawingUi"]
+[node name="AcceptButton" type="Button" parent="TestDrawingUi"]
 layout_mode = 0
-offset_left = 461.0
-offset_top = 538.0
-offset_right = 723.0
-offset_bottom = 591.0
+offset_left = 534.0
+offset_top = 447.0
+offset_right = 796.0
+offset_bottom = 500.0
 text = "accept
 "
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999995, -0.00284915, -0.0015549, 0.00323951, 0.90598, 0.423308, 0.000202635, -0.423311, 0.905985, 0, 0, 0)
 
-[connection signal="pressed" from="TestDrawingUi/Button" to="." method="_on_button_pressed"]
+[node name="NewPaintingButton" type="Button" parent="."]
+offset_left = 910.0
+offset_top = 629.0
+offset_right = 1252.0
+offset_bottom = 699.0
+text = "start a new painting"
+
+[connection signal="pressed" from="TestDrawingUi/AcceptButton" to="." method="accept_on_button_pressed"]
+[connection signal="pressed" from="NewPaintingButton" to="." method="new_painting_on_button_pressed"]

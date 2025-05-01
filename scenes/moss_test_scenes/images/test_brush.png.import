@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhsalw6vqbdyo"
-path="res://.godot/imported/wahoo.jpg-23f50c93ce27925cda470d2b352fa198.ctex"
+uid="uid://bsiv3gccrvbix"
+path="res://.godot/imported/test_brush.png-2e754f9410f65c63e8bae9959fca77bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/moss_test_scenes/wahoo.jpg"
-dest_files=["res://.godot/imported/wahoo.jpg-23f50c93ce27925cda470d2b352fa198.ctex"]
+source_file="res://scenes/moss_test_scenes/images/test_brush.png"
+dest_files=["res://.godot/imported/test_brush.png-2e754f9410f65c63e8bae9959fca77bf.ctex"]
 
 [params]
 

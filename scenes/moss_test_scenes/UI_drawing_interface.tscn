@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdnhrug7prd0b"]
 
-[ext_resource type="Script" uid="uid://ds4was1yv43iq" path="res://scenes/moss_test_scenes/drawing_test_but_UI.gd" id="1_rucvt"]
+[ext_resource type="Script" uid="uid://ds4was1yv43iq" path="res://scenes/moss_test_scenes/UI_drawing_interface.gd" id="1_rucvt"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l7rrm"]
 

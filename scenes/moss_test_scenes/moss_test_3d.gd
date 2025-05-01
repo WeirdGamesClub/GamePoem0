@@ -1,18 +1,29 @@
 extends Node3D
 
-func _on_button_pressed() -> void:
+signal painting_completed(painting: PackedByteArray, number: int)
+
+var paintingNumber: int = 0
+
+func  _ready() -> void:
+	$TestDrawingUi.set_visible(false)	
+	$NewPaintingButton.set_visible(true)
+
+func accept_on_button_pressed() -> void:
 	var drawnImageBuffer: PackedByteArray = $TestDrawingUi.finish_image()
 	
 	#UI cleanup.. I think
 	$TestDrawingUi.release_focus() #theoretically releasing UI input but idk how this works really
 	$TestDrawingUi.set_visible(false)
 	
-	set_drawing_as_texture(drawnImageBuffer)
+	painting_completed.emit(drawnImageBuffer, paintingNumber)
 	
+	#curretly painting number just increments in order of creation, maybe it shouldnt do that
+	paintingNumber += 1 
+	
+	$NewPaintingButton.set_visible(true)
 
-func set_drawing_as_texture(imageBuffer: PackedByteArray) -> void:
-	# loads buffer into Image, uses Image to create ImageTexture, sets texture of mesh
-	var loadedImage: Image = Image.new()
-	loadedImage.load_png_from_buffer(imageBuffer)
-	var drawnTexture: Texture2D = ImageTexture.create_from_image(loadedImage)
-	$TestPainting.get_active_material(0).set_texture(BaseMaterial3D.TEXTURE_ALBEDO, drawnTexture)
+func new_painting_on_button_pressed() -> void:
+	$TestDrawingUi.set_visible(true)
+	$TestDrawingUi.setup_image()
+
+	$NewPaintingButton.set_visible(false)
