@@ -15,10 +15,15 @@ run/main_scene="uid://bhjwrs2arkdus"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://sprites/icon.svg"
 
+[autoload]
+
+LevelSignal="*res://scenes/globals/level_signals.tscn"
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="viewport"
 
 [input]
 

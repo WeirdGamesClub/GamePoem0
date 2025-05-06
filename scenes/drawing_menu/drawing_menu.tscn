@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=7 format=3 uid="uid://cggirilar04rf"]
 
-[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/wahoo.jpg" id="2_klehf"]
-[ext_resource type="Script" uid="uid://ds4was1yv43iq" path="res://scenes/moss_test_scenes/drawing_test_but_UI.gd" id="2_lkd8s"]
+[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="2_klehf"]
+[ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
+[ext_resource type="Material" uid="uid://bsrame6euup8a" path="res://materials/blur.tres" id="2_ursla"]
+[ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]
+[ext_resource type="Texture2D" uid="uid://cryomryy5uxj2" path="res://scenes/drawing_menu/brush_chalk.png" id="4_aaulj"]
+[ext_resource type="PackedScene" uid="uid://d2w75hgcebnn2" path="res://scenes/drawing_menu/color_button.tscn" id="5_56lbc"]
 
-[node name="DrawingMenu" type="CanvasLayer"]
+[node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas")]
+script = ExtResource("2_lkd8s")
+primary_button = NodePath("Control/VBoxContainer/PrimaryColorButton")
+secondary_button = NodePath("Control/VBoxContainer/SecondaryColorButton2")
+prompt_title = NodePath("Control/Prompt Title")
+drawingCanvas = NodePath("Control/MarginContainer/DrawingCanvas")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -12,10 +21,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -306.0
-offset_top = -170.5
-offset_right = 306.0
-offset_bottom = 170.5
+offset_left = -351.0
+offset_top = -301.0
+offset_right = 352.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+material = ExtResource("2_ursla")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -283.0
+offset_top = -59.0
+offset_right = 293.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -26,14 +48,80 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -435.0
-offset_top = -186.5
-offset_right = 451.0
-offset_bottom = 207.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer"]
+[node name="DrawingCanvas" type="TextureRect" parent="Control/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_klehf")
-script = ExtResource("2_lkd8s")
+expand_mode = 1
+script = ExtResource("3_lkd8s")
+brushPath = "res://scenes/drawing_menu/brush_chalk.png"
+imageBackgroundColor = Color(0.435294, 0.435294, 0.435294, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -134.5
+offset_right = 78.0
+offset_bottom = 144.5
+grow_vertical = 2
+alignment = 1
+
+[node name="PrimaryColorButton" parent="Control/VBoxContainer" instance=ExtResource("5_56lbc")]
+layout_mode = 2
+
+[node name="SecondaryColorButton2" parent="Control/VBoxContainer" instance=ExtResource("5_56lbc")]
+layout_mode = 2
+
+[node name="EraseButton" type="Button" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = " "
+icon = ExtResource("4_aaulj")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="HSlider" type="HSlider" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -191.5
+offset_top = 3.0
+offset_right = 198.5
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = 32.0
+max_value = 256.0
+step = 20.0
+value = 132.0
+rounded = true
+tick_count = 3
+ticks_on_borders = true
+
+[node name="Prompt Title" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.5
+offset_right = 253.5
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "TOTLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/VBoxContainer/EraseButton" to="Control/MarginContainer/DrawingCanvas" method="change_color" binds= [Color(0, 0, 0, 0)]]
+[connection signal="value_changed" from="Control/HSlider" to="Control/MarginContainer/DrawingCanvas" method="change_brush_size"]

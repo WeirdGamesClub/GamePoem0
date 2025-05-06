@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl247ivp0p7tf"]
+
+[ext_resource type="Script" uid="uid://b84uusxkks06d" path="res://scenes/paper_pickup/paper_pickup.gd" id="1_mhpli"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b2cq8"]
+
+[node name="paper_pickup" type="Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_mhpli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_b2cq8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

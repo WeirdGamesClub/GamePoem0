@@ -53,7 +53,7 @@ transform = Transform3D(0.999999, -0.000839958, 0.00109864, 0.000492036, 0.95853
 
 [node name="TestDrawingUi" parent="." instance=ExtResource("2_0a632")]
 visible = false
-brushPath = "res://scenes/moss_test_scenes/test_brush.png"
+brushPath = "res://scenes/moss_test_scenes/images/test_brush.png"
 imageBackgroundColor = Color(0.698039, 0.933333, 0.984314, 1)
 
 [node name="AcceptButton" type="Button" parent="TestDrawingUi"]

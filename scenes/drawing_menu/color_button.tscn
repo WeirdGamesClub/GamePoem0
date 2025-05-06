@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2w75hgcebnn2"]
+
+[ext_resource type="Texture2D" uid="uid://cryomryy5uxj2" path="res://scenes/drawing_menu/brush_chalk.png" id="1_jvamt"]
+[ext_resource type="Script" uid="uid://dqgkhskw54rse" path="res://scenes/drawing_menu/color_button.gd" id="2_dvote"]
+
+[node name="ColorButton" type="Button"]
+text = " 
+
+
+
+"
+icon = ExtResource("1_jvamt")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_dvote")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

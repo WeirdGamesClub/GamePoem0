@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxqlu5pihm5ms"]
+
+[ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_cr578"]
+
+[node name="LevelSignals" type="Node3D"]
+script = ExtResource("1_cr578")

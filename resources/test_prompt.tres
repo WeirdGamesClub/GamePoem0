@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://b5fre2fd2lrn"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_5cg7a"]
+
+[resource]
+script = ExtResource("1_5cg7a")
+title = "TEST PROMPT"
+primary_color = Color(0.846028, 0.205915, 0.320627, 1)
+secondary_color = Color(3.97079e-06, 0.599321, 0.13234, 1)
