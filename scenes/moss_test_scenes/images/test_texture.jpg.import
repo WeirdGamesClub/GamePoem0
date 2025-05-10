@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5vveqv5p53nw"
-path.s3tc="res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.s3tc.ctex"
+uid="uid://b5ehgst3tgj7q"
+path.s3tc="res://.godot/imported/test_texture.jpg-9691c9f4f50abc5cc9af6becc3281747.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/moss_test_scenes/images/hitdabricks.jpg"
-dest_files=["res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.s3tc.ctex"]
+source_file="res://scenes/moss_test_scenes/images/test_texture.jpg"
+dest_files=["res://.godot/imported/test_texture.jpg-9691c9f4f50abc5cc9af6becc3281747.s3tc.ctex"]
 
 [params]
 
