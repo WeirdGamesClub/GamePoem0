@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://croegbjdqv7b2"]
+
+[ext_resource type="Shader" uid="uid://cnvryek3jb3g3" path="res://scenes/moss_test_scenes/shadertest/test_water.gdshader" id="6_iiwxn"]
+[ext_resource type="Script" uid="uid://dwsquk6f8ta2i" path="res://scenes/moss_test_scenes/shadertest/water_test.gd" id="6_n02wy"]
+[ext_resource type="Shader" uid="uid://bpoa30anv1nh1" path="res://scenes/moss_test_scenes/shadertest/test_water_calc.gdshader" id="7_uic1p"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hr1g8"]
+viewport_path = NodePath("Buffer1Viewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rbmnh"]
+viewport_path = NodePath("Buffer2Viewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uic1p"]
+resource_local_to_scene = true
+shader = ExtResource("7_uic1p")
+shader_parameter/buffer1 = SubResource("ViewportTexture_hr1g8")
+shader_parameter/buffer2 = SubResource("ViewportTexture_rbmnh")
+shader_parameter/dampening = 0.9
+shader_parameter/velocity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iiwxn"]
+resource_local_to_scene = true
+shader = ExtResource("6_iiwxn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hr1g8"]
+resource_local_to_scene = true
+shader = ExtResource("6_iiwxn")
+
+[node name="CalculationViewport" type="SubViewport"]
+disable_3d = true
+script = ExtResource("6_n02wy")
+
+[node name="MainColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uic1p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer1Viewport" type="SubViewport" parent="."]
+disable_3d = true
+
+[node name="ColorRect" type="ColorRect" parent="Buffer1Viewport"]
+material = SubResource("ShaderMaterial_iiwxn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer2Viewport" type="SubViewport" parent="."]
+disable_3d = true
+
+[node name="ColorRect" type="ColorRect" parent="Buffer2Viewport"]
+material = SubResource("ShaderMaterial_hr1g8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
