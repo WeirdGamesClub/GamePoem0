@@ -1,5 +1,5 @@
 extends MeshInstance3D
-@export var NumRoundsToAppear: int = 1
+@export var NumRoundsToAppear: float = 1.0
 @export var player : Node3D
 
 func _ready() -> void:
