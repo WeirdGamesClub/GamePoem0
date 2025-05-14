@@ -5,7 +5,7 @@ extends MeshInstance3D
 func _ready() -> void:
 	visible = false
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(player is PoemPlayer):
 		if(player.total_angle_travelled_degrees >= (NumRoundsToAppear * 360)):
 			visible = true

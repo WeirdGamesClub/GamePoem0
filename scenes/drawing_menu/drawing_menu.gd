@@ -15,10 +15,6 @@ func _ready() -> void:
 	LevelSignal.connect("pickup_signal",start_drawing)
 
 	
-func _process(delta: float) -> void:
-	return
-
-	
 func start_drawing(prompt: Dictionary) -> void:
 	#open menu
 	primary_button.set_color(prompt.primary)

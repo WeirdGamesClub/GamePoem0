@@ -15,14 +15,14 @@ func _get_angle_between_vecs(vecA_normalized: Vector3, vecB_normalized: Vector3)
 	var angle = acos(vecA_normalized.dot((vecB_normalized)));
 	return rad_to_deg(angle)
 		
-func _get_cyllinder_normal(playerPos: Vector3, cyllinderCenter: Vector3, cyllinder_rotate_axis: Vector3 ) -> Vector3:
+func _get_cyllinder_normal(playerPos: Vector3) -> Vector3:
 	var centerToPlayer = playerPos - cyllinderCenter
 	var playerOffsetAlongCyllinderRotateAxis = centerToPlayer.project(cyllinder_rotate_axis)
 	#now we can consider the cyllinder flattened into a circle for this part of the logic
 	var centerToPlayerFlat = centerToPlayer - playerOffsetAlongCyllinderRotateAxis
 	return centerToPlayerFlat.normalized()
 	
-func _get_cyllinder_corrected_position(playerPos: Vector3, cyllinderCenter: Vector3, cyllinder_rotate_axis: Vector3, currentNormal: Vector3, cyllinderRadius: float) -> Vector3:
+func _get_cyllinder_corrected_position(playerPos: Vector3, currentNormal: Vector3) -> Vector3:
 	#now we can consider the cyllinder flattened into a circle for this part of the logic
 	var playerPosOnCircle = cyllinderCenter + (currentNormal * cyllinderRadius)
 	#extend it back out to cyllinder:
@@ -40,7 +40,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var playerPosBeforeUpdate =  self.global_position
 
-	var cylNormalBeforeUpdate = _get_cyllinder_normal(playerPosBeforeUpdate,cyllinderCenter,cyllinder_rotate_axis)
+	var cylNormalBeforeUpdate = _get_cyllinder_normal(playerPosBeforeUpdate)
 	var playerAngleFromUp = cylNormalBeforeUpdate.angle_to(Vector3.UP)
 	var horInput = Input.get_axis("move_left","move_right")
 	var vertInput = Input.get_axis("move_down","move_up")
@@ -69,9 +69,9 @@ func _physics_process(delta: float) -> void:
 		var inputStep = inputStepHorizontal + inputStepVertical
 		var playerPosAfterUpdate = playerPosBeforeUpdate + inputStep
 		
-		var cylNormalAfterUpdate = _get_cyllinder_normal(playerPosAfterUpdate,cyllinderCenter,cyllinder_rotate_axis)
+		var cylNormalAfterUpdate = _get_cyllinder_normal(playerPosAfterUpdate)
 		#fix the player position so they dont run off the cyllinders radius
-		self.global_position = _get_cyllinder_corrected_position(playerPosAfterUpdate,cyllinderCenter,cyllinder_rotate_axis,cylNormalAfterUpdate,cyllinderRadius)
+		self.global_position = _get_cyllinder_corrected_position(playerPosAfterUpdate,cylNormalAfterUpdate)
 		if(vertInput > 0):
 			total_angle_travelled_degrees = total_angle_travelled_degrees + _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
 		elif(vertInput < 0):
