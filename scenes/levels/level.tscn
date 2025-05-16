@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhjwrs2arkdus"]
+[gd_scene load_steps=10 format=3 uid="uid://bhjwrs2arkdus"]
 
 [ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylidrical_world.tscn" id="1_bovvr"]
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_urvlt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cl247ivp0p7tf" path="res://scenes/paper_pickup/paper_pickup.tscn" id="5_d4w6o"]
 [ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="6_d4w6o"]
 [ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/levels/art_spawn.gd" id="6_mbbpy"]
+[ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/drawn_environments/test_drawn_environ.tscn" id="7_ouxo3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_d4w6o"]
 
@@ -50,6 +51,9 @@ mesh = SubResource("BoxMesh_d4w6o")
 script = ExtResource("6_mbbpy")
 NumRoundsToAppear = 3.0
 player = NodePath("../../player_avatar/CharacterBody3D")
+
+[node name="test_drawn_environ" parent="cylidrical_world" instance=ExtResource("7_ouxo3")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.118842, 0.567487, 0.528191)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0.693817, 0.904534)

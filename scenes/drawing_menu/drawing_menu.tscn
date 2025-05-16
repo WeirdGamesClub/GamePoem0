@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=9 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
@@ -6,13 +6,18 @@
 [ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]
 [ext_resource type="Texture2D" uid="uid://cryomryy5uxj2" path="res://scenes/drawing_menu/brush_chalk.png" id="4_aaulj"]
 [ext_resource type="PackedScene" uid="uid://d2w75hgcebnn2" path="res://scenes/drawing_menu/color_button.tscn" id="5_56lbc"]
+[ext_resource type="Texture2D" uid="uid://5vveqv5p53nw" path="res://scenes/moss_test_scenes/images/hitdabricks.jpg" id="7_rdw8d"]
 
-[node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas")]
+[sub_resource type="Theme" id="Theme_1xf2r"]
+default_font_size = 40
+
+[node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup")]
 script = ExtResource("2_lkd8s")
 primary_button = NodePath("Control/VBoxContainer/PrimaryColorButton")
 secondary_button = NodePath("Control/VBoxContainer/SecondaryColorButton2")
 prompt_title = NodePath("Control/Prompt Title")
 drawingCanvas = NodePath("Control/MarginContainer/DrawingCanvas")
+acceptPopup = NodePath("Control/Accept Panel")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -88,7 +93,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="HSlider" type="HSlider" parent="Control"]
+[node name="BrushSlider" type="HSlider" parent="Control"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -122,5 +127,96 @@ text = "TOTLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Accept Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "accept"
+
+[node name="Accept Panel" type="Panel" parent="Control"]
+visible = false
+material = ExtResource("2_ursla")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.5
+offset_top = -346.0
+offset_right = 550.5
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Accept Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.5
+offset_top = 23.5
+offset_right = 239.5
+offset_bottom = 169.5
+grow_horizontal = 2
+theme = SubResource("Theme_1xf2r")
+text = "is this Acceptable?"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DrawingPreview" type="TextureRect" parent="Control/Accept Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.5
+offset_top = -155.5
+offset_right = 125.5
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_rdw8d")
+expand_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Accept Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -186.5
+offset_top = -124.165
+offset_right = 187.5
+offset_bottom = -88.165
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="YesButton" type="Button" parent="Control/Accept Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="Control/Accept Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No"
+
+[connection signal="finish_drawing" from="." to="Control/Accept Panel/DrawingPreview" method="set_texture"]
 [connection signal="pressed" from="Control/VBoxContainer/EraseButton" to="Control/MarginContainer/DrawingCanvas" method="change_color" binds= [Color(0, 0, 0, 0)]]
-[connection signal="value_changed" from="Control/HSlider" to="Control/MarginContainer/DrawingCanvas" method="change_brush_size"]
+[connection signal="value_changed" from="Control/BrushSlider" to="Control/MarginContainer/DrawingCanvas" method="change_brush_size"]
+[connection signal="pressed" from="Control/Accept Button" to="." method="query_accept"]
+[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/YesButton" to="." method="save_drawing"]
+[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_process" binds= [false]]
+[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_visible" binds= [false]]

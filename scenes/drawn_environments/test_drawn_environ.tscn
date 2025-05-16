@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://eij0gq3ctehg"]
+
+[ext_resource type="Script" uid="uid://cbrmkluh6s0to" path="res://scenes/drawn_environments/drawn_environ.gd" id="1_pkjx4"]
+[ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="2_7emu5"]
+[ext_resource type="Texture2D" uid="uid://bsiv3gccrvbix" path="res://scenes/moss_test_scenes/images/test_brush.png" id="2_pkjx4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5nfsg"]
+
+[node name="test_drawn_environ" type="StaticBody3D" node_paths=PackedStringArray("sprite")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_pkjx4")
+prompt = ExtResource("2_7emu5")
+sprite = NodePath("Sprite3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5nfsg")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+shaded = true
+texture = ExtResource("2_pkjx4")

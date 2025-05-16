@@ -42,11 +42,6 @@ func _process(delta: float) -> void:
 		DRAWING:
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 				_update_drawing(delta, get_local_mouse_position())
-
-func start_drawing() -> void:	
-	# fill with a background color
-	drawingImage.fill(imageBackgroundColor)
-	currentState = DRAWING
 	
 
 func _update_drawing(_delta: float, clickPos: Vector2) -> void:
@@ -57,7 +52,13 @@ func _update_drawing(_delta: float, clickPos: Vector2) -> void:
 	# update image texture (which will update sprite)
 	drawingTexture.update(drawingImage)
 	return
-	
+
+func start_drawing() -> void:	
+	# fill with a background color
+	drawingImage.fill(imageBackgroundColor)
+	drawingTexture.update(drawingImage)
+	currentState = DRAWING
+
 func change_brush_size(bsize: int) -> void:
 	currentBrush.resize(bsize,bsize)
 	currentSize = bsize
@@ -75,3 +76,6 @@ func change_color(color: Color) -> void:
 	currentColor = color
 	currentBrush.resize(currentSize,currentSize)
 	return
+
+func pull_drawing() -> Texture2D:
+	return ImageTexture.create_from_image(drawingImage)
