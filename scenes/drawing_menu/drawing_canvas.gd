@@ -2,7 +2,7 @@ extends TextureRect
 
 class_name DrawingCanvas
 
-@export var brushPath: String
+@export var brushTexture: Texture2D
 var imageBackgroundColor: Color = Color.TRANSPARENT
 var brushImage: Image
 var brushSize: int
@@ -20,7 +20,9 @@ var currentState = STANDBY
 
 func _ready() -> void:
 	# initialize variables and make default image
-	brushImage = load(brushPath).get_image()
+	brushImage = brushTexture.get_image()
+	if(brushImage.is_compressed()):
+		brushImage.decompress()
 	brushSize = brushImage.get_size().x
 	brushImageRect = brushImage.get_used_rect()
 	drawingImage = Image.create_empty(512, 512, true, Image.FORMAT_RGBA8)
@@ -53,10 +55,13 @@ func _update_drawing(_delta: float, clickPos: Vector2) -> void:
 	drawingTexture.update(drawingImage)
 	return
 
-func start_drawing() -> void:	
+func start_drawing(startingColor: Color) -> void:	
 	# fill with a background color
 	drawingImage.fill(imageBackgroundColor)
 	drawingTexture.update(drawingImage)
+	
+	change_color(startingColor)
+	
 	currentState = DRAWING
 
 func change_brush_size(bsize: int) -> void:

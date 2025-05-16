@@ -33,7 +33,7 @@ func start_drawing(prompt: PromptResource) -> void:
 	
 	currentPrompt.drawing = Texture2D.new()
 	
-	drawingCanvas.start_drawing()
+	drawingCanvas.start_drawing(prompt.primary_color)
 	
 	#enable node tree
 	get_child(0).set_process(0)

@@ -65,7 +65,7 @@ layout_mode = 2
 texture = ExtResource("2_klehf")
 expand_mode = 1
 script = ExtResource("3_lkd8s")
-brushPath = "res://scenes/drawing_menu/brush_chalk.png"
+brushTexture = ExtResource("4_aaulj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
