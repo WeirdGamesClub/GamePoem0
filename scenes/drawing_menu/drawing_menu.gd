@@ -39,6 +39,7 @@ func start_drawing(prompt: PromptResource) -> void:
 	get_child(0).set_process(0)
 	get_child(0).show()
 	is_drawing = true
+	InputManager.input_mode = InputManager.mode.DRAWING
 	
 	acceptPopup.set_process(false)
 	acceptPopup.visible = false
@@ -54,7 +55,7 @@ func query_accept()->void:
 	
 func save_drawing()->void:
 	currentPrompt.set_drawing(currentDrawing)
-	#TODO: close window an exit drawing mode
+	InputManager.input_mode = InputManager.mode.WALKING
 	drawingCanvas.set_process(true)
 	get_child(0).set_process(false)
 	get_child(0).hide()

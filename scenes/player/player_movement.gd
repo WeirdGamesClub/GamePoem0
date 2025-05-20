@@ -38,6 +38,9 @@ func _ready() -> void:
 	rotateSpeedRadian = (walkSpeed / cyllinderRadius)
 	
 func _physics_process(delta: float) -> void:
+	if(InputManager.input_mode != InputManager.mode.WALKING): 
+		return
+	
 	var playerPosBeforeUpdate =  self.global_position
 
 	var cylNormalBeforeUpdate = _get_cyllinder_normal(playerPosBeforeUpdate)
@@ -49,18 +52,19 @@ func _physics_process(delta: float) -> void:
 		horInput = 0
 	if(playerPosBeforeUpdate.x <= -0.95 && horInput < 0):
 		horInput = 0	
-		
+	
+	#Rotate the world if the player is at bounds	
 	if(playerAngleFromUp >= deg_to_rad(60) && vertInput < 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, -rotateSpeedRadian * delta)
 		total_angle_travelled_degrees = total_angle_travelled_degrees - rad_to_deg(rotateSpeedRadian * delta)
 	elif(playerAngleFromUp <= deg_to_rad(10) && vertInput > 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, rotateSpeedRadian * delta)
 		total_angle_travelled_degrees = total_angle_travelled_degrees + rad_to_deg(rotateSpeedRadian * delta)
+	#Move the player along the surface of cylander 
 	else:	
 		#setting the step basis before updating
 		get_parent().transform.basis.y = cylNormalBeforeUpdate #sets transform up vector
 		get_parent().transform.basis.z = cylNormalBeforeUpdate.cross(get_parent().transform.basis.x)
-		#var forward = get_parent().transform.basis.z 
 
 		#the update to take the step in
 		var inputStepHorizontal = horInput * get_parent().transform.basis.x  * walkSpeed * delta 
@@ -72,16 +76,12 @@ func _physics_process(delta: float) -> void:
 		var cylNormalAfterUpdate = _get_cyllinder_normal(playerPosAfterUpdate)
 		#fix the player position so they dont run off the cyllinders radius
 		self.global_position = _get_cyllinder_corrected_position(playerPosAfterUpdate,cylNormalAfterUpdate)
+		
+		#calculate distance traveled
 		if(vertInput > 0):
 			total_angle_travelled_degrees = total_angle_travelled_degrees + _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
 		elif(vertInput < 0):
 			total_angle_travelled_degrees = total_angle_travelled_degrees - _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
-		move_and_slide()
 		
-			
-	
-
-	
-
-	
-	
+	DebugDraw2D.set_text("",total_angle_travelled_degrees)
+	move_and_slide()

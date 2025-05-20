@@ -1,6 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl247ivp0p7tf"]
+[gd_scene load_steps=7 format=3 uid="uid://cl247ivp0p7tf"]
 
 [ext_resource type="Script" uid="uid://b84uusxkks06d" path="res://scenes/paper_pickup/paper_pickup.gd" id="1_mhpli"]
+[ext_resource type="Texture2D" uid="uid://cryomryy5uxj2" path="res://scenes/drawing_menu/brush_chalk.png" id="2_srvdl"]
+
+[sub_resource type="Animation" id="Animation_0i80a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_srvdl"]
+resource_name = "paper_float"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.05, 0), Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0), Vector3(0, 0.05, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a13e0"]
+_data = {
+&"RESET": SubResource("Animation_0i80a"),
+&"paper_float": SubResource("Animation_srvdl")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2cq8"]
 
@@ -10,7 +73,18 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_mhpli")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a13e0")
+}
+autoplay = "paper_float"
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_b2cq8")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+modulate = Color(0.74, 0.74, 0.74, 1)
+texture = ExtResource("2_srvdl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
