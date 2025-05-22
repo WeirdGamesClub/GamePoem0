@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var world : Node3D
 @export var walkSpeed: float = 0.5
+@export var horizontalConstraints: float = 1
 var rotateSpeedRadian : float = 0.0 #gets set from walk speed on _ready()
 
 var cyllinderRadius : float
@@ -48,9 +49,9 @@ func _physics_process(delta: float) -> void:
 	var horInput = Input.get_axis("move_left","move_right")
 	var vertInput = Input.get_axis("move_down","move_up")
 	#horizontal bounds:
-	if(playerPosBeforeUpdate.x >= 0.95 && horInput > 0):
+	if(playerPosBeforeUpdate.x >= horizontalConstraints && horInput > 0):
 		horInput = 0
-	if(playerPosBeforeUpdate.x <= -0.95 && horInput < 0):
+	if(playerPosBeforeUpdate.x <= -horizontalConstraints && horInput < 0):
 		horInput = 0	
 		
 	#setting the step basis before updating
