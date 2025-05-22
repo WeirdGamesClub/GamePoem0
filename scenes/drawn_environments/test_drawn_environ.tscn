@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://eij0gq3ctehg"]
+[gd_scene load_steps=7 format=3 uid="uid://eij0gq3ctehg"]
 
 [ext_resource type="Script" uid="uid://cbrmkluh6s0to" path="res://scenes/drawn_environments/drawn_environ.gd" id="1_pkjx4"]
 [ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="2_7emu5"]
@@ -6,16 +6,24 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nfsg"]
 
-[node name="test_drawn_environ" type="StaticBody3D" node_paths=PackedStringArray("sprite")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkjx4"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("2_pkjx4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7emu5"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_pkjx4")
+
+[node name="test_drawn_environ" type="StaticBody3D" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_pkjx4")
 prompt = ExtResource("2_7emu5")
-sprite = NodePath("Sprite3D")
+mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_5nfsg")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-shaded = true
-texture = ExtResource("2_pkjx4")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_7emu5")

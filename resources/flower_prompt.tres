@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://88arjw4t6epq"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_5amb8"]
+
+[resource]
+script = ExtResource("1_5amb8")
+title = "Flower"
+primary_color = Color(2.64719e-07, 0.457005, 0.206124, 1)
+secondary_color = Color(0.91, 0, 0, 1)

@@ -3,6 +3,7 @@ extends TextureRect
 class_name DrawingCanvas
 
 @export var brushTexture: Texture2D
+@export var brushSpacing: float = 0.1
 var imageBackgroundColor: Color = Color.TRANSPARENT
 var brushImage: Image
 var brushSize: int
@@ -13,6 +14,8 @@ var drawingTexture: ImageTexture
 var currentColor: Color = Color.WHITE
 var currentBrush: Image
 var currentSize: int
+
+var brushTimer: float = 0
 
 enum {DRAWING, ERASING, STANDBY}
 
@@ -25,13 +28,16 @@ func _ready() -> void:
 		brushImage.decompress()
 	brushSize = brushImage.get_size().x
 	brushImageRect = brushImage.get_used_rect()
-	drawingImage = Image.create_empty(512, 512, true, Image.FORMAT_RGBA8)
+	drawingImage = Image.create_empty(512, 512, false, Image.FORMAT_RGBA8)
 	
 	currentBrush = brushImage.duplicate()
 	currentSize = brushSize
 	
 	drawingTexture = ImageTexture.create_from_image(drawingImage)
 	self.set_texture(drawingTexture)
+	
+	#TEST
+	change_brush_size(56)
 	
 	LevelSignal.connect("change_color", change_color)
 	
@@ -42,7 +48,9 @@ func _process(delta: float) -> void:
 	#accepts drawing input
 	match currentState:
 		DRAWING:
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			brushTimer += delta
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and brushTimer >= brushSpacing:
+				brushTimer = 0
 				_update_drawing(delta, get_local_mouse_position())
 	
 
@@ -61,7 +69,7 @@ func start_drawing(startingColor: Color) -> void:
 	drawingTexture.update(drawingImage)
 	
 	change_color(startingColor)
-	
+	brushTimer = 0
 	currentState = DRAWING
 
 func change_brush_size(bsize: int) -> void:
@@ -83,4 +91,5 @@ func change_color(color: Color) -> void:
 	return
 
 func pull_drawing() -> Texture2D:
+
 	return ImageTexture.create_from_image(drawingImage)

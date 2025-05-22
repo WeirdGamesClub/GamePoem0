@@ -5,7 +5,7 @@ class_name PromptResource
 @export var title : String = "default"
 @export var primary_color : Color = Color.BLACK
 @export	var secondary_color : Color = Color.WHITE
-@export var drawing : Texture2D 
+var drawing : Texture2D 
 
 signal changed_drawing(texture:Texture2D)
 

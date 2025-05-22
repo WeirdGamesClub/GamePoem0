@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhjwrs2arkdus"]
+[gd_scene load_steps=11 format=3 uid="uid://bhjwrs2arkdus"]
 
 [ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylidrical_world.tscn" id="1_bovvr"]
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_urvlt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="3_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://cl247ivp0p7tf" path="res://scenes/paper_pickup/paper_pickup.tscn" id="5_d4w6o"]
 [ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="6_d4w6o"]
+[ext_resource type="Resource" uid="uid://88arjw4t6epq" path="res://resources/flower_prompt.tres" id="6_icy5c"]
 [ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/levels/art_spawn.gd" id="6_mbbpy"]
 [ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/drawn_environments/test_drawn_environ.tscn" id="7_ouxo3"]
 
@@ -15,7 +16,7 @@
 script = ExtResource("1_urvlt")
 
 [node name="player_avatar" parent="." instance=ExtResource("2_b2cq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00227845, 0.086549, -0.00548458)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00145662, 0.449204, -0.00457215)
 
 [node name="CharacterBody3D" parent="player_avatar" index="0" node_paths=PackedStringArray("world")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479562, 0)
@@ -27,10 +28,15 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 billboard = 2
 
 [node name="cylidrical_world" parent="." instance=ExtResource("1_bovvr")]
+transform = Transform3D(1.715, 0, 0, 0, 1.715, 0, 0, 0, 1.715, 0, 0, 0)
 
 [node name="paper_pickup" parent="cylidrical_world" instance=ExtResource("5_d4w6o")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.540992, 0.545357, 0)
 prompt = ExtResource("6_d4w6o")
+
+[node name="paper_pickup2" parent="cylidrical_world" instance=ExtResource("5_d4w6o")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0690882, -0.0722967, 0, 0.0722967, 0.0690882, 0.540992, 0.45525, 0.276397)
+prompt = ExtResource("6_icy5c")
 
 [node name="ArtSpawn" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
 transform = Transform3D(0.052485, 0, 0, 0, 0.550005, 0, 0, 0, -0.0785573, 0.0728896, 0.757549, 0)
@@ -53,10 +59,22 @@ NumRoundsToAppear = 3.0
 player = NodePath("../../player_avatar/CharacterBody3D")
 
 [node name="test_drawn_environ" parent="cylidrical_world" instance=ExtResource("7_ouxo3")]
-transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.118842, 0.567487, 0.528191)
+transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, -0.632037, 0.445706, 0.402083)
+
+[node name="test_drawn_environ2" parent="cylidrical_world" instance=ExtResource("7_ouxo3")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.00592071, 0.428354, 0.384114)
+prompt = ExtResource("6_icy5c")
+
+[node name="test_drawn_environ3" parent="cylidrical_world" instance=ExtResource("7_ouxo3")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.138649, 0.326135, 0.482826)
+prompt = ExtResource("6_icy5c")
+
+[node name="test_drawn_environ4" parent="cylidrical_world" instance=ExtResource("7_ouxo3")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.236688, 0.428354, 0.384114)
+prompt = ExtResource("6_icy5c")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0.693817, 0.904534)
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 1.11242, 1.53447)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.052336, 0.99863, 0, -0.99863, 0.052336, 0, 0, 0)

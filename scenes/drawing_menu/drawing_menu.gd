@@ -56,6 +56,7 @@ func query_accept()->void:
 func save_drawing()->void:
 	currentPrompt.set_drawing(currentDrawing)
 	InputManager.input_mode = InputManager.mode.WALKING
+	#close window
 	drawingCanvas.set_process(true)
 	get_child(0).set_process(false)
 	get_child(0).hide()
