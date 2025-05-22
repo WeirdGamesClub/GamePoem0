@@ -1,0 +1,118 @@
+[gd_scene load_steps=20 format=3 uid="uid://bepn8lxm506my"]
+
+[ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_d2n1h"]
+[ext_resource type="Script" uid="uid://dsubvgi3whls0" path="res://scenes/moss_test_scenes/TEST_CHAR.gd" id="2_5tqgg"]
+[ext_resource type="PackedScene" uid="uid://croegbjdqv7b2" path="res://scenes/moss_test_scenes/shadertest/moss_shader_tester.tscn" id="2_akw2h"]
+[ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://sprites/icon.svg" id="2_vaif7"]
+[ext_resource type="Script" uid="uid://qicxpks2xn7i" path="res://scenes/moss_test_scenes/shadertest/water_test2.gd" id="3_akw2h"]
+[ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylidrical_world.tscn" id="3_vaif7"]
+[ext_resource type="PackedScene" uid="uid://cl247ivp0p7tf" path="res://scenes/paper_pickup/paper_pickup.tscn" id="4_5tqgg"]
+[ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="5_akw2h"]
+[ext_resource type="Script" path="res://scenes/levels/art_spawn.gd" id="6_cj5vo"]
+[ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/drawn_environments/test_drawn_environ.tscn" id="7_qqgr8"]
+[ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="8_imrlo"]
+[ext_resource type="Script" uid="uid://cu16bobbthsuf" path="res://scenes/moss_test_scenes/shadertest/splash_handler.gd" id="9_vaif7"]
+[ext_resource type="Texture2D" uid="uid://u5vmifxyv7vc" path="res://scenes/moss_test_scenes/images/CustomUVChecker_byValle_1K.png" id="10_5tqgg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfy18"]
+radius = 1.08842
+height = 2.17684
+
+[sub_resource type="BoxMesh" id="BoxMesh_d4w6o"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cj5vo"]
+viewport_path = NodePath("CalculationViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqgr8"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_cj5vo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_akw2h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj5vo"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("10_5tqgg")
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_d2n1h")
+
+[node name="CalculationViewport" parent="." instance=ExtResource("2_akw2h")]
+script = ExtResource("3_akw2h")
+dampening = 1.0
+velocity = 1.0
+splash_source = Vector2(0.5, 0.5)
+splash_size = 3.0
+
+[node name="player_avatar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00227845, -0.417581, -0.00548458)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="player_avatar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479562, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("2_5tqgg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_avatar/CharacterBody3D"]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_wfy18")
+
+[node name="Sprite3D" type="Sprite3D" parent="player_avatar/CharacterBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+billboard = 2
+texture = ExtResource("2_vaif7")
+
+[node name="cylidrical_world" parent="." instance=ExtResource("3_vaif7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.30265, 0)
+visible = false
+
+[node name="paper_pickup" parent="cylidrical_world" instance=ExtResource("4_5tqgg")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.540992, 0.545357, 0)
+prompt = ExtResource("5_akw2h")
+
+[node name="ArtSpawn" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
+transform = Transform3D(0.052485, 0, 0, 0, 0.550005, 0, 0, 0, -0.0785573, 0.0728896, 0.757549, 0)
+mesh = SubResource("BoxMesh_d4w6o")
+script = ExtResource("6_cj5vo")
+player = NodePath("../../player_avatar/CharacterBody3D")
+
+[node name="ArtSpawn2" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
+transform = Transform3D(0.052485, 0, 0, 0, 0.804033, 0, 0, 0, -0.0785573, 0.224579, 0.757549, 0)
+mesh = SubResource("BoxMesh_d4w6o")
+script = ExtResource("6_cj5vo")
+NumRoundsToAppear = 2.0
+player = NodePath("../../player_avatar/CharacterBody3D")
+
+[node name="ArtSpawn3" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
+transform = Transform3D(0.052485, 0, 0, 0, 1.10361, 0, 0, 0, -0.0785573, 0.388531, 0.757549, 0)
+mesh = SubResource("BoxMesh_d4w6o")
+script = ExtResource("6_cj5vo")
+NumRoundsToAppear = 3.0
+player = NodePath("../../player_avatar/CharacterBody3D")
+
+[node name="test_drawn_environ" parent="cylidrical_world" instance=ExtResource("7_qqgr8")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.118842, 0.567487, 0.528191)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.650629, 0.759396, 0, -0.759396, 0.650629, 0, 0.693817, 0.904534)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.052336, 0.99863, 0, -0.99863, 0.052336, 0, 0, 0)
+
+[node name="DrawingMenu" parent="." instance=ExtResource("8_imrlo")]
+visible = false
+
+[node name="plane" type="Node3D" parent="." node_paths=PackedStringArray("viewportobj", "player")]
+script = ExtResource("9_vaif7")
+viewportobj = NodePath("../CalculationViewport")
+player = NodePath("../player_avatar/CharacterBody3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="plane"]
+material_override = SubResource("StandardMaterial3D_qqgr8")
+mesh = SubResource("PlaneMesh_akw2h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="plane"]
+visible = false
+mesh = SubResource("PlaneMesh_akw2h")
+surface_material_override/0 = SubResource("StandardMaterial3D_cj5vo")
+
+[connection signal="pickup_signal" from="." to="DrawingMenu" method="start_drawing"]

@@ -11,7 +11,7 @@ void fragment() {
 	//ALBEDO = normalize(vec3(FRAGCOORD.x, FRAGCOORD.y, 0));
 	ALBEDO = texture(tex_albedo, FRAGCOORD.xy / VIEWPORT_SIZE).rgb;
 	//ALBEDO = texture(tex_albedo, vec2(UV.x, UV.y)).rgb;
-	
+
 }
 
 //void light() {

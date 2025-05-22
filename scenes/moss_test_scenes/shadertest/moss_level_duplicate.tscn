@@ -1,15 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://sfnqthesnmoi"]
+[gd_scene load_steps=22 format=3 uid="uid://sfnqthesnmoi"]
 
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_iulfd"]
-[ext_resource type="Shader" uid="uid://d0rtswga6e2xk" path="res://scenes/moss_test_scenes/shadertest/sine.gdshader" id="2_8utvu"]
+[ext_resource type="Script" uid="uid://cu16bobbthsuf" path="res://scenes/moss_test_scenes/shadertest/splash_handler.gd" id="2_8utvu"]
 [ext_resource type="PackedScene" uid="uid://croegbjdqv7b2" path="res://scenes/moss_test_scenes/shadertest/moss_shader_tester.tscn" id="2_13ul4"]
 [ext_resource type="Script" uid="uid://1ymj6ndbfrj5" path="res://scenes/player/player_movement.gd" id="2_58i05"]
 [ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://sprites/icon.svg" id="3_4jjfx"]
 [ext_resource type="Script" uid="uid://qicxpks2xn7i" path="res://scenes/moss_test_scenes/shadertest/water_test2.gd" id="3_wbh7m"]
 [ext_resource type="Texture2D" uid="uid://dmrmdic686rdr" path="res://scenes/moss_test_scenes/images/test_dot_3.jpg" id="6_wbh7m"]
+[ext_resource type="Texture2D" uid="uid://u5vmifxyv7vc" path="res://scenes/moss_test_scenes/images/CustomUVChecker_byValle_1K.png" id="8_468n5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_468n5"]
-shader = ExtResource("2_8utvu")
+[sub_resource type="PlaneMesh" id="PlaneMesh_wbh7m"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8utvu"]
+viewport_path = NodePath(".")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_468n5"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_8utvu")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfy18"]
 radius = 1.08842
@@ -30,49 +37,59 @@ albedo_texture = SubResource("ViewportTexture_wbh7m")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_as66i"]
 
-[node name="Level" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_468n5"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w1duw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmyrw"]
+albedo_texture = ExtResource("8_468n5")
+
+[node name="MossLevelDuplicate" type="Node3D"]
 script = ExtResource("1_iulfd")
 
-[node name="ripple_sample" type="SubViewport" parent="."]
+[node name="Splash_Handler" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_8utvu")
+player = NodePath("../player_avatar")
 
-[node name="ColorRect" type="ColorRect" parent="ripple_sample"]
-material = SubResource("ShaderMaterial_468n5")
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.273231, 0, 0, 0, 0.0749184, -0.26276, 0, 0.26276, 0.0749184, 0, 0.517697, 0.409616)
+visible = false
+mesh = SubResource("PlaneMesh_wbh7m")
+surface_material_override/0 = SubResource("StandardMaterial3D_468n5")
 
 [node name="MossShaderTester" parent="." instance=ExtResource("2_13ul4")]
 script = ExtResource("3_wbh7m")
 test_splash = ExtResource("6_wbh7m")
 dampening = 1.0
 velocity = 1.0
+splash_source = Vector2(0.5, 0.5)
+splash_size = 2.0
 
 [node name="player_avatar" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00227845, 0.086549, -0.00548458)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="player_avatar" node_paths=PackedStringArray("world")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479562, 0)
+[node name="CharacterBody3D" type="CharacterBody3D" parent="player_avatar"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("2_58i05")
-world = NodePath("../../cylidrical_world")
-walkSpeed = 0.4
-rotateSpeed = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_avatar/CharacterBody3D"]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_wfy18")
 
 [node name="Sprite3D" type="Sprite3D" parent="player_avatar/CharacterBody3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-billboard = 2
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+billboard = 1
 texture = ExtResource("3_4jjfx")
 
 [node name="cylidrical_world" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.59693, 0)
 
 [node name="world" type="StaticBody3D" parent="cylidrical_world"]
 
 [node name="world_mesh" type="MeshInstance3D" parent="cylidrical_world/world"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0.993323, 3.83766e-08, -0.115371, -0.115371, -4.84625e-08, -0.993323, 0, 0, 0)
+visible = false
 mesh = SubResource("CylinderMesh_a4lc5")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_8utvu")
@@ -93,7 +110,20 @@ skeleton = NodePath("../../world_mesh")
 shape = SubResource("BoxShape3D_as66i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0.693817, 0.904534)
+transform = Transform3D(1, 0, 0, 0, 0.541342, 0.840803, 0, -0.840803, 0.541342, 0, 0.693817, 0.904534)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.052336, 0.99863, 0, -0.99863, 0.052336, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073415, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_468n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("PlaneMesh_w1duw")
+surface_material_override/0 = SubResource("StandardMaterial3D_tmyrw")
