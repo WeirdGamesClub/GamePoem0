@@ -8,8 +8,8 @@ var rotateSpeedRadian : float = 0.0 #gets set from walk speed on _ready()
 var cyllinderRadius : float
 var cyllinderCenter : Vector3
 var cyllinder_rotate_axis : Vector3
-var total_angle_travelled_degrees: float 
-
+var currentround_angle_travelled_degrees: float = 0 
+var round_count: int = 0
 	
 func _get_angle_between_vecs(vecA_normalized: Vector3, vecB_normalized: Vector3)->float:
 	var angle = acos(vecA_normalized.dot((vecB_normalized)));
@@ -52,36 +52,39 @@ func _physics_process(delta: float) -> void:
 		horInput = 0
 	if(playerPosBeforeUpdate.x <= -0.95 && horInput < 0):
 		horInput = 0	
+		
+	#setting the step basis before updating
+	get_parent().transform.basis.y = cylNormalBeforeUpdate #sets transform up vector
+	get_parent().transform.basis.z = cylNormalBeforeUpdate.cross(get_parent().transform.basis.x)
+	
+	#the update to take the step in
 	
 	#Rotate the world if the player is at bounds	
 	if(playerAngleFromUp >= deg_to_rad(60) && vertInput < 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, -rotateSpeedRadian * delta)
-		total_angle_travelled_degrees = total_angle_travelled_degrees - rad_to_deg(rotateSpeedRadian * delta)
+		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees - rad_to_deg(rotateSpeedRadian * delta)
+		vertInput = 0
 	elif(playerAngleFromUp <= deg_to_rad(10) && vertInput > 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, rotateSpeedRadian * delta)
-		total_angle_travelled_degrees = total_angle_travelled_degrees + rad_to_deg(rotateSpeedRadian * delta)
-	#Move the player along the surface of cylander 
-	else:	
-		#setting the step basis before updating
-		get_parent().transform.basis.y = cylNormalBeforeUpdate #sets transform up vector
-		get_parent().transform.basis.z = cylNormalBeforeUpdate.cross(get_parent().transform.basis.x)
+		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees + rad_to_deg(rotateSpeedRadian * delta)
+		vertInput = 0
+		
+	#Move the player along the surface of cyllinder 
+	var inputStepHorizontal = horInput * get_parent().transform.basis.x  * walkSpeed * delta 
+	var inputStepVertical = vertInput * get_parent().transform.basis.z * walkSpeed * delta 
+	var inputStep = inputStepHorizontal + inputStepVertical
+	var playerPosAfterUpdate = playerPosBeforeUpdate + inputStep	
+	var cylNormalAfterUpdate = _get_cyllinder_normal(playerPosAfterUpdate)
+	#fix the player position so they dont run off the cyllinders radius
+	self.global_position = _get_cyllinder_corrected_position(playerPosAfterUpdate,cylNormalAfterUpdate)
+		
+	#calculate degrees traveled
+	if(vertInput > 0):
+		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees + _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
+	elif(vertInput < 0):
+		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees - _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
 
-		#the update to take the step in
-		var inputStepHorizontal = horInput * get_parent().transform.basis.x  * walkSpeed * delta 
-		var inputStepVertical = vertInput * get_parent().transform.basis.z * walkSpeed * delta 
-		
-		var inputStep = inputStepHorizontal + inputStepVertical
-		var playerPosAfterUpdate = playerPosBeforeUpdate + inputStep
-		
-		var cylNormalAfterUpdate = _get_cyllinder_normal(playerPosAfterUpdate)
-		#fix the player position so they dont run off the cyllinders radius
-		self.global_position = _get_cyllinder_corrected_position(playerPosAfterUpdate,cylNormalAfterUpdate)
-		
-		#calculate distance traveled
-		if(vertInput > 0):
-			total_angle_travelled_degrees = total_angle_travelled_degrees + _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
-		elif(vertInput < 0):
-			total_angle_travelled_degrees = total_angle_travelled_degrees - _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
-		
-	DebugDraw2D.set_text("",total_angle_travelled_degrees)
+	if(currentround_angle_travelled_degrees >= 365 || currentround_angle_travelled_degrees <= -365):
+		round_count = round_count + 1;
+		currentround_angle_travelled_degrees = 0
 	move_and_slide()

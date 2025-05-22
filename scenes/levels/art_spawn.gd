@@ -7,5 +7,5 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if(player is PoemPlayer):
-		if(player.total_angle_travelled_degrees >= (NumRoundsToAppear * 360)):
+		if(abs(player.round_count) >= NumRoundsToAppear ):
 			visible = true
