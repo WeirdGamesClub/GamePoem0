@@ -14,12 +14,7 @@ func _process(delta: float) -> void:
 	
 	
 	var bounds = Vector2( height / boundsScale.x, height / boundsScale.y)
-	
-	DebugDraw2D.set_text("bounds: ", bounds)
-	DebugDraw2D.set_text("player_pos: ", position)
-	DebugDraw2D.set_text("world_rot: ", world.transform.basis.get_euler())
-	DebugDraw2D.set_text("mouse pos: ", get_viewport().get_mouse_position())
-	
+
 	#if outside, rotate world
 	
 	#if(position.y < bounds.x):

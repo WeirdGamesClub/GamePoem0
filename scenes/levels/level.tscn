@@ -81,7 +81,6 @@ fov = 35.0
 near = 0.165
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.052336, 0.99863, 0, -0.99863, 0.052336, 0, 0, 0)
