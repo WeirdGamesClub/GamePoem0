@@ -17,7 +17,6 @@ shader_parameter/buffer1 = SubResource("ViewportTexture_hr1g8")
 shader_parameter/buffer2 = SubResource("ViewportTexture_rbmnh")
 shader_parameter/splash_source_pt = Vector2(0, 0)
 shader_parameter/splash_size = 0.0
-shader_parameter/player_pos = Vector3(0, 0, 0)
 shader_parameter/dampening = 0.9
 shader_parameter/velocity = 1.0
 

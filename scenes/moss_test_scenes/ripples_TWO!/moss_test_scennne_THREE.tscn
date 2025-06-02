@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://dxt3uc5ajixd"]
+
+[ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_01qnb"]
+[ext_resource type="Script" uid="uid://dsubvgi3whls0" path="res://scenes/moss_test_scenes/TEST_CHAR.gd" id="4_47827"]
+[ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://art/sprites/icon.svg" id="5_ffkux"]
+[ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylindrical_world/cylidrical_world.tscn" id="6_gowwm"]
+[ext_resource type="PackedScene" uid="uid://cl247ivp0p7tf" path="res://scenes/paper_pickup/paper_pickup.tscn" id="7_0sujn"]
+[ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="8_jgjrh"]
+[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/levels/art_spawn.gd" id="9_bg41r"]
+[ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/drawn_environments/test_drawn_environ.tscn" id="10_tgju3"]
+[ext_resource type="Script" uid="uid://bpppjmgi2m5ls" path="res://scenes/cylindrical_world/splash_handler_TWO.gd" id="10_ywvbr"]
+[ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="11_ia1ah"]
+[ext_resource type="Shader" uid="uid://ck5aoj0bww7cd" path="res://art/materials/ripples_riti_style.gdshader" id="11_ywvbr"]
+[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="12_mqlmd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfy18"]
+radius = 1.08842
+height = 2.17684
+
+[sub_resource type="BoxMesh" id="BoxMesh_d4w6o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqlmd"]
+render_priority = 0
+shader = ExtResource("11_ywvbr")
+shader_parameter/ripple_pos_arr = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/ripple_time_arr = PackedFloat32Array(0)
+shader_parameter/rip_radius = 0.0
+shader_parameter/rip_width = 0.01
+shader_parameter/tex_albedo = ExtResource("12_mqlmd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_akw2h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ywvbr"]
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_01qnb")
+
+[node name="player_avatar" type="Node3D" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="player_avatar"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("4_47827")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_avatar/CharacterBody3D"]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_wfy18")
+
+[node name="Sprite3D" type="Sprite3D" parent="player_avatar/CharacterBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.0628992, 0)
+billboard = 2
+texture = ExtResource("5_ffkux")
+
+[node name="cylidrical_world" parent="." instance=ExtResource("6_gowwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.30265, 0)
+visible = false
+
+[node name="paper_pickup" parent="cylidrical_world" instance=ExtResource("7_0sujn")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.540992, 0.545357, 0)
+prompt = ExtResource("8_jgjrh")
+
+[node name="ArtSpawn" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
+transform = Transform3D(0.052485, 0, 0, 0, 0.550005, 0, 0, 0, -0.0785573, 0.0728896, 0.757549, 0)
+mesh = SubResource("BoxMesh_d4w6o")
+script = ExtResource("9_bg41r")
+player = NodePath("../../player_avatar/CharacterBody3D")
+
+[node name="ArtSpawn2" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
+transform = Transform3D(0.052485, 0, 0, 0, 0.804033, 0, 0, 0, -0.0785573, 0.224579, 0.757549, 0)
+mesh = SubResource("BoxMesh_d4w6o")
+script = ExtResource("9_bg41r")
+NumRoundsToAppear = 2.0
+player = NodePath("../../player_avatar/CharacterBody3D")
+
+[node name="ArtSpawn3" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
+transform = Transform3D(0.052485, 0, 0, 0, 1.10361, 0, 0, 0, -0.0785573, 0.388531, 0.757549, 0)
+mesh = SubResource("BoxMesh_d4w6o")
+script = ExtResource("9_bg41r")
+NumRoundsToAppear = 3.0
+player = NodePath("../../player_avatar/CharacterBody3D")
+
+[node name="test_drawn_environ" parent="cylidrical_world" instance=ExtResource("10_tgju3")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.118842, 0.567487, 0.528191)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.650629, 0.759396, 0, -0.759396, 0.650629, 0, 0.693817, 0.904534)
+
+[node name="DrawingMenu" parent="." instance=ExtResource("11_ia1ah")]
+visible = false
+
+[node name="plane" type="Node3D" parent="." node_paths=PackedStringArray("player", "ground_mesh")]
+script = ExtResource("10_ywvbr")
+player = NodePath("../player_avatar/CharacterBody3D")
+ground_mesh = NodePath("MeshInstance3D")
+ground_radius = 1.0
+max_interval_btwn_splashes = 0.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="plane"]
+transform = Transform3D(1, 0.000163912, -0.000437974, -0.000156155, 0.999844, 0.0176561, 0.000440799, -0.017656, 0.999844, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_mqlmd")
+mesh = SubResource("PlaneMesh_akw2h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.49519, 0.681368, -0.539003, -0.153333, 0.679215, 0.717744, 0.855147, -0.272772, 0.440817, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.271013, 0, 0, 0, 0.271013, 0, 0, 0, 0.271013, 1, 0.099, 1)
+mesh = SubResource("BoxMesh_ywvbr")
+
+[connection signal="pickup_signal" from="." to="DrawingMenu" method="start_drawing"]

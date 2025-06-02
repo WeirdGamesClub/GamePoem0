@@ -8,7 +8,7 @@ func _physics_process(delta: float) -> void:
 	var horInput = Input.get_axis("move_left","move_right")
 	var vertInput = Input.get_axis("move_down","move_up")
 
-	var inputStepHorizontal = horInput * get_parent().transform.basis.x  * walkSpeed * delta 
+	var inputStepHorizontal = horInput * get_parent().transform.basis.x * walkSpeed * delta 
 	var inputStepVertical = -vertInput * get_parent().transform.basis.z * walkSpeed * delta 
 	inputStep = inputStepHorizontal + inputStepVertical
 

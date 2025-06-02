@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cu16bobbthsuf" path="res://scenes/moss_test_scenes/shadertest/splash_handler.gd" id="2_8utvu"]
 [ext_resource type="PackedScene" uid="uid://croegbjdqv7b2" path="res://scenes/moss_test_scenes/shadertest/moss_shader_tester.tscn" id="2_13ul4"]
 [ext_resource type="Script" uid="uid://1ymj6ndbfrj5" path="res://scenes/player/player_movement.gd" id="2_58i05"]
-[ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://sprites/icon.svg" id="3_4jjfx"]
+[ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://art/sprites/icon.svg" id="3_4jjfx"]
 [ext_resource type="Script" uid="uid://qicxpks2xn7i" path="res://scenes/moss_test_scenes/shadertest/water_test2.gd" id="3_wbh7m"]
 [ext_resource type="Texture2D" uid="uid://dmrmdic686rdr" path="res://scenes/moss_test_scenes/images/test_dot_3.jpg" id="6_wbh7m"]
 [ext_resource type="Texture2D" uid="uid://u5vmifxyv7vc" path="res://scenes/moss_test_scenes/images/CustomUVChecker_byValle_1K.png" id="8_468n5"]

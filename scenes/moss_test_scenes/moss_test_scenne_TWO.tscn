@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_d2n1h"]
 [ext_resource type="Script" uid="uid://dsubvgi3whls0" path="res://scenes/moss_test_scenes/TEST_CHAR.gd" id="2_5tqgg"]
 [ext_resource type="PackedScene" uid="uid://croegbjdqv7b2" path="res://scenes/moss_test_scenes/shadertest/moss_shader_tester.tscn" id="2_akw2h"]
-[ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://sprites/icon.svg" id="2_vaif7"]
+[ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://art/sprites/icon.svg" id="2_vaif7"]
 [ext_resource type="Script" uid="uid://qicxpks2xn7i" path="res://scenes/moss_test_scenes/shadertest/water_test2.gd" id="3_akw2h"]
-[ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylidrical_world.tscn" id="3_vaif7"]
+[ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylindrical_world/cylidrical_world.tscn" id="3_vaif7"]
 [ext_resource type="PackedScene" uid="uid://cl247ivp0p7tf" path="res://scenes/paper_pickup/paper_pickup.tscn" id="4_5tqgg"]
 [ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="5_akw2h"]
-[ext_resource type="Script" path="res://scenes/levels/art_spawn.gd" id="6_cj5vo"]
+[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/levels/art_spawn.gd" id="6_cj5vo"]
 [ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/drawn_environments/test_drawn_environ.tscn" id="7_qqgr8"]
 [ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="8_imrlo"]
 [ext_resource type="Script" uid="uid://cu16bobbthsuf" path="res://scenes/moss_test_scenes/shadertest/splash_handler.gd" id="9_vaif7"]
@@ -21,7 +21,7 @@ height = 2.17684
 [sub_resource type="BoxMesh" id="BoxMesh_d4w6o"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_cj5vo"]
-viewport_path = NodePath("CalculationViewport")
+viewport_path = NodePath(".")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqgr8"]
 resource_local_to_scene = true

@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhjwrs2arkdus"]
+[gd_scene load_steps=18 format=3 uid="uid://bhjwrs2arkdus"]
 
-[ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylidrical_world.tscn" id="1_bovvr"]
+[ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylindrical_world/cylidrical_world.tscn" id="1_bovvr"]
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_urvlt"]
 [ext_resource type="PackedScene" uid="uid://brcfccn3ndiuo" path="res://scenes/player/player_avatar.tscn" id="2_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="3_b2cq8"]
@@ -10,8 +10,21 @@
 [ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/levels/art_spawn.gd" id="6_mbbpy"]
 [ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/drawn_environments/test_drawn_environ.tscn" id="7_ouxo3"]
 [ext_resource type="AudioStream" uid="uid://cmvm2kxukotuj" path="res://audio/reverbtest2.mp3" id="10_rmjfq"]
+[ext_resource type="Shader" uid="uid://ddlgdi8x6djdj" path="res://art/materials/screen_space_backdrop.gdshader" id="11_7pb6i"]
+[ext_resource type="Texture2D" uid="uid://bqhtfdt4fhf7f" path="res://art/textures/game_poem_background.png" id="12_xfk5q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmjfq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qogh7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_d4w6o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfk5q"]
+render_priority = 0
+shader = ExtResource("11_7pb6i")
+shader_parameter/tex_albedo = ExtResource("12_xfk5q")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qogh7"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_urvlt")
@@ -27,13 +40,27 @@ horizontalConstraints = 1.5
 
 [node name="Sprite3D" parent="player_avatar/CharacterBody3D" index="1"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
 billboard = 2
 
-[node name="cylidrical_world" parent="." instance=ExtResource("1_bovvr")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player_avatar/CharacterBody3D" index="2"]
+transform = Transform3D(0.22007, 0, 0, 0, 0.22007, 0, 0, 0, 0.22007, 0, 0.0100601, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_rmjfq")
+mesh = SubResource("SphereMesh_qogh7")
+skeleton = NodePath("../..")
+
+[node name="cylidrical_world" parent="." node_paths=PackedStringArray("player", "debug_sphere") instance=ExtResource("1_bovvr")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+player = NodePath("../player_avatar/CharacterBody3D")
+max_interval_btwn_splashes = 0.5
+splash_duration = 10.0
+splash_radius = 0.3
+splash_width = 0.005
+debug_sphere = NodePath("../player_avatar/CharacterBody3D/MeshInstance3D")
 
 [node name="paper_pickup" parent="cylidrical_world" instance=ExtResource("5_d4w6o")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.540992, 0.545357, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.115292, 0.482431, -0.24526)
 prompt = ExtResource("6_d4w6o")
 
 [node name="paper_pickup2" parent="cylidrical_world" instance=ExtResource("5_d4w6o")]
@@ -61,7 +88,7 @@ NumRoundsToAppear = 3.0
 player = NodePath("../../player_avatar/CharacterBody3D")
 
 [node name="test_drawn_environ" parent="cylidrical_world" instance=ExtResource("7_ouxo3")]
-transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, -0.632037, 0.445706, 0.402083)
+transform = Transform3D(0.0412264, 0, 0, 0, 0.0243462, 0.0332697, 0, -0.0332697, 0.0243462, -0.0524079, 0.403476, -0.364155)
 
 [node name="test_drawn_environ2" parent="cylidrical_world" instance=ExtResource("7_ouxo3")]
 transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.0694658, 0.00592071, 0.428354, 0.384114)
@@ -76,14 +103,15 @@ transform = Transform3D(0.1, 0, 0, 0, 0.0694658, -0.071934, 0, 0.071934, 0.06946
 prompt = ExtResource("6_icy5c")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 2.73543, 3.52779)
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 2.66701, 3.52779)
 fov = 35.0
 near = 0.165
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.052336, 0.99863, 0, -0.99863, 0.052336, 0, 0, 0)
+transform = Transform3D(0.47914, -0.70525, 0.522539, 0.421829, 0.707085, 0.567531, -0.76973, -0.0515055, 0.636288, 0, 0, 0)
+shadow_enabled = true
 
 [node name="DrawingMenu" parent="." instance=ExtResource("3_b2cq8")]
 
@@ -91,6 +119,11 @@ transform = Transform3D(1, 0, 0, 0, 0.052336, 0.99863, 0, -0.99863, 0.052336, 0,
 stream = ExtResource("10_rmjfq")
 volume_db = -4.706
 autoplay = true
+
+[node name="Backdrop" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.28074, 0, 0, 0, 3.54217, -5.1866, 0, 5.1866, 3.54217, 0, 0, -5.30126)
+material_override = SubResource("ShaderMaterial_xfk5q")
+mesh = SubResource("PlaneMesh_qogh7")
 
 [connection signal="pickup_signal" from="." to="DrawingMenu" method="start_drawing"]
 
