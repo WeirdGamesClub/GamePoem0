@@ -79,14 +79,12 @@ player = NodePath("../../player_avatar/CharacterBody3D")
 transform = Transform3D(0.052485, 0, 0, 0, 0.804033, 0, 0, 0, -0.0785573, 0.224579, 0.757549, 0)
 mesh = SubResource("BoxMesh_d4w6o")
 script = ExtResource("6_cj5vo")
-NumRoundsToAppear = 2.0
 player = NodePath("../../player_avatar/CharacterBody3D")
 
 [node name="ArtSpawn3" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
 transform = Transform3D(0.052485, 0, 0, 0, 1.10361, 0, 0, 0, -0.0785573, 0.388531, 0.757549, 0)
 mesh = SubResource("BoxMesh_d4w6o")
 script = ExtResource("6_cj5vo")
-NumRoundsToAppear = 3.0
 player = NodePath("../../player_avatar/CharacterBody3D")
 
 [node name="test_drawn_environ" parent="cylidrical_world" instance=ExtResource("7_qqgr8")]

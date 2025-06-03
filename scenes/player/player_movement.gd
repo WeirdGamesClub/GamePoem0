@@ -2,6 +2,7 @@ class_name PoemPlayer
 extends CharacterBody3D
 
 @export var world : Node3D
+@export var camera : Node3D
 @export var walkSpeed: float = 0.5
 @export var horizontalConstraints: float = 1
 var rotateSpeedRadian : float = 0.0 #gets set from walk speed on _ready()
@@ -33,11 +34,17 @@ func _get_cyllinder_corrected_position(playerPos: Vector3, currentNormal: Vector
 	return playerPosOnCylinder
 	
 func _ready() -> void:
-	cyllinderRadius = world.transform.basis.get_scale().x/2 + 0.05 #TODO: this should be off of initial player distance :)
+	cyllinderRadius = world.transform.basis.get_scale().x/2 + 0.05
 	cyllinderCenter = Vector3(0,0,0)
 	cyllinder_rotate_axis = Vector3.RIGHT
 	rotateSpeedRadian = (walkSpeed / cyllinderRadius)
-	
+
+func _get_speed() -> float: #this ones for moss
+	var horspeed = Input.get_axis("move_left","move_right") * walkSpeed
+	var vertspeed = Input.get_axis("move_down","move_up") * walkSpeed
+	var speed = sqrt((horspeed * horspeed) + (vertspeed * vertspeed))
+	return speed
+		
 func _physics_process(delta: float) -> void:
 	if(InputManager.input_mode != InputManager.mode.WALKING): 
 		return
@@ -45,7 +52,8 @@ func _physics_process(delta: float) -> void:
 	var playerPosBeforeUpdate =  self.global_position
 
 	var cylNormalBeforeUpdate = _get_cyllinder_normal(playerPosBeforeUpdate)
-	var playerAngleFromUp = cylNormalBeforeUpdate.angle_to(Vector3.UP)
+	var camUp =  camera.transform.basis.y 
+	var playerAngleFromUp = cylNormalBeforeUpdate.angle_to(camUp)
 	var horInput = Input.get_axis("move_left","move_right")
 	var vertInput = Input.get_axis("move_down","move_up")
 	#horizontal bounds:
@@ -61,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	#the update to take the step in
 	
 	#Rotate the world if the player is at bounds	
-	if(playerAngleFromUp >= deg_to_rad(60) && vertInput < 0):
+	if(playerAngleFromUp >= deg_to_rad(100) && vertInput < 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, -rotateSpeedRadian * delta)
 		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees - rad_to_deg(rotateSpeedRadian * delta)
 		vertInput = 0
@@ -85,7 +93,7 @@ func _physics_process(delta: float) -> void:
 	elif(vertInput < 0):
 		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees - _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
 
-	if(currentround_angle_travelled_degrees >= 365 || currentround_angle_travelled_degrees <= -365):
+	if(currentround_angle_travelled_degrees >= 360|| currentround_angle_travelled_degrees <= -360):
 		round_count = round_count + 1;
 		currentround_angle_travelled_degrees = 0
 	move_and_slide()
