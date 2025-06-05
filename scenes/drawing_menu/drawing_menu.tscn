@@ -1,20 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=12 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
 [ext_resource type="Material" uid="uid://bsrame6euup8a" path="res://art/materials/blur.tres" id="2_ursla"]
 [ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]
+[ext_resource type="Texture2D" uid="uid://dqj7sqgl88drf" path="res://art/textures/paper_hole_cutout.png" id="3_oyudf"]
 [ext_resource type="Texture2D" uid="uid://cryomryy5uxj2" path="res://scenes/drawing_menu/brush_chalk.png" id="4_aaulj"]
 [ext_resource type="PackedScene" uid="uid://d2w75hgcebnn2" path="res://scenes/drawing_menu/color_button.tscn" id="5_56lbc"]
 [ext_resource type="Texture2D" uid="uid://5vveqv5p53nw" path="res://scenes/moss_test_scenes/images/hitdabricks.jpg" id="7_rdw8d"]
-
-[sub_resource type="Theme" id="Theme_1xf2r"]
-default_font_size = 40
+[ext_resource type="Texture2D" uid="uid://54aegjalli6a" path="res://art/sprites/crayon_rect_2.png" id="8_oyudf"]
+[ext_resource type="Texture2D" uid="uid://dhrfkkj2wvdal" path="res://art/textures/drawing_frame.png" id="9_21hyc"]
+[ext_resource type="Theme" uid="uid://daj8x2m8ugs77" path="res://scenes/drawing_menu/menu_text_theme.tres" id="9_bmxw4"]
 
 [node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup")]
 script = ExtResource("2_lkd8s")
-primary_button = NodePath("Control/VBoxContainer/PrimaryColorButton")
-secondary_button = NodePath("Control/VBoxContainer/SecondaryColorButton2")
+primary_button = NodePath("Control/PrimaryColorButton")
+secondary_button = NodePath("Control/SecondaryColorButton2")
 prompt_title = NodePath("Control/Prompt Title")
 drawingCanvas = NodePath("Control/MarginContainer/DrawingCanvas")
 acceptPopup = NodePath("Control/Accept Panel")
@@ -26,14 +27,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -351.0
-offset_top = -301.0
-offset_right = 352.0
-offset_bottom = 298.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 630.0
+offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="BlurBackground" type="ColorRect" parent="Control"]
 material = ExtResource("2_ursla")
 layout_mode = 1
 anchors_preset = 15
@@ -45,6 +46,32 @@ offset_right = 293.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.995898)
+
+[node name="DrawingFrameBG" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 369.0
+offset_top = 113.0
+offset_right = 889.0
+offset_bottom = 633.0
+color = Color(0.83, 0.900833, 1, 0.431373)
+
+[node name="PaperBackground" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1335.0
+offset_top = -1060.0
+offset_right = 1340.0
+offset_bottom = 1100.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.335, 0.335)
+pivot_offset = Vector2(1337.5, 1050)
+texture = ExtResource("3_oyudf")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -53,12 +80,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
+offset_left = -230.0
+offset_top = -215.0
+offset_right = 282.0
+offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.897556, 0.897556)
 
 [node name="DrawingCanvas" type="TextureRect" parent="Control/MarginContainer"]
 layout_mode = 2
@@ -73,26 +101,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -134.5
-offset_right = 78.0
-offset_bottom = 144.5
+offset_left = -177.0
+offset_top = -325.0
+offset_right = 823.0
+offset_bottom = 675.0
 grow_vertical = 2
+scale = Vector2(0.66766, 0.66766)
 alignment = 1
-
-[node name="PrimaryColorButton" parent="Control/VBoxContainer" instance=ExtResource("5_56lbc")]
-layout_mode = 2
-
-[node name="SecondaryColorButton2" parent="Control/VBoxContainer" instance=ExtResource("5_56lbc")]
-layout_mode = 2
-
-[node name="EraseButton" type="Button" parent="Control/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = " "
-icon = ExtResource("4_aaulj")
-flat = true
-icon_alignment = 1
-expand_icon = true
 
 [node name="BrushSlider" type="HSlider" parent="Control"]
 layout_mode = 1
@@ -115,16 +130,58 @@ rounded = true
 tick_count = 3
 ticks_on_borders = true
 
+[node name="PrimaryColorButton" parent="Control" instance=ExtResource("5_56lbc")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -173.0
+offset_right = 58.0
+offset_bottom = 83.0
+grow_vertical = 2
+rotation = -0.925025
+size_flags_vertical = 3
+icon = ExtResource("8_oyudf")
+
+[node name="SecondaryColorButton2" parent="Control" instance=ExtResource("5_56lbc")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 22.0
+offset_right = 58.0
+offset_bottom = 278.0
+grow_vertical = 2
+rotation = -0.925025
+size_flags_vertical = 3
+icon = ExtResource("8_oyudf")
+
+[node name="EraseButton" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -177.0
+offset_top = 35.0
+offset_right = -164.0
+offset_bottom = 66.0
+text = " "
+icon = ExtResource("4_aaulj")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="Prompt Title" type="RichTextLabel" parent="Control"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -252.5
-offset_right = 253.5
-offset_bottom = 40.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 72.0
+offset_bottom = 127.0
 grow_horizontal = 2
+theme = ExtResource("9_bmxw4")
+theme_override_colors/default_color = Color(0.1364, 0.32984, 0.62, 1)
 text = "TOTLE"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -135,8 +192,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -63.0
-offset_top = -45.0
+offset_left = -351.0
+offset_top = -112.0
+offset_right = -288.0
+offset_bottom = -67.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "accept"
@@ -145,41 +204,54 @@ text = "accept"
 visible = false
 material = ExtResource("2_ursla")
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -550.5
-offset_top = -346.0
-offset_right = 550.5
-offset_bottom = 346.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Control/Accept Panel"]
-layout_mode = 0
-offset_left = -110.0
-offset_top = -41.0
-offset_right = 1213.0
-offset_bottom = 746.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/Accept Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -237.5
-offset_top = 23.5
-offset_right = 239.5
-offset_bottom = 169.5
+offset_left = -237.0
+offset_top = 10.0
+offset_right = 240.0
+offset_bottom = 156.0
 grow_horizontal = 2
-theme = SubResource("Theme_1xf2r")
+theme = ExtResource("9_bmxw4")
 text = "is this Acceptable?"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DrawingFrameBG" type="TextureRect" parent="Control/Accept Panel"]
+modulate = Color(0.88, 0.93, 1, 0.286275)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1335.0
+offset_top = -1061.0
+offset_right = 1340.0
+offset_bottom = 1099.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.335, 0.335)
+pivot_offset = Vector2(1337.5, 1050)
+texture = ExtResource("9_21hyc")
 
 [node name="DrawingPreview" type="TextureRect" parent="Control/Accept Panel"]
 layout_mode = 1
@@ -188,12 +260,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.5
-offset_top = -155.5
-offset_right = 125.5
-offset_bottom = 100.5
+offset_left = -230.0
+offset_top = -215.0
+offset_right = 282.0
+offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.897556, 0.897556)
 texture = ExtResource("7_rdw8d")
 expand_mode = 4
 
@@ -204,10 +277,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -186.5
-offset_top = -124.165
-offset_right = 187.5
-offset_bottom = -88.165
+offset_left = -186.0
+offset_top = -82.0
+offset_right = 188.0
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -222,8 +295,8 @@ size_flags_horizontal = 3
 text = "No"
 
 [connection signal="finish_drawing" from="." to="Control/Accept Panel/DrawingPreview" method="set_texture"]
-[connection signal="pressed" from="Control/VBoxContainer/EraseButton" to="Control/MarginContainer/DrawingCanvas" method="change_color" binds= [Color(0, 0, 0, 0)]]
 [connection signal="value_changed" from="Control/BrushSlider" to="Control/MarginContainer/DrawingCanvas" method="change_brush_size"]
+[connection signal="pressed" from="Control/EraseButton" to="Control/MarginContainer/DrawingCanvas" method="change_color" binds= [Color(0, 0, 0, 0)]]
 [connection signal="pressed" from="Control/Accept Button" to="." method="query_accept"]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/YesButton" to="." method="save_drawing"]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/MarginContainer/DrawingCanvas" method="set_process" binds= [true]]

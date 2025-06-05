@@ -54,21 +54,16 @@ func _physics_process(delta: float) -> void:
 	
 	# transform to local space of cylinder
 	var local_playerpos = self.to_local(world_playerpos)
-	print(local_playerpos);
 
 	# snap to cylinder surface
 	# im sure theres a better way to do this
 	var direction_from_center = Vector2(local_playerpos.y, local_playerpos.z).normalized()
 	var scaled_dir = direction_from_center * 0.5;
 	local_playerpos = Vector3(local_playerpos.x, scaled_dir.x, scaled_dir.y);
-	print(local_playerpos)
-
 
 	# fix axes for rotation
 	# WARNING THIS IS HARD CODED IF YOU ROTATE THE CYLINDER AGAIN ITS GONNA FUCK UP!
 	var playerpos = Vector3(-local_playerpos.z, local_playerpos.x, -local_playerpos.y)
-
-
 	
 	# iterate through splash arrays
 	for i in range(splash_array_max_length):
