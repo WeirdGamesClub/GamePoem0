@@ -1,13 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhjwrs2arkdus"]
+[gd_scene load_steps=12 format=3 uid="uid://bhjwrs2arkdus"]
 
 [ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylindrical_world/cylidrical_world.tscn" id="1_bovvr"]
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_urvlt"]
 [ext_resource type="PackedScene" uid="uid://brcfccn3ndiuo" path="res://scenes/player/player_avatar.tscn" id="2_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="3_b2cq8"]
-[ext_resource type="PackedScene" uid="uid://cl247ivp0p7tf" path="res://scenes/paper_pickup/paper_pickup.tscn" id="5_d4w6o"]
-[ext_resource type="Resource" uid="uid://bwgx2uhh7jera" path="res://resources/grass_prompt.tres" id="5_xfk5q"]
-[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/levels/art_spawn.gd" id="6_mbbpy"]
-[ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/drawn_environments/test_drawn_environ.tscn" id="7_ouxo3"]
 [ext_resource type="AudioStream" uid="uid://cmvm2kxukotuj" path="res://audio/reverbtest2.mp3" id="10_rmjfq"]
 [ext_resource type="Shader" uid="uid://ddlgdi8x6djdj" path="res://art/materials/screen_space_backdrop.gdshader" id="11_7pb6i"]
 [ext_resource type="Texture2D" uid="uid://bqhtfdt4fhf7f" path="res://art/textures/game_poem_background.png" id="12_xfk5q"]
@@ -20,6 +16,7 @@
 render_priority = 0
 shader = ExtResource("11_7pb6i")
 shader_parameter/tex_albedo = ExtResource("12_xfk5q")
+shader_parameter/tint = Vector3(0.7, 0.7, 0.7)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qogh7"]
 
@@ -48,51 +45,13 @@ material_override = SubResource("StandardMaterial3D_rmjfq")
 mesh = SubResource("SphereMesh_qogh7")
 skeleton = NodePath("../..")
 
-[node name="cylidrical_world" parent="." node_paths=PackedStringArray("player", "debug_sphere") instance=ExtResource("1_bovvr")]
+[node name="cylidrical_world" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_bovvr")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 player = NodePath("../player_avatar/CharacterBody3D")
 max_interval_btwn_splashes = 0.5
 splash_duration = 10.0
 splash_radius = 0.3
 splash_width = 0.005
-debug_sphere = NodePath("../player_avatar/CharacterBody3D/MeshInstance3D")
-
-[node name="PaperPickupSpawner_GrassPrompt" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.445556, -0.312513)
-script = ExtResource("6_mbbpy")
-NumRoundsToAppear = 0
-player = NodePath("../../player_avatar/CharacterBody3D")
-
-[node name="paper_pickup" parent="cylidrical_world/PaperPickupSpawner_GrassPrompt" instance=ExtResource("5_d4w6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-prompt = ExtResource("5_xfk5q")
-
-[node name="ArtSpawner_GrassDisplay" type="MeshInstance3D" parent="cylidrical_world" node_paths=PackedStringArray("player")]
-transform = Transform3D(0.287256, 0, 0, 0, 0.018057, 0.286688, 0, -0.286688, 0.018057, 0, 0.0497189, -0.789379)
-script = ExtResource("6_mbbpy")
-NumRoundsToAppear = 0
-AdditionalFractionRound = 0.125
-player = NodePath("../../player_avatar/CharacterBody3D")
-
-[node name="PlayersArt" parent="cylidrical_world/ArtSpawner_GrassDisplay" instance=ExtResource("7_ouxo3")]
-transform = Transform3D(0.22602, 0, 0, 0, 0.207264, 0.0901469, 0, -0.0901469, 0.207264, 0, -0.876835, 1.91585e-09)
-rotation_edit_mode = 2
-prompt = ExtResource("5_xfk5q")
-
-[node name="PlayersArt2" parent="cylidrical_world/ArtSpawner_GrassDisplay" instance=ExtResource("7_ouxo3")]
-transform = Transform3D(0.0408358, 0.0633561, 0.213081, -2.79397e-09, 0.216646, -0.0644162, -0.2223, 0.0116383, 0.0391422, 0.211018, -0.831186, 0.198783)
-rotation_edit_mode = 2
-prompt = ExtResource("5_xfk5q")
-
-[node name="PlayersArt3" parent="cylidrical_world/ArtSpawner_GrassDisplay" instance=ExtResource("7_ouxo3")]
-transform = Transform3D(-0.0893866, -0.0503374, -0.201398, 1.86265e-09, 0.219274, -0.0548054, 0.207593, -0.0216745, -0.086719, -0.430595, -0.841006, 0.184407)
-rotation_edit_mode = 2
-prompt = ExtResource("5_xfk5q")
-
-[node name="PlayersArt4" parent="cylidrical_world/ArtSpawner_GrassDisplay" instance=ExtResource("7_ouxo3")]
-transform = Transform3D(0.22602, 0, 0, 0, 0.168868, -0.150229, 0, 0.150229, 0.168868, -0.123699, -0.878948, 0.305143)
-rotation_edit_mode = 2
-prompt = ExtResource("5_xfk5q")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.533039, 0.846091, 0, -0.846091, 0.533039, -0.00013113, 6.71402, 3.02313)

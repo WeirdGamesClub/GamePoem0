@@ -1,11 +1,13 @@
-extends StaticBody3D
+extends Node3D
 
 @export var prompt: PromptResource
-@export var mesh: MeshInstance3D
+@onready var mesh = $MeshInstance3D
 
 
 func _ready() -> void:
+	await get_parent().get_parent().ready
 	prompt.changed_drawing.connect(set_drawing)
+	print(prompt.title)
 	
 func set_drawing(texture: Texture2D)->void:
 	var material = StandardMaterial3D.new()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7qvn30pef2xw"]
+
+[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/world_objects/art_spawn.gd" id="1_t10v8"]
+[ext_resource type="Script" uid="uid://cin8c6w2t0fqm" path="res://scenes/world_objects/spawnable_parent.gd" id="1_yqywe"]
+[ext_resource type="PackedScene" uid="uid://cl247ivp0p7tf" path="res://scenes/world_objects/paper_pickup/paper_pickup.tscn" id="2_yqywe"]
+[ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="4_811wk"]
+
+[node name="SpawnablePaperPickup" type="Node3D"]
+script = ExtResource("1_yqywe")
+prompt = ExtResource("4_811wk")
+
+[node name="Art_Spawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60784e-05, 0.541334, -2.88039e-05)
+script = ExtResource("1_t10v8")
+
+[node name="paper_pickup" parent="Art_Spawn" instance=ExtResource("2_yqywe")]
+prompt = ExtResource("4_811wk")

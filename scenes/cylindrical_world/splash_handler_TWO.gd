@@ -7,17 +7,13 @@ extends Node3D
 @export var splash_duration: float = 2
 @export var splash_radius: float = 0.15
 @export var splash_width: float = 0.01
-@export var test: Vector3 = Vector3(0.2, 0.4, 0.6)
 
-@export var debug_sphere: Node3D
 
 # must correspond to array length in shader
 # this number has to be hard-coded to the shader so it's hard coded here too
 var splash_array_max_length: int = 8
 
 var ground_material: Material
-
-var debug_sphere_material: Material
 
 var splash_positions: Array[Vector3]
 var splash_times: Array[float]
@@ -31,7 +27,6 @@ func _ready() -> void:
 	ground_material = ground_mesh.get_active_material(0)
 	ground_material.set_shader_parameter("rip_radius", splash_radius)
 	ground_material.set_shader_parameter("rip_width", splash_width)
-	ground_material.set_shader_parameter("test_color", test)
 		
 	# initialize arrays
 	splash_positions.resize(splash_array_max_length)
@@ -45,22 +40,21 @@ func _ready() -> void:
 	# manual fix........... ugh
 	player = $"../player_avatar/CharacterBody3D"
 	
-	debug_sphere_material = debug_sphere.get_active_material(0)
-
 func _physics_process(delta: float) -> void:	
 	
 	# get player position
 	var world_playerpos = player.get_global_position()	
-	
+
 	# transform to local space of cylinder
 	var local_playerpos = self.to_local(world_playerpos)
 
 	# snap to cylinder surface
 	# im sure theres a better way to do this
 	var direction_from_center = Vector2(local_playerpos.y, local_playerpos.z).normalized()
+	# radius = 0.5 of diameter 1. since we're in local space, scale is accounted for automatically
 	var scaled_dir = direction_from_center * 0.5;
 	local_playerpos = Vector3(local_playerpos.x, scaled_dir.x, scaled_dir.y);
-
+	
 	# fix axes for rotation
 	# WARNING THIS IS HARD CODED IF YOU ROTATE THE CYLINDER AGAIN ITS GONNA FUCK UP!
 	var playerpos = Vector3(-local_playerpos.z, local_playerpos.x, -local_playerpos.y)

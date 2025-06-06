@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cthv4b3wddim6"]
+
+[ext_resource type="Script" uid="uid://cin8c6w2t0fqm" path="res://scenes/world_objects/spawnable_parent.gd" id="1_bur2d"]
+[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/world_objects/art_spawn.gd" id="1_l7tiu"]
+[ext_resource type="PackedScene" uid="uid://eij0gq3ctehg" path="res://scenes/world_objects/drawn_environments/test_drawn_environ.tscn" id="2_l7tiu"]
+[ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="2_u2qs3"]
+
+[node name="SpawnableDrawing" type="Node3D"]
+script = ExtResource("1_bur2d")
+prompt = ExtResource("2_u2qs3")
+
+[node name="Art_Spawn" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.60784e-05, 0.541334, -2.88039e-05)
+script = ExtResource("1_l7tiu")
+
+[node name="drawn_environ" parent="Art_Spawn" instance=ExtResource("2_l7tiu")]
