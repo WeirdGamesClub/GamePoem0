@@ -1,8 +1,9 @@
 shader_type spatial;
 
 // set by script
-uniform vec3 ripple_pos_arr[8];
-uniform float ripple_time_arr[8];
+uniform vec3 ripple_pos_arr[14];
+uniform float ripple_time_arr[14];
+uniform int active_ripples;
 uniform float rip_radius;
 uniform float rip_width;
 
@@ -84,7 +85,7 @@ void fragment() {
 
 	// iterates through array of ripples
 	// gets slope of ripple for this fragment
-	for(int i = 0; i < ripple_pos_arr.length(); i++) {
+	for(int i = 0; i < active_ripples; i++) {
 		// get this vertex's distance from ripple center
 		// compare to expected radius of ripple (based on time)
 		float vertex_distance = distance(ripple_pos_arr[i], local_vertex);

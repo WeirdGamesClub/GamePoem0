@@ -39,7 +39,7 @@ func _ready() -> void:
 	cyllinder_rotate_axis = Vector3.RIGHT
 	rotateSpeedRadian = (walkSpeed / cyllinderRadius)
 
-func _get_speed() -> float: #this ones for moss
+func get_speed() -> float: #this ones for moss
 	var horspeed = Input.get_axis("move_left","move_right") * walkSpeed
 	var vertspeed = Input.get_axis("move_down","move_up") * walkSpeed
 	var speed = sqrt((horspeed * horspeed) + (vertspeed * vertspeed))

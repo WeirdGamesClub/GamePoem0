@@ -12,6 +12,7 @@ render_priority = 0
 shader = ExtResource("1_x8j7g")
 shader_parameter/ripple_pos_arr = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/ripple_time_arr = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/active_ripples = 0
 shader_parameter/rip_radius = 0.0
 shader_parameter/rip_width = 0.0
 shader_parameter/tex_albedo = ExtResource("3_ifovr")
@@ -45,5 +46,9 @@ prompt = ExtResource("5_by4a6")
 
 [node name="Art_Spawn" parent="SpawnableDrawing2" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.60933e-05, 0.586419, 0.0181176)
+
+[node name="SpawnablePaperPickup3" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, 0.985677, 0.168644, 0, -0.168644, 0.985677, -0.200088, 0, 0)
+NumRoundsToAppear = 1
 
 [editable path="SpawnableDrawing2"]

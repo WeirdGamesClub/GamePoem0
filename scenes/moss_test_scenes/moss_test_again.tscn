@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqdvhw754jpo8"]
+
+[ext_resource type="Script" uid="uid://dcm3eu2hf4xfo" path="res://scenes/moss_test_scenes/array_test.gd" id="1_23sx7"]
+
+[node name="MossTestAgain" type="Node3D"]
+script = ExtResource("1_23sx7")

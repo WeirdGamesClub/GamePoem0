@@ -12,6 +12,8 @@ prompt = ExtResource("4_811wk")
 [node name="Art_Spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60784e-05, 0.541334, -2.88039e-05)
 script = ExtResource("1_t10v8")
+EnableCollision = true
 
 [node name="paper_pickup" parent="Art_Spawn" instance=ExtResource("2_yqywe")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.0196913, 0)
 prompt = ExtResource("4_811wk")
