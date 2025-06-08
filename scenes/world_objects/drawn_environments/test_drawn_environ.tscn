@@ -1,24 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://eij0gq3ctehg"]
+[gd_scene load_steps=8 format=3 uid="uid://eij0gq3ctehg"]
 
 [ext_resource type="Script" uid="uid://cbrmkluh6s0to" path="res://scenes/world_objects/drawn_environments/drawn_environ.gd" id="1_pkjx4"]
 [ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="2_7emu5"]
-[ext_resource type="Texture2D" uid="uid://bsiv3gccrvbix" path="res://scenes/moss_test_scenes/images/test_brush.png" id="2_pkjx4"]
+[ext_resource type="Shader" uid="uid://d3avdgrka5g7" path="res://scenes/world_objects/drawn_environments/drawing_environ.gdshader" id="3_n1i5k"]
+[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="4_bfeg2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pkjx4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkjx4"]
-transparency = 1
-cull_mode = 2
-albedo_texture = ExtResource("2_pkjx4")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfeg2"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_n1i5k")
+shader_parameter/primary_color = Vector4(1, 0, 0, 1)
+shader_parameter/secondary_color = Vector4(0, 1, 0, 1)
+shader_parameter/drawing_texture = ExtResource("4_bfeg2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7emu5"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_pkjx4")
+material = SubResource("ShaderMaterial_bfeg2")
 
 [node name="test_drawn_environ" type="StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_pkjx4")
 prompt = ExtResource("2_7emu5")
+primary_color = Color(0.87, 0.576375, 0.2175, 1)
+secondary_color = Color(0, 0.586684, 0.885803, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 visible = false

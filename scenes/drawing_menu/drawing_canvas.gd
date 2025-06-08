@@ -3,8 +3,8 @@ extends TextureRect
 class_name DrawingCanvas
 
 @export var brushTexture: Texture2D
-@export var brushSpacing: float = 0.1
-var imageBackgroundColor: Color = Color.TRANSPARENT
+@export var brushSpacing: float = 0.01
+var imageBackgroundColor: Color = Color(0.0, 0.0, 0.0, 0.0)
 var brushImage: Image
 var brushSize: int
 var brushImageRect: Rect2i
@@ -16,6 +16,7 @@ var currentBrush: Image
 var currentSize: int
 
 var emptyImage: Image
+var colorImage: Image
 
 var brushTimer: float = 0
 
@@ -36,7 +37,10 @@ func _ready() -> void:
 	currentSize = brushSize
 	
 	emptyImage = Image.create_empty(currentSize, currentSize, false, Image.FORMAT_RGBA8)
-	emptyImage.fill(Color(1.0, 1.0, 1.0, 0.01)) #doesn't work with exactly 0 alpha
+	emptyImage.fill(Color(0.0, 0.0, 0.0, 0.01)) #doesn't work with exactly 0 alpha
+
+	colorImage = Image.create_empty(currentSize, currentSize, false, Image.FORMAT_RGBA8)
+	colorImage.fill(Color(0.0, 0.0, 1.0, 1.0))
 
 	drawingTexture = ImageTexture.create_from_image(drawingImage)
 	self.set_texture(drawingTexture)
@@ -53,9 +57,10 @@ func _process(delta: float) -> void:
 	#if active
 	#accepts drawing input
 	
-	brushTimer += delta
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and brushTimer >= brushSpacing:
-		brushTimer = 0
+	#brushTimer += delta
+	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and brushTimer >= brushSpacing:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		#brushTimer = 0
 		match currentState:
 			DRAWING:
 				_update_drawing(delta, get_local_mouse_position())
@@ -64,9 +69,10 @@ func _process(delta: float) -> void:
 
 func _update_drawing(_delta: float, clickPos: Vector2) -> void:
 	var editedCoords: Vector2i = Vector2i(clickPos) - brushImageRect.get_center()
-	# this adds our "brush image" onto our "drawing image"
-	drawingImage.blend_rect(currentBrush, brushImageRect, editedCoords)
 	
+	# this adds our "brush image" onto our "drawing image"
+	drawingImage.blit_rect_mask(colorImage, currentBrush, brushImageRect, editedCoords)
+
 	# update image texture (which will update sprite)
 	drawingTexture.update(drawingImage)
 	return
@@ -74,7 +80,7 @@ func _update_drawing(_delta: float, clickPos: Vector2) -> void:
 func _erase_drawing(clickPos: Vector2) -> void:
 	var editedCoords: Vector2i = Vector2i(clickPos) - brushImageRect.get_center()
 
-	drawingImage.blit_rect_mask(emptyImage, currentBrush, emptyImage.get_used_rect(), editedCoords)
+	drawingImage.blit_rect_mask(emptyImage, currentBrush, brushImageRect, editedCoords)
 	
 	# update image texture (which will update sprite)
 	drawingTexture.update(drawingImage)
@@ -90,26 +96,19 @@ func start_drawing(startingColor: Color) -> void:
 	currentState = DRAWING
 
 func change_brush_size(bsize: int) -> void:
-	currentBrush.resize(bsize,bsize)
-	emptyImage.resize(bsize, bsize)
+	currentBrush.resize(bsize,bsize, Image.INTERPOLATE_NEAREST)
+	emptyImage.resize(bsize, bsize, Image.INTERPOLATE_NEAREST)
+	colorImage.resize(bsize, bsize, Image.INTERPOLATE_NEAREST)
 	currentSize = bsize
 	brushImageRect = currentBrush.get_used_rect()
 	return	
 
 func change_color(color: Color) -> void:
 	currentState = DRAWING
-	currentBrush.resize(brushSize,brushSize)
 	
-	for y in brushSize:
-		for x in brushSize:
-			if(brushImage.get_pixel(x,y).a !=0) :
-				currentBrush.set_pixel(x,y, color * brushImage.get_pixel(x,y))
+	colorImage.fill(color)
 	
 	currentColor = color
-	currentBrush.resize(currentSize,currentSize)
-	
-	#fill empty image to prevent ghosting at partial transparency
-	emptyImage.fill(Color(color.r, color.b, color.g, 0.01)) 
 	
 	return
 
@@ -118,5 +117,4 @@ func start_erasing() -> void:
 	return
 
 func pull_drawing() -> Texture2D:
-
 	return ImageTexture.create_from_image(drawingImage)

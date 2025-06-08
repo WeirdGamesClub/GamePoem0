@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=15 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
@@ -6,20 +6,23 @@
 [ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]
 [ext_resource type="Texture2D" uid="uid://dqj7sqgl88drf" path="res://art/textures/paper_hole_cutout.png" id="3_oyudf"]
 [ext_resource type="Texture2D" uid="uid://cryomryy5uxj2" path="res://scenes/drawing_menu/brush_chalk.png" id="4_aaulj"]
+[ext_resource type="Material" uid="uid://bkjo273u3gy8w" path="res://scenes/drawing_menu/drawing_color_shader.tres" id="4_vk8ld"]
 [ext_resource type="PackedScene" uid="uid://d2w75hgcebnn2" path="res://scenes/drawing_menu/color_button.tscn" id="5_56lbc"]
+[ext_resource type="Texture2D" uid="uid://dd4v1duhv37j1" path="res://art/textures/crayon_texture_02_white.png" id="6_rqani"]
 [ext_resource type="Texture2D" uid="uid://5vveqv5p53nw" path="res://scenes/moss_test_scenes/images/hitdabricks.jpg" id="7_rdw8d"]
 [ext_resource type="Texture2D" uid="uid://54aegjalli6a" path="res://art/sprites/crayon_rect_2.png" id="8_oyudf"]
 [ext_resource type="Texture2D" uid="uid://dhrfkkj2wvdal" path="res://art/textures/drawing_frame.png" id="9_21hyc"]
 [ext_resource type="Script" uid="uid://b5dh4rckluhpc" path="res://scenes/drawing_menu/erase_button.gd" id="9_416s1"]
 [ext_resource type="Theme" uid="uid://daj8x2m8ugs77" path="res://scenes/drawing_menu/menu_text_theme.tres" id="9_bmxw4"]
 
-[node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup")]
+[node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup", "drawingPreview")]
 script = ExtResource("2_lkd8s")
 primary_button = NodePath("Control/PrimaryColorButton")
 secondary_button = NodePath("Control/SecondaryColorButton2")
 prompt_title = NodePath("Control/Prompt Title")
 drawingCanvas = NodePath("Control/MarginContainer/DrawingCanvas")
 acceptPopup = NodePath("Control/Accept Panel")
+drawingPreview = NodePath("Control/Accept Panel/DrawingPreview")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -90,12 +93,14 @@ grow_vertical = 2
 scale = Vector2(0.897556, 0.897556)
 
 [node name="DrawingCanvas" type="TextureRect" parent="Control/MarginContainer"]
+texture_filter = 1
+material = ExtResource("4_vk8ld")
 layout_mode = 2
 texture = ExtResource("2_klehf")
 expand_mode = 1
 script = ExtResource("3_lkd8s")
-brushTexture = ExtResource("4_aaulj")
-brushSpacing = 0.05
+brushTexture = ExtResource("6_rqani")
+brushSpacing = 0.1
 
 [node name="BrushSlider" type="HSlider" parent="Control"]
 layout_mode = 1
@@ -131,6 +136,7 @@ grow_vertical = 2
 rotation = -0.925025
 size_flags_vertical = 3
 icon = ExtResource("8_oyudf")
+backendColor = Color(1, 0, 0, 1)
 
 [node name="SecondaryColorButton2" parent="Control" instance=ExtResource("5_56lbc")]
 layout_mode = 1
@@ -145,6 +151,7 @@ grow_vertical = 2
 rotation = -0.925025
 size_flags_vertical = 3
 icon = ExtResource("8_oyudf")
+backendColor = Color(0, 1, 0, 1)
 
 [node name="EraseButton" type="Button" parent="Control"]
 layout_mode = 0
@@ -242,6 +249,8 @@ pivot_offset = Vector2(1337.5, 1050)
 texture = ExtResource("9_21hyc")
 
 [node name="DrawingPreview" type="TextureRect" parent="Control/Accept Panel"]
+texture_filter = 1
+material = ExtResource("4_vk8ld")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

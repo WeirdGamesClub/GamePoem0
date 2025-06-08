@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bkjo273u3gy8w"]
+
+[ext_resource type="Shader" uid="uid://by5vblmbmbekn" path="res://scenes/drawing_menu/drawing_canvas.gdshader" id="1_ndrn1"]
+
+[resource]
+shader = ExtResource("1_ndrn1")
+shader_parameter/primary_color = Vector4(0, 0, 0, 0)
+shader_parameter/secondary_color = Vector4(0, 0, 0, 0)

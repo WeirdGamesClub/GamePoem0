@@ -5,6 +5,7 @@ extends Node
 @export var prompt_title: RichTextLabel
 @export var drawingCanvas : DrawingCanvas
 @export var acceptPopup: Control
+@export var drawingPreview: TextureRect
 
 signal finish_drawing(texture:Texture2D)
 
@@ -13,14 +14,16 @@ var is_drawing: bool = false
 var currentPrompt : PromptResource
 var currentDrawing : Texture2D
 
+const primaryBackendColor: Color = Color(1.0, 0.0, 0.0, 1.0)
+
 func _ready() -> void:
 	#disable node tree
 	get_child(0).set_process(4)
 	get_child(0).hide()
 	
 	LevelSignal.connect("pickup_signal",start_drawing)
-
 	
+
 func start_drawing(prompt: PromptResource) -> void:
 	#open menu
 
@@ -33,7 +36,7 @@ func start_drawing(prompt: PromptResource) -> void:
 	
 	currentPrompt.drawing = Texture2D.new()
 	
-	drawingCanvas.start_drawing(prompt.primary_color)
+	drawingCanvas.start_drawing(primaryBackendColor)
 	
 	#enable node tree
 	get_child(0).set_process(0)
@@ -43,6 +46,12 @@ func start_drawing(prompt: PromptResource) -> void:
 	
 	acceptPopup.set_process(false)
 	acceptPopup.visible = false
+	
+	# setup canvas shaders to display colors
+	drawingCanvas.material.set_shader_parameter("primary_color", prompt.primary_color)
+	drawingCanvas.material.set_shader_parameter("secondary_color", prompt.secondary_color)
+	drawingPreview.material.set_shader_parameter("primary_color", prompt.primary_color)
+	drawingPreview.material.set_shader_parameter("secondary_color", prompt.secondary_color)
 	
 	return
 	
