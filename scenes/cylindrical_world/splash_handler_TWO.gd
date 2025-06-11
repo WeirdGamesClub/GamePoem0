@@ -13,6 +13,7 @@ var ground_material: Material
 var splash_positions: Array[Vector3]
 var splash_times: Array[float]
 
+var prompts: Array[String]
 var prompt_positions: Array[Vector3]
 var prompt_times: Array[float]
 
@@ -116,18 +117,22 @@ func on_prompt_added(reference: Node3D) -> void:
 	else:
 		# only add if it's a prompt, not a drawing
 		if (reference.get_class() == "Area3D"):
-			
-			var pos = get_local_cylinder_surface(reference.get_global_position())
-			prompt_positions.push_back(pos)
-			
-			# add offset to timer so prompts don't have synchronized ripples
-			var time_offset = float(prompt_times.size()) / float(prompt_array_max_length)
-			prompt_times.push_back(time_offset)
+			if(reference.prompt != null):
+				var ref_prompt = reference.prompt
+				prompts.push_back(ref_prompt.title)
+				
+				var pos = get_local_cylinder_surface(reference.get_global_position())
+				print(str(pos) + "add prompt pos")
+				prompt_positions.push_back(pos)
+				
+				# add offset to timer so prompts don't have synchronized ripples
+				var time_offset = float(prompt_times.size()) / float(prompt_array_max_length)
+				prompt_times.push_back(time_offset)
 
 func on_prompt_removed(reference: Node3D) -> void:
 	# find index of prompt based on its position
-	var pos = 	get_local_cylinder_surface(reference.get_global_position())
-	var index = prompt_positions.find(pos)
+	var ref_prompt = reference.prompt
+	var index = prompts.find(ref_prompt.title)
 	
 	# remove from arrays
 	prompt_positions.remove_at(index)

@@ -5,6 +5,10 @@ extends CharacterBody3D
 @export var camera : Node3D
 @export var walkSpeed: float = 0.5
 @export var horizontalConstraints: float = 1
+
+@export var upper_rot_bound: float = 10
+@export var lower_rot_bound: float = 100
+
 var rotateSpeedRadian : float = 0.0 #gets set from walk speed on _ready()
 
 var cyllinderRadius : float
@@ -69,11 +73,11 @@ func _physics_process(delta: float) -> void:
 	#the update to take the step in
 	
 	#Rotate the world if the player is at bounds	
-	if(playerAngleFromUp >= deg_to_rad(100) && vertInput < 0):
+	if(playerAngleFromUp >= deg_to_rad(lower_rot_bound) && vertInput < 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, -rotateSpeedRadian * delta)
 		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees - rad_to_deg(rotateSpeedRadian * delta)
 		vertInput = 0
-	elif(playerAngleFromUp <= deg_to_rad(10) && vertInput > 0):
+	elif(playerAngleFromUp <= deg_to_rad(upper_rot_bound) && vertInput > 0):
 		world.transform = world.transform.rotated(Vector3.RIGHT, rotateSpeedRadian * delta)
 		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees + rad_to_deg(rotateSpeedRadian * delta)
 		vertInput = 0

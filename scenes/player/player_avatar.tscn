@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brcfccn3ndiuo"]
 
-[ext_resource type="Texture2D" uid="uid://bngxypi7jdu3h" path="res://art/sprites/icon.svg" id="1_2jrkl"]
 [ext_resource type="Script" uid="uid://1ymj6ndbfrj5" path="res://scenes/player/player_movement.gd" id="1_bce2e"]
+[ext_resource type="Texture2D" uid="uid://8g5g52sk4xfl" path="res://art/sprites/placeholder_player.png" id="2_mej13"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfy18"]
 radius = 1.08842
@@ -19,6 +19,6 @@ transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_wfy18")
 
 [node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0.234386, 0)
 billboard = 1
-texture = ExtResource("1_2jrkl")
+texture = ExtResource("2_mej13")

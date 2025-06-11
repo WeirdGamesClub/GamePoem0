@@ -60,9 +60,7 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 shape = SubResource("BoxShape3D_b2cq8")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)
-modulate = Color(0.892034, 0.892034, 0.892034, 1)
-billboard = 1
+transform = Transform3D(0.0923275, 0, 0, 0, 0.0923275, 0, 0, 0, 0.0923275, 0, 0, 0)
 alpha_scissor_threshold = 0.3
 texture = ExtResource("2_srvdl")
 

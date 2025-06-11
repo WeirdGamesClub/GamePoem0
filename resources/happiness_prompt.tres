@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://nauwjwymt84i"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_725ww"]
+
+[resource]
+script = ExtResource("1_725ww")
+title = "what makes you happy?"
+primary_color = Color(0.95, 0.8607, 0.5035, 1)
+secondary_color = Color(0.854612, 0.435478, 0.603118, 1)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://bf7d2148rfx7c"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_fouy7"]
+
+[resource]
+script = ExtResource("1_fouy7")
+title = "your favorite character!"
+primary_color = Color(0.82, 0.521657, 0.3362, 1)
+secondary_color = Color(0.245164, 0.569382, 0.765948, 1)

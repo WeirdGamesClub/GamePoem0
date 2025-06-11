@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://dfr7mfrwsx5sh"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_80eqp"]
+
+[resource]
+script = ExtResource("1_80eqp")
+title = "a tree."
+primary_color = Color(0.7524, 0.99, 0.7524, 1)
+secondary_color = Color(0.49, 0.364233, 0.3528, 1)
+metadata/_custom_type_script = "uid://cqjd82wai0r3o"

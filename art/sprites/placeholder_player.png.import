@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhsalw6vqbdyo"
-path.s3tc="res://.godot/imported/wahoo.jpg-b52364bb5e9462883cfd1db7c186f052.s3tc.ctex"
+uid="uid://8g5g52sk4xfl"
+path.s3tc="res://.godot/imported/placeholder_player.png-6d098515e1c79d95a4558bfb1b75f64f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/moss_test_scenes/images/wahoo.jpg"
-dest_files=["res://.godot/imported/wahoo.jpg-b52364bb5e9462883cfd1db7c186f052.s3tc.ctex"]
+source_file="res://art/sprites/placeholder_player.png"
+dest_files=["res://.godot/imported/placeholder_player.png-6d098515e1c79d95a4558bfb1b75f64f.s3tc.ctex"]
 
 [params]
 

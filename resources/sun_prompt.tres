@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://cxvm2swfdoadh"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_huc2a"]
+
+[resource]
+script = ExtResource("1_huc2a")
+title = "the sun."
+primary_color = Color(1, 0.944, 0.52, 1)
+secondary_color = Color(1, 0.532, 0.28, 1)

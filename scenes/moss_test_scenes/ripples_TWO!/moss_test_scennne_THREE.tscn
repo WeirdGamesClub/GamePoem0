@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bpppjmgi2m5ls" path="res://scenes/cylindrical_world/splash_handler_TWO.gd" id="10_ywvbr"]
 [ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="11_ia1ah"]
 [ext_resource type="Shader" uid="uid://ck5aoj0bww7cd" path="res://art/materials/ripples_riti_style.gdshader" id="11_ywvbr"]
-[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="12_mqlmd"]
+[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="12_mqlmd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfy18"]
 radius = 1.08842

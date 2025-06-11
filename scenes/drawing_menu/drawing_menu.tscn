@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cggirilar04rf"]
 
-[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="2_klehf"]
+[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
 [ext_resource type="Material" uid="uid://bsrame6euup8a" path="res://art/materials/blur.tres" id="2_ursla"]
 [ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]

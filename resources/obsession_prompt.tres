@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://bq5aonngnibva"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_wgm4t"]
+
+[resource]
+script = ExtResource("1_wgm4t")
+title = "your childhood obsession."
+primary_color = Color(0.718865, 0.511803, 0.79242, 1)
+secondary_color = Color(0.399501, 0.601054, 0.27711, 1)

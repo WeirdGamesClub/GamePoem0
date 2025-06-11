@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cbrmkluh6s0to" path="res://scenes/world_objects/drawn_environments/drawn_environ.gd" id="1_pkjx4"]
 [ext_resource type="Resource" uid="uid://b5fre2fd2lrn" path="res://resources/test_prompt.tres" id="2_7emu5"]
 [ext_resource type="Shader" uid="uid://d3avdgrka5g7" path="res://scenes/world_objects/drawn_environments/drawing_environ.gdshader" id="3_n1i5k"]
-[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://scenes/moss_test_scenes/images/wahoo.jpg" id="4_bfeg2"]
+[ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="4_bfeg2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pkjx4"]
 

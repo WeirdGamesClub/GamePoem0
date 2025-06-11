@@ -4,6 +4,7 @@ extends Node3D
 @export var NumRoundsToAppear: int = 0
 @export var AdditionalFractionRound: float = 0.0
 @export_group("Drawing Only")
+@export var use_prompt_colors: bool = true
 @export var primary_color: Color
 @export var secondary_color: Color
 @export var EnableCollision: bool
@@ -21,5 +22,9 @@ func _ready() -> void:
 	
 	if(grandchild.get_class() == "StaticBody3D"):
 		child_artspawn.EnableCollision = EnableCollision
-		grandchild.primary_color = primary_color
-		grandchild.secondary_color = secondary_color
+		if(use_prompt_colors == true):
+			grandchild.primary_color = prompt.primary_color
+			grandchild.secondary_color = prompt.secondary_color
+		else: 
+			grandchild.primary_color = primary_color
+			grandchild.secondary_color = secondary_color

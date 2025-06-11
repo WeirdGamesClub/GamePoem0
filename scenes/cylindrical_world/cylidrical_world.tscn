@@ -1,11 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx003asolw0md"]
+[gd_scene load_steps=23 format=3 uid="uid://cx003asolw0md"]
 
 [ext_resource type="Script" uid="uid://bpppjmgi2m5ls" path="res://scenes/cylindrical_world/splash_handler_TWO.gd" id="1_ifovr"]
 [ext_resource type="Shader" uid="uid://ck5aoj0bww7cd" path="res://art/materials/ripples_riti_style.gdshader" id="1_x8j7g"]
 [ext_resource type="Texture2D" uid="uid://bqhtfdt4fhf7f" path="res://art/textures/game_poem_background.png" id="3_ifovr"]
 [ext_resource type="PackedScene" uid="uid://b7qvn30pef2xw" path="res://scenes/world_objects/spawnable_paper_pickup.tscn" id="4_oc4bw"]
-[ext_resource type="Resource" uid="uid://bwgx2uhh7jera" path="res://resources/grass_prompt.tres" id="5_by4a6"]
-[ext_resource type="PackedScene" uid="uid://cthv4b3wddim6" path="res://scenes/world_objects/spawnable_drawing.tscn" id="5_kymr6"]
+[ext_resource type="Resource" uid="uid://dfr7mfrwsx5sh" path="res://resources/tree_prompt.tres" id="5_kymr6"]
+[ext_resource type="PackedScene" uid="uid://cthv4b3wddim6" path="res://scenes/world_objects/spawnable_drawing.tscn" id="6_by4a6"]
+[ext_resource type="Resource" uid="uid://88arjw4t6epq" path="res://resources/flower_prompt.tres" id="7_xh6pg"]
+[ext_resource type="Resource" uid="uid://bpjw67kyxi5cb" path="res://resources/house_prompt.tres" id="8_ox7sr"]
+[ext_resource type="Resource" uid="uid://c4vkqit1l86en" path="res://resources/birds_prompt.tres" id="9_ovgjb"]
+[ext_resource type="Resource" uid="uid://cxvm2swfdoadh" path="res://resources/sun_prompt.tres" id="10_xfdi0"]
+[ext_resource type="Resource" uid="uid://db33eq44o10i5" path="res://resources/spaceship_prompt.tres" id="11_74r5f"]
+[ext_resource type="Resource" uid="uid://crgnq2mxm0151" path="res://resources/dragon_prompt.tres" id="12_6t8s5"]
+[ext_resource type="Resource" uid="uid://bq5aonngnibva" path="res://resources/obsession_prompt.tres" id="13_fjb1l"]
+[ext_resource type="Resource" uid="uid://bf7d2148rfx7c" path="res://resources/character_prompt.tres" id="13_i88jw"]
+[ext_resource type="Resource" uid="uid://nauwjwymt84i" path="res://resources/happiness_prompt.tres" id="15_gw6aw"]
+[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/world_objects/art_spawn.gd" id="15_qfn8x"]
+[ext_resource type="Script" uid="uid://15dvlxj7l8n4" path="res://scenes/cylindrical_world/desaturate.gd" id="16_2ib5o"]
+[ext_resource type="Script" uid="uid://ccdxss01v2ed6" path="res://scenes/cylindrical_world/resaturate.gd" id="17_sb866"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_233me"]
 render_priority = 0
@@ -19,7 +31,13 @@ shader_parameter/tex_albedo = ExtResource("3_ifovr")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_a4lc5"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_i88jw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i88jw"]
+size = Vector3(2, 0.355, 0.15)
+
 [node name="cylidrical_world" type="Node3D" node_paths=PackedStringArray("ground_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_ifovr")
 ground_mesh = NodePath("world_mesh")
 
@@ -28,31 +46,729 @@ transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, -1, -0.999
 material_override = SubResource("ShaderMaterial_233me")
 mesh = SubResource("CylinderMesh_a4lc5")
 
-[node name="SpawnablePaperPickup" parent="." instance=ExtResource("4_oc4bw")]
-transform = Transform3D(1, 0, 0, 0, 0.984607, 0.174782, 0, -0.174782, 0.984607, 0.234847, 0, 0)
-prompt = ExtResource("5_by4a6")
+[node name="W01_Tree_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, 0.882898, 0.469564, 0, -0.469564, 0.882898, 0, 0, 0)
+prompt = ExtResource("5_kymr6")
 
-[node name="SpawnableDrawing" parent="." instance=ExtResource("5_kymr6")]
-transform = Transform3D(1, 0, 0, 0, 0.936556, 0.350518, 0, -0.350518, 0.936556, 0, 0, 0)
-prompt = ExtResource("5_by4a6")
-primary_color = Color(0.402409, 0.180971, 0.687502, 1)
-secondary_color = Color(0.0518344, 0.449549, 0.620271, 1)
+[node name="W01_Tree_Drawing" parent="." instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.190004, 0.981783, 0, -0.981783, -0.190004, -0.16639, 0, 0)
+prompt = ExtResource("5_kymr6")
+use_prompt_colors = false
+primary_color = Color(0.672, 0.84, 0.7028, 1)
+secondary_color = Color(0.490196, 0.364706, 0.352941, 1)
 
-[node name="SpawnablePaperPickup2" parent="." instance=ExtResource("4_oc4bw")]
-transform = Transform3D(1, 0, 0, 0, 0.950905, 0.309482, 0, -0.309482, 0.950905, -0.318325, 0, 0)
-prompt = ExtResource("5_by4a6")
+[node name="Art_Spawn" parent="W01_Tree_Drawing" index="0"]
+transform = Transform3D(0.954761, 0, 0.297375, 0, 1, 0, -0.297375, 0, 0.954761, 0, 0.477396, -0.00234989)
 
-[node name="SpawnableDrawing2" parent="." instance=ExtResource("5_kymr6")]
-transform = Transform3D(1, 0, 0, 0, 0.923913, 0.382603, 0, -0.382603, 0.923913, -0.363963, 0, 0)
-prompt = ExtResource("5_by4a6")
-primary_color = Color(0.986286, 0.81368, 0.829913, 1)
-secondary_color = Color(0.843625, 0.81772, 0.529866, 1)
+[node name="W02_Flower_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, 0.156055, 0.987748, 0, -0.987748, 0.156055, -0.102608, 0, 0)
+prompt = ExtResource("7_xh6pg")
 
-[node name="Art_Spawn" parent="SpawnableDrawing2" index="0"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.60933e-05, 0.586419, 0.0181176)
+[node name="W02_House_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, -0.860306, -0.509778, 0, 0.509778, -0.860306, 0.181465, 0, 0)
+prompt = ExtResource("8_ox7sr")
 
-[node name="SpawnablePaperPickup3" parent="." instance=ExtResource("4_oc4bw")]
-transform = Transform3D(1, 0, 0, 0, 0.985677, 0.168644, 0, -0.168644, 0.985677, -0.200088, 0, 0)
+[node name="W02_House_Drawing" parent="." instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.241789, 0, 0)
+prompt = ExtResource("8_ox7sr")
+AdditionalFractionRound = 0.25
+
+[node name="Art_Spawn" parent="W02_House_Drawing" index="0"]
+transform = Transform3D(0.840925, 0, 0, 0, 0.840924, 0, 0, 0, 0.840925, 0, 0.503952, 0)
+
+[node name="forest" type="Node3D" parent="."]
+
+[node name="forest_tree" parent="forest" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.988899, 0.148586, 0, -0.148586, -0.988899, -0.149368, 0, 0)
+prompt = ExtResource("5_kymr6")
+use_prompt_colors = false
+primary_color = Color(0.74984, 0.84, 0.6048, 1)
+secondary_color = Color(0.490196, 0.364706, 0.352941, 1)
+
+[node name="Art_Spawn" parent="forest/forest_tree" index="0"]
+transform = Transform3D(0.758078, 0, 0.236115, 1.86265e-09, 0.793998, -3.72529e-09, -0.236115, 0, 0.758078, 0, 0.477397, -0.00234989)
+
+[node name="forest_tree_2" parent="forest" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.847233, -0.531221, 0, 0.531221, -0.847233, -0.133472, 0, 0)
+prompt = ExtResource("5_kymr6")
+use_prompt_colors = false
+primary_color = Color(0.671284, 0.751412, 0.43845, 1)
+secondary_color = Color(0.553337, 0.518254, 0.476146, 1)
+
+[node name="Art_Spawn" parent="forest/forest_tree_2" index="0"]
+transform = Transform3D(0.85515, -0.0587168, 0.00225905, 0.0580459, 0.839006, -0.165633, 0.00913489, 0.165397, 0.841008, 0, 0.491879, -0.0172665)
+
+[node name="forest_tree_3" parent="forest" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.347034, -0.937852, 0, 0.937852, -0.347034, 0.162109, 0, 0)
+prompt = ExtResource("5_kymr6")
+use_prompt_colors = false
+primary_color = Color(0.635465, 0.758107, 0.502076, 1)
+secondary_color = Color(0.457554, 0.414874, 0.40032, 1)
+
+[node name="Art_Spawn" parent="forest/forest_tree_3" index="0"]
+transform = Transform3D(0.70395, -0.0504416, -0.486461, -0.0341024, 0.845458, -0.137015, 0.487879, 0.131878, 0.692327, 0, 0.491879, -0.0172665)
+
+[node name="forest_tree_5" parent="forest" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, 0.838261, -0.545268, 0, 0.545268, 0.838261, -0.156866, 0, 0)
+prompt = ExtResource("5_kymr6")
+use_prompt_colors = false
+primary_color = Color(0.5621, 0.77, 0.600215, 1)
+secondary_color = Color(0.490196, 0.364706, 0.352941, 1)
+
+[node name="Art_Spawn" parent="forest/forest_tree_5" index="0"]
+transform = Transform3D(0.790787, -0.0515508, 0.326698, 0.0736322, 0.852882, -0.043651, -0.32244, 0.0683346, 0.791263, 0, 0.491879, -0.0172666)
+
+[node name="forest_tree_4" parent="forest" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, 0.223965, -0.974597, 0, 0.974597, 0.223965, -0.0372196, 0, 0)
+prompt = ExtResource("5_kymr6")
+use_prompt_colors = false
+primary_color = Color(0.5621, 0.77, 0.600215, 1)
+secondary_color = Color(0.58, 0.50112, 0.4408, 1)
+
+[node name="Art_Spawn" parent="forest/forest_tree_4" index="0"]
+transform = Transform3D(0.857162, -0.00189366, 0.00188389, 0.00189324, 0.857164, 0.000192285, -0.00188431, -0.000188105, 0.857164, 0, 0.503952, 7.45058e-09)
+
+[node name="flowers" type="Node3D" parent="forest"]
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.996489, 0.08373, 0, -0.08373, -0.996489, -0.0817449, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.2366, 0.84266, 0.91, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.217902, -0.00361191, -0.015856, -0.00139077, 0.208132, -0.0665199, 0.0162034, 0.0664363, 0.207532, 0, 0.498113, 4.51356e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.995621, 0.0934827, 0, -0.0934827, -0.995621, -0.15141, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(1, 0.525, 0.25, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.978205, 0.207638, 0, -0.207638, -0.978205, -0.153073, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.144134, 0.00755333, 0.0488076, -0.0188553, 0.147579, 0.0328424, -0.0456477, -0.0371092, 0.140545, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.999887, 0.0149918, 0, -0.0149918, -0.999887, -0.103891, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.967598, 0.519279, 0.56466, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.976713, 0.214548, 0, -0.214548, -0.976713, -0.0467872, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.842104, 0.542635, 0.894407, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.985428, 0.170089, 0, -0.170089, -0.985428, -0.0987078, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="flowers2" type="Node3D" parent="forest"]
+transform = Transform3D(1, 0, 0, 0, 0.927953, 0.372696, 0, -0.372696, 0.927953, -0.248815, 0, 0)
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers2" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.996489, 0.08373, 0, -0.08373, -0.996489, -0.0817449, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.2366, 0.84266, 0.91, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers2/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.211017, 0.0380398, 0.0420807, -0.0280459, 0.21086, -0.0499734, -0.0493076, 0.0428589, 0.208513, 0, 0.498113, 4.51058e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers2" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.988938, -0.148327, 0, 0.148327, -0.988938, -0.00134885, -0.00232719, -0.029145)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(1, 0.525, 0.25, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers2/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers2" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.965772, 0.259392, 0, -0.259392, -0.965772, -0.153073, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers2/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.144134, 0.00755333, 0.0488076, -0.0188553, 0.147579, 0.0328424, -0.0456477, -0.0371092, 0.140545, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers2" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.999887, 0.0149918, 0, -0.0149918, -0.999887, -0.103891, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.967598, 0.519279, 0.56466, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers2/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers2" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.958427, 0.285337, 0, -0.285337, -0.958427, -0.0467872, 0, 0)
+prompt = ExtResource("7_xh6pg")
+primary_color = Color(0.967598, 0.519279, 0.56466, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers2/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers2" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.985428, 0.170089, 0, -0.170089, -0.985428, -0.0987078, 0, 0)
+prompt = ExtResource("7_xh6pg")
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers2/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="flowers3" type="Node3D" parent="forest"]
+transform = Transform3D(1, 0, 0, 0, 0.927953, 0.372696, 0, -0.372696, 0.927953, 0.324534, 0, 0)
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers3" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.996489, 0.08373, 0, -0.08373, -0.996489, 0.0250955, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.869208, 0.672335, 0.909468, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers3/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.211017, 0.0380398, 0.0420807, -0.0280459, 0.21086, -0.0499734, -0.0493076, 0.0428589, 0.208513, 0, 0.498113, 4.51058e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers3" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.977522, -0.21083, 0, 0.21083, -0.977522, -0.00134885, -0.00232719, -0.029145)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.446541, 0.702845, 0.906027, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers3/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers3" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.965772, 0.259392, 0, -0.259392, -0.965772, 0.0790367, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers3/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.103055, 0.061213, -0.0940556, -0.0480002, 0.139471, 0.0381774, 0.101437, 0.00380886, 0.113621, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers3" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.959299, -0.282391, 0, 0.282391, -0.959299, -0.0204752, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.801714, 0.589285, 0.807289, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers3/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers3" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.999967, 0.00804597, 0, -0.00804597, -0.999967, -0.0467872, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.330305, 0.723959, 0.908538, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers3/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers3" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.985428, 0.170089, 0, -0.170089, -0.985428, -0.0987078, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers3/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="flowers4" type="Node3D" parent="forest"]
+transform = Transform3D(1, 0, 0, 0, 0.477941, 0.878392, 0, -0.878392, 0.477941, -0.297557, 0, 0)
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers4" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.996489, 0.08373, 0, -0.08373, -0.996489, 0.24897, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.869208, 0.672335, 0.909468, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers4/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.211017, 0.0380398, 0.0420807, -0.0280459, 0.21086, -0.0499734, -0.0493076, 0.0428589, 0.208513, 0, 0.498113, 4.51058e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers4" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.977522, -0.21083, 0, 0.21083, -0.977522, 0.0847197, -0.00232719, -0.029145)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.446541, 0.702845, 0.906027, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers4/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers4" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.965772, 0.259392, 0, -0.259392, -0.965772, 0.136047, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers4/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.103055, 0.061213, -0.0940556, -0.0480002, 0.139471, 0.0381774, 0.101437, 0.00380886, 0.113621, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers4" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.959299, -0.282391, 0, 0.282391, -0.959299, -0.0204752, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.801714, 0.589285, 0.807289, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers4/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers4" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.999967, 0.00804597, 0, -0.00804597, -0.999967, -0.0467872, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.330305, 0.723959, 0.908538, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers4/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers4" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.985428, 0.170089, 0, -0.170089, -0.985428, -0.0987078, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers4/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="flowers5" type="Node3D" parent="forest"]
+transform = Transform3D(1, 0, 0, 0, -0.319092, 0.947724, 0, -0.947724, -0.319092, 0.00422969, 0, 0)
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers5" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.981047, 0.193772, 0, -0.193772, -0.981047, 0.24897, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.869208, 0.672335, 0.909468, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers5/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.211017, 0.0380398, 0.0420807, -0.0280459, 0.21086, -0.0499734, -0.0493076, 0.0428589, 0.208513, 0, 0.498113, 4.51058e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers5" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.995241, 0.097444, 0, -0.097444, -0.995241, 0.0847197, -0.00232719, -0.029145)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.446541, 0.702845, 0.906027, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers5/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers5" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.991307, -0.131564, 0, 0.131564, -0.991307, 0.0635103, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers5/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.103055, 0.061213, -0.0940556, -0.0480002, 0.139471, 0.0381774, 0.101437, 0.00380886, 0.113621, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers5" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.923638, 0.383264, 0, -0.383264, -0.923638, -0.0204752, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.801714, 0.589285, 0.807289, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers5/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers5" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.975607, -0.219522, 0, 0.219522, -0.975607, -0.0467872, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.330305, 0.723959, 0.908538, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers5/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers5" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.996417, -0.0845647, 0, 0.0845647, -0.996417, 0.265651, 0, 0)
+prompt = ExtResource("7_xh6pg")
+use_prompt_colors = false
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers5/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="flowers6" type="Node3D" parent="forest"]
+transform = Transform3D(1, 0, 0, 0, -0.932582, 0.360957, 0, -0.360957, -0.932582, -0.228116, 0, 0)
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers6" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.981047, 0.193772, 0, -0.193772, -0.981047, -0.124002, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.869208, 0.672335, 0.909468, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers6/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.211017, 0.0380398, 0.0420807, -0.0280459, 0.21086, -0.0499734, -0.0493076, 0.0428589, 0.208513, 0, 0.498113, 4.51058e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers6" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.995241, 0.097444, 0, -0.097444, -0.995241, 0.345137, -0.00232719, -0.029145)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.446541, 0.702845, 0.906027, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers6/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers6" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.991308, -0.131564, 0, 0.131564, -0.991308, 0.292094, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers6/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.103055, 0.061213, -0.0940556, -0.0480002, 0.139471, 0.0381774, 0.101437, 0.00380886, 0.113621, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers6" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.923638, 0.383264, 0, -0.383264, -0.923638, 0.213918, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.801714, 0.589285, 0.807289, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers6/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers6" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.975607, -0.219522, 0, 0.219522, -0.975607, 0.0671732, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.330305, 0.723959, 0.908538, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers6/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers6" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.935776, 0.352593, 0, -0.352593, -0.935776, 0.0769533, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers6/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="flowers7" type="Node3D" parent="forest"]
+transform = Transform3D(1, 0, 0, 0, -0.751943, -0.659228, 0, 0.659228, -0.751943, -0.228116, 0, 0)
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers7" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.981047, 0.193772, 0, -0.193772, -0.981047, -0.124002, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.869208, 0.672335, 0.909468, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers7/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.211017, 0.0380398, 0.0420807, -0.0280459, 0.21086, -0.0499734, -0.0493076, 0.0428589, 0.208513, 0, 0.498113, 4.51058e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers7" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.995241, 0.097444, 0, -0.097444, -0.995241, 0.345137, -0.00232719, -0.029145)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.446541, 0.702845, 0.906027, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers7/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers7" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.991308, -0.131564, 0, 0.131564, -0.991308, 0.553556, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers7/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.103055, 0.061213, -0.0940556, -0.0480002, 0.139471, 0.0381774, 0.101437, 0.00380886, 0.113621, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers7" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.767802, 0.640686, 0, -0.640686, -0.767802, 0.213918, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.801714, 0.589285, 0.807289, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers7/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers7" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.975607, -0.219522, 0, 0.219522, -0.975607, 0.237491, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.330305, 0.723959, 0.908538, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers7/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers7" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.935776, 0.352593, 0, -0.352593, -0.935776, 0.590927, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.5
+use_prompt_colors = false
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers7/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="flowers8" type="Node3D" parent="forest"]
+transform = Transform3D(1, 0, 0, 0, 0.375432, -0.92685, 0, 0.92685, 0.375432, -0.228116, 0, 0)
+
+[node name="W02_Flower_01_Drawing" parent="forest/flowers8" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.981047, 0.193772, 0, -0.193772, -0.981047, -0.124002, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.7
+use_prompt_colors = false
+primary_color = Color(0.869208, 0.672335, 0.909468, 1)
+secondary_color = Color(0.94902, 0.811765, 0.466667, 1)
+
+[node name="Art_Spawn" parent="forest/flowers8/W02_Flower_01_Drawing" index="0"]
+transform = Transform3D(0.211017, 0.0380398, 0.0420807, -0.0280459, 0.21086, -0.0499734, -0.0493076, 0.0428589, 0.208513, 0, 0.498113, 4.51058e-05)
+
+[node name="W02_Flower_01_Drawing2" parent="forest/flowers8" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.942927, -0.333001, 0, 0.333001, -0.942927, 0.345137, -0.00232719, -0.029145)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.7
+use_prompt_colors = false
+primary_color = Color(0.446541, 0.702845, 0.906027, 1)
+secondary_color = Color(0.95, 0.901233, 0.532, 1)
+
+[node name="Art_Spawn" parent="forest/flowers8/W02_Flower_01_Drawing2" index="0"]
+transform = Transform3D(0.171286, -0.0549645, -0.02157, 0.0557621, 0.172345, 0.00363575, 0.0194154, -0.010076, 0.179852, 0, 0.499561, -0.000319131)
+
+[node name="W02_Flower_01_Drawing3" parent="forest/flowers8" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.814936, -0.579551, 0, 0.579551, -0.814936, 0.553556, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.7
+use_prompt_colors = false
+primary_color = Color(0.794886, 0.561955, 0.933871, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers8/W02_Flower_01_Drawing3" index="0"]
+transform = Transform3D(0.103055, 0.061213, -0.0940556, -0.0480002, 0.139471, 0.0381774, 0.101437, 0.00380886, 0.113621, -0.0660365, 0.502163, -0.000802375)
+
+[node name="W02_Flower_01_Drawing4" parent="forest/flowers8" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.869641, 0.493684, 0, -0.493684, -0.869641, 0.213918, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.7
+use_prompt_colors = false
+primary_color = Color(0.801714, 0.589285, 0.807289, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers8/W02_Flower_01_Drawing4" index="0"]
+transform = Transform3D(0.189364, -0.0709292, 0.0210355, 0.0595902, 0.180488, 0.0721468, -0.0438458, -0.0610345, 0.188903, -0.0660365, 0.499621, -0.00170651)
+
+[node name="W02_Flower_01_Drawing5" parent="forest/flowers8" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.914924, -0.403624, 0, 0.403624, -0.914924, 0.237491, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.7
+use_prompt_colors = false
+primary_color = Color(0.330305, 0.723959, 0.908538, 1)
+secondary_color = Color(0.910349, 0.90593, 0.667211, 1)
+
+[node name="Art_Spawn" parent="forest/flowers8/W02_Flower_01_Drawing5" index="0"]
+transform = Transform3D(0.209571, 0.0186674, 0.0244732, -0.0254214, 0.199928, 0.0651916, -0.0173541, -0.0674367, 0.200046, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Flower_01_Drawing6" parent="forest/flowers8" instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.935776, 0.352593, 0, -0.352593, -0.935776, 0.590927, 0, 0)
+prompt = ExtResource("7_xh6pg")
+AdditionalFractionRound = 0.7
+use_prompt_colors = false
+primary_color = Color(0.538022, 0.673294, 0.933698, 1)
+secondary_color = Color(0.924563, 0.907021, 0.59151, 1)
+
+[node name="Art_Spawn" parent="forest/flowers8/W02_Flower_01_Drawing6" index="0"]
+transform = Transform3D(0.163548, 0.0349486, -0.0719952, -0.0129216, 0.173182, 0.0547142, 0.0789794, -0.0440364, 0.158037, -0.0660365, 0.502013, 0.0103108)
+
+[node name="W02_Bird_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, -0.0426077, -0.999092, 0, 0.999092, -0.0426077, 0.0714048, 0, 0)
+prompt = ExtResource("9_ovgjb")
+
+[node name="W02_Sun_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, 0.567988, -0.823037, 0, 0.823037, 0.567988, 0.130463, 0, 0)
+prompt = ExtResource("10_xfdi0")
+
+[node name="W03_Spaceship_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, 0.954833, 0.297141, 0, -0.297141, 0.954833, 0.0838278, 0, 0)
+prompt = ExtResource("11_74r5f")
+AdditionalFractionRound = 0.6
+
+[node name="W03_Dragon_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, 0.329278, 0.944232, 0, -0.944232, 0.329278, 0.00815594, 0, 0)
+prompt = ExtResource("12_6t8s5")
 NumRoundsToAppear = 1
 
-[editable path="SpawnableDrawing2"]
+[node name="W03_Character_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, -0.973323, 0.229438, 0, -0.229438, -0.973323, 0.0838278, 0, 0)
+prompt = ExtResource("13_i88jw")
+NumRoundsToAppear = 1
+
+[node name="W03_Obsession_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(1, 0, 0, 0, -0.0412129, -0.99915, 0, 0.99915, -0.0412129, 0.0838278, 0, 0)
+prompt = ExtResource("13_fjb1l")
+NumRoundsToAppear = 1
+
+[node name="W04_Happiness_Prompt" parent="." instance=ExtResource("4_oc4bw")]
+transform = Transform3D(0.999994, -0.00150139, -0.00324719, 0.00089279, 0.983687, -0.179883, 0.0034643, 0.179879, 0.983682, 0.215847, 0, 0)
+prompt = ExtResource("15_gw6aw")
+NumRoundsToAppear = 1
+AdditionalFractionRound = 0.5
+
+[node name="lap reference" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0503043, 0, 0, 0, 0.0503043, -9.31323e-10, 0, 9.31323e-10, 0.0503043, 0, 0.486, 0)
+mesh = SubResource("SphereMesh_i88jw")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.831111, 0.556107, 0, -0.556107, -0.831111, 0, 0, 0)
+script = ExtResource("15_qfn8x")
+NumRoundsToAppear = 2
+EnableCollision = true
+
+[node name="desaturate_collider" type="Area3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.364178, -0.931329, 0, 0.931329, 0.364178, 0, 0, 0)
+script = ExtResource("16_2ib5o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/desaturate_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
+shape = SubResource("BoxShape3D_i88jw")
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.976319, 0.216337, 0, -0.216337, 0.976319, 0, 0, 0)
+script = ExtResource("15_qfn8x")
+NumRoundsToAppear = 2
+AdditionalFractionRound = 0.5
+EnableCollision = true
+
+[node name="resaturate_collider" type="Area3D" parent="Node3D2"]
+transform = Transform3D(0.999997, -0.000466578, -0.00260263, 0.000437452, 0.999938, -0.0111761, 0.00260768, 0.0111749, 0.999934, 0, 0, 0)
+script = ExtResource("17_sb866")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/resaturate_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
+shape = SubResource("BoxShape3D_i88jw")
+
+[connection signal="body_entered" from="Node3D/desaturate_collider" to="Node3D/desaturate_collider" method="_on_body_entered"]
+[connection signal="body_entered" from="Node3D2/resaturate_collider" to="Node3D2/resaturate_collider" method="_on_body_entered"]
+
+[editable path="W01_Tree_Drawing"]
+[editable path="W02_House_Drawing"]
+[editable path="forest/forest_tree"]
+[editable path="forest/forest_tree_2"]
+[editable path="forest/forest_tree_3"]
+[editable path="forest/forest_tree_5"]
+[editable path="forest/forest_tree_4"]
+[editable path="forest/flowers/W02_Flower_01_Drawing"]
+[editable path="forest/flowers/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers/W02_Flower_01_Drawing6"]
+[editable path="forest/flowers2/W02_Flower_01_Drawing"]
+[editable path="forest/flowers2/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers2/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers2/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers2/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers2/W02_Flower_01_Drawing6"]
+[editable path="forest/flowers3/W02_Flower_01_Drawing"]
+[editable path="forest/flowers3/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers3/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers3/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers3/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers3/W02_Flower_01_Drawing6"]
+[editable path="forest/flowers4/W02_Flower_01_Drawing"]
+[editable path="forest/flowers4/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers4/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers4/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers4/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers4/W02_Flower_01_Drawing6"]
+[editable path="forest/flowers5/W02_Flower_01_Drawing"]
+[editable path="forest/flowers5/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers5/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers5/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers5/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers5/W02_Flower_01_Drawing6"]
+[editable path="forest/flowers6/W02_Flower_01_Drawing"]
+[editable path="forest/flowers6/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers6/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers6/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers6/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers6/W02_Flower_01_Drawing6"]
+[editable path="forest/flowers7/W02_Flower_01_Drawing"]
+[editable path="forest/flowers7/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers7/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers7/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers7/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers7/W02_Flower_01_Drawing6"]
+[editable path="forest/flowers8/W02_Flower_01_Drawing"]
+[editable path="forest/flowers8/W02_Flower_01_Drawing2"]
+[editable path="forest/flowers8/W02_Flower_01_Drawing3"]
+[editable path="forest/flowers8/W02_Flower_01_Drawing4"]
+[editable path="forest/flowers8/W02_Flower_01_Drawing5"]
+[editable path="forest/flowers8/W02_Flower_01_Drawing6"]

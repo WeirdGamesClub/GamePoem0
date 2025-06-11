@@ -10,7 +10,7 @@ script = ExtResource("1_bur2d")
 prompt = ExtResource("2_u2qs3")
 
 [node name="Art_Spawn" type="Node3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.60784e-05, 0.541334, -2.88039e-05)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.503952, 0)
 script = ExtResource("1_l7tiu")
 
 [node name="drawn_environ" parent="Art_Spawn" instance=ExtResource("2_l7tiu")]

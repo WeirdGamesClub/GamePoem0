@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_5amb8")
-title = "Grass"
-primary_color = Color(0, 0.287465, 0.17382, 1)
-secondary_color = Color(0.840495, 0.000478035, 0.824146, 1)
+title = "a flower."
+primary_color = Color(0.91, 0.4641, 0.679618, 1)
+secondary_color = Color(0.95, 0.812725, 0.4655, 1)
