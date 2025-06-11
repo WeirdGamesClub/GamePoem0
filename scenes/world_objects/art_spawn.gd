@@ -26,4 +26,3 @@ func enable_prompt() -> void:
 			if(EnableCollision == true):
 				collision_shape.disabled = false
 			spawned = true
-			LevelSignal.emit_signal("prompt_added", get_child(0))

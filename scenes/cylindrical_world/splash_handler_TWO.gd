@@ -47,8 +47,8 @@ func _ready() -> void:
 	# manual fix........... ugh
 	player = $"../player_avatar/CharacterBody3D"
 	
-	LevelSignal.connect("prompt_removed", on_prompt_removed)
-	LevelSignal.connect("prompt_added", on_prompt_added)
+	#LevelSignal.connect("prompt_removed", on_prompt_removed)
+	#LevelSignal.connect("prompt_added", on_prompt_added)
 	
 func _physics_process(delta: float) -> void:	
 	
