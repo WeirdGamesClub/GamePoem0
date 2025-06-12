@@ -20,7 +20,7 @@
 render_priority = 0
 shader = ExtResource("11_7pb6i")
 shader_parameter/tex_albedo = ExtResource("12_xfk5q")
-shader_parameter/tint = Vector3(0.7, 0.7, 0.7)
+shader_parameter/tint = Color(0.951408, 0.914275, 0.945051, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qogh7"]
 

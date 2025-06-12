@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode unshaded;
 
 uniform sampler2D tex_albedo: source_color;
-uniform vec3 tint = vec3(1.0);
+uniform vec3 tint: source_color  = vec3(1.0);
 
 void fragment() {
 

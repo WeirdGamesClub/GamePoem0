@@ -7,6 +7,8 @@ uniform int active_ripples;
 uniform float rip_radius;
 uniform float rip_width;
 
+uniform vec3 tint: source_color;
+
 uniform sampler2D tex_albedo: source_color;
 
 
@@ -119,10 +121,10 @@ void fragment() {
 	vec3 normal_vector = normalize(vec3(scaled_direction, direction_z));
 
 	// scale from -1 to 1 --> 0 to 1
-	vec3 normal_map = fma(normal_vector,vec3(0.5), vec3(0.5));
+	vec3 normal_map = (normal_vector * vec3(0.5)) + vec3(0.5);
 
 	NORMAL_MAP = normal_map;
 
-	ALBEDO = texture(tex_albedo, FRAGCOORD.xy / VIEWPORT_SIZE).rgb;
+	ALBEDO = texture(tex_albedo, FRAGCOORD.xy / VIEWPORT_SIZE).rgb * tint;
 
 }

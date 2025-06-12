@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://cx003asolw0md"]
+[gd_scene load_steps=23 format=3 uid="uid://cx003asolw0md"]
 
 [ext_resource type="Script" uid="uid://bpppjmgi2m5ls" path="res://scenes/cylindrical_world/splash_handler_TWO.gd" id="1_ifovr"]
 [ext_resource type="Shader" uid="uid://ck5aoj0bww7cd" path="res://art/materials/ripples_riti_style.gdshader" id="1_x8j7g"]
+[ext_resource type="Texture2D" uid="uid://bqhtfdt4fhf7f" path="res://art/textures/game_poem_background.png" id="3_gw6aw"]
 [ext_resource type="PackedScene" uid="uid://b7qvn30pef2xw" path="res://scenes/world_objects/spawnable_paper_pickup.tscn" id="4_oc4bw"]
 [ext_resource type="Resource" uid="uid://dfr7mfrwsx5sh" path="res://resources/tree_prompt.tres" id="5_kymr6"]
 [ext_resource type="PackedScene" uid="uid://cthv4b3wddim6" path="res://scenes/world_objects/spawnable_drawing.tscn" id="6_by4a6"]
@@ -21,6 +22,13 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_233me"]
 render_priority = 0
 shader = ExtResource("1_x8j7g")
+shader_parameter/ripple_pos_arr = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/ripple_time_arr = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/active_ripples = 0
+shader_parameter/rip_radius = 0.0
+shader_parameter/rip_width = 0.0
+shader_parameter/tint = Color(0.814384, 0.888057, 0.906724, 1)
+shader_parameter/tex_albedo = ExtResource("3_gw6aw")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_a4lc5"]
 
