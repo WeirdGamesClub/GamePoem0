@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform vec4 primary_color;
-uniform vec4 secondary_color;
+uniform vec4 primary_color: source_color;
+uniform vec4 secondary_color: source_color;
 
 void vertex() {
 	// Called for every vertex the material is visible on.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cx003asolw0md"]
+[gd_scene load_steps=28 format=3 uid="uid://cx003asolw0md"]
 
 [ext_resource type="Script" uid="uid://bpppjmgi2m5ls" path="res://scenes/cylindrical_world/splash_handler_TWO.gd" id="1_ifovr"]
 [ext_resource type="Shader" uid="uid://ck5aoj0bww7cd" path="res://art/materials/ripples_riti_style.gdshader" id="1_x8j7g"]
@@ -16,8 +16,10 @@
 [ext_resource type="Resource" uid="uid://bf7d2148rfx7c" path="res://resources/character_prompt.tres" id="13_i88jw"]
 [ext_resource type="Resource" uid="uid://nauwjwymt84i" path="res://resources/happiness_prompt.tres" id="15_gw6aw"]
 [ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/world_objects/art_spawn.gd" id="15_qfn8x"]
-[ext_resource type="Script" uid="uid://15dvlxj7l8n4" path="res://scenes/cylindrical_world/desaturate.gd" id="16_2ib5o"]
-[ext_resource type="Script" uid="uid://ccdxss01v2ed6" path="res://scenes/cylindrical_world/resaturate.gd" id="17_sb866"]
+[ext_resource type="Script" uid="uid://15dvlxj7l8n4" path="res://scenes/cylindrical_world/desaturate_signal.gd" id="16_2ib5o"]
+[ext_resource type="Script" uid="uid://ccdxss01v2ed6" path="res://scenes/cylindrical_world/resaturate_signal.gd" id="17_sb866"]
+[ext_resource type="Texture2D" uid="uid://bxoh0awjujqnv" path="res://art/sprites/placeholder_mirror.png" id="19_gtfkq"]
+[ext_resource type="Script" uid="uid://bdbifm7mj4xyj" path="res://scenes/cylindrical_world/mirror.gd" id="21_qlrxy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_233me"]
 render_priority = 0
@@ -37,7 +39,20 @@ shader_parameter/tex_albedo = ExtResource("3_gw6aw")
 [sub_resource type="BoxShape3D" id="BoxShape3D_i88jw"]
 size = Vector3(2, 0.355, 0.15)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkjx4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtfkq"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("19_gtfkq")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qlrxy"]
+resource_local_to_scene = true
+
 [node name="cylidrical_world" type="Node3D" node_paths=PackedStringArray("ground_mesh")]
+transform = Transform3D(1, 0, 0, 0, -0.337407, -0.941359, 0, 0.941359, -0.337407, 0, 0, 0)
 script = ExtResource("1_ifovr")
 ground_mesh = NodePath("world_mesh")
 
@@ -45,6 +60,37 @@ ground_mesh = NodePath("world_mesh")
 transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, -1, -0.999999, -4.37114e-08, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_233me")
 mesh = SubResource("CylinderMesh_a4lc5")
+
+[node name="lap reference" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0503043, 0, 0, 0, 0.0503043, -9.31323e-10, 0, 9.31323e-10, 0.0503043, 0, 0.486, 0)
+mesh = SubResource("SphereMesh_i88jw")
+
+[node name="desaturate" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999002, 0.0446827, 0, -0.0446827, -0.999002, 0, 0, 0)
+script = ExtResource("15_qfn8x")
+EnableCollision = true
+
+[node name="desaturate_collider" type="Area3D" parent="desaturate"]
+transform = Transform3D(1, 0, 0, 0, 0.364178, -0.931329, 0, 0.931329, 0.364178, 0, 0, 0)
+script = ExtResource("16_2ib5o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="desaturate/desaturate_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
+shape = SubResource("BoxShape3D_i88jw")
+
+[node name="resaturate" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.976319, 0.216337, 0, -0.216337, 0.976319, 0, 0, 0)
+script = ExtResource("15_qfn8x")
+AdditionalFractionRound = 0.5
+EnableCollision = true
+
+[node name="resaturate_collider" type="Area3D" parent="resaturate"]
+transform = Transform3D(0.999997, -0.000466578, -0.00260263, 0.000437452, 0.999938, -0.0111761, 0.00260768, 0.0111749, 0.999934, 0, 0, 0)
+script = ExtResource("17_sb866")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resaturate/resaturate_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
+shape = SubResource("BoxShape3D_i88jw")
 
 [node name="W01_Tree_Prompt" parent="." instance=ExtResource("4_oc4bw")]
 transform = Transform3D(1, 0, 0, 0, 0.882898, 0.469564, 0, -0.469564, 0.882898, 0, 0, 0)
@@ -676,46 +722,60 @@ prompt = ExtResource("13_fjb1l")
 NumRoundsToAppear = 1
 
 [node name="W04_Happiness_Prompt" parent="." instance=ExtResource("4_oc4bw")]
-transform = Transform3D(0.999994, -0.00150139, -0.00324719, 0.00089279, 0.983687, -0.179883, 0.0034643, 0.179879, 0.983682, 0.215847, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
 prompt = ExtResource("15_gw6aw")
 NumRoundsToAppear = 1
 AdditionalFractionRound = 0.5
 
-[node name="lap reference" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0503043, 0, 0, 0, 0.0503043, -9.31323e-10, 0, 9.31323e-10, 0.0503043, 0, 0.486, 0)
-mesh = SubResource("SphereMesh_i88jw")
+[node name="W_05_Dragon_Drawing" parent="." instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.679454, 0.733718, 0, -0.733718, -0.679454, -0.379474, 0, 0)
+prompt = ExtResource("12_6t8s5")
+NumRoundsToAppear = 2
 
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.831111, 0.556107, 0, -0.556107, -0.831111, 0, 0, 0)
+[node name="Art_Spawn" parent="W_05_Dragon_Drawing" index="0"]
+transform = Transform3D(0.680747, -0.235905, 0.553553, 0.235905, 0.873548, 0.082165, -0.553553, 0.082165, 0.715763, 0, 0.592196, 0.0376066)
+
+[node name="W_05_Character" parent="." instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.912355, 0.409397, 0, -0.409397, -0.912355, -0.204371, 0, 0)
+prompt = ExtResource("13_i88jw")
+NumRoundsToAppear = 2
+
+[node name="Art_Spawn" parent="W_05_Character" index="0"]
+transform = Transform3D(0.482896, 0.0700307, 0.109122, -0.0684001, 0.495071, -0.0150298, -0.110151, -0.000412282, 0.487715, 0, 0.51, 0)
+
+[node name="W_05_Obsession" parent="." instance=ExtResource("6_by4a6")]
+transform = Transform3D(1, 0, 0, 0, -0.996635, -0.0819558, 0, 0.0819558, -0.996635, 0.365781, 0, 0)
+prompt = ExtResource("13_fjb1l")
+NumRoundsToAppear = 2
+
+[node name="Art_Spawn" parent="W_05_Obsession" index="0"]
+transform = Transform3D(0.434332, 0.0318095, -0.24565, -0.020201, 0.498757, 0.0288674, 0.246876, -0.0151514, 0.434538, 0, 0.503952, 0)
+
+[node name="Mirror" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.628126, -0.778112, 0, 0.778112, -0.628126, 0, 0, 0)
+
+[node name="Art_Spawn" type="Node3D" parent="Mirror"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.503952, 0)
 script = ExtResource("15_qfn8x")
 NumRoundsToAppear = 2
 EnableCollision = true
 
-[node name="desaturate_collider" type="Area3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.364178, -0.931329, 0, 0.931329, 0.364178, 0, 0, 0)
-script = ExtResource("16_2ib5o")
+[node name="mirror_area3D" type="Area3D" parent="Mirror/Art_Spawn"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("21_qlrxy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/desaturate_collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
-shape = SubResource("BoxShape3D_i88jw")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mirror/Art_Spawn/mirror_area3D"]
+shape = SubResource("BoxShape3D_pkjx4")
+disabled = true
 
-[node name="Node3D2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.976319, 0.216337, 0, -0.216337, 0.976319, 0, 0, 0)
-script = ExtResource("15_qfn8x")
-NumRoundsToAppear = 2
-AdditionalFractionRound = 0.5
-EnableCollision = true
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mirror/Art_Spawn/mirror_area3D"]
+transform = Transform3D(2.4807, 0, 0, 0, -2.98023e-08, -1.19442, 0, 1.19442, -2.98023e-08, 0, 0.999999, 2.38419e-07)
+material_override = SubResource("StandardMaterial3D_gtfkq")
+mesh = SubResource("PlaneMesh_qlrxy")
 
-[node name="resaturate_collider" type="Area3D" parent="Node3D2"]
-transform = Transform3D(0.999997, -0.000466578, -0.00260263, 0.000437452, 0.999938, -0.0111761, 0.00260768, 0.0111749, 0.999934, 0, 0, 0)
-script = ExtResource("17_sb866")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/resaturate_collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
-shape = SubResource("BoxShape3D_i88jw")
-
-[connection signal="body_entered" from="Node3D/desaturate_collider" to="Node3D/desaturate_collider" method="_on_body_entered"]
-[connection signal="body_entered" from="Node3D2/resaturate_collider" to="Node3D2/resaturate_collider" method="_on_body_entered"]
+[connection signal="body_entered" from="desaturate/desaturate_collider" to="desaturate/desaturate_collider" method="_on_body_entered"]
+[connection signal="body_entered" from="resaturate/resaturate_collider" to="resaturate/resaturate_collider" method="_on_body_entered"]
+[connection signal="body_entered" from="Mirror/Art_Spawn/mirror_area3D" to="Mirror/Art_Spawn/mirror_area3D" method="_on_body_entered"]
 
 [editable path="W01_Tree_Drawing"]
 [editable path="W02_House_Drawing"]
@@ -772,3 +832,6 @@ shape = SubResource("BoxShape3D_i88jw")
 [editable path="forest/flowers8/W02_Flower_01_Drawing4"]
 [editable path="forest/flowers8/W02_Flower_01_Drawing5"]
 [editable path="forest/flowers8/W02_Flower_01_Drawing6"]
+[editable path="W_05_Dragon_Drawing"]
+[editable path="W_05_Character"]
+[editable path="W_05_Obsession"]
