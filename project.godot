@@ -23,6 +23,7 @@ general/default_playback_type.web=0
 
 LevelSignal="*res://scenes/globals/level_signals.tscn"
 InputManager="*res://scenes/globals/input_manager.tscn"
+AudioSignal="*res://scenes/globals/audio_signal.gd"
 
 [display]
 

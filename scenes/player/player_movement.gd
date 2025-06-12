@@ -44,6 +44,8 @@ func _ready() -> void:
 	rotateSpeedRadian = (walkSpeed / cyllinderRadius)
 
 func get_speed() -> float: #this ones for moss
+	if(InputManager.input_mode != InputManager.mode.WALKING): 
+		return 0
 	var horspeed = Input.get_axis("move_left","move_right") * walkSpeed
 	var vertspeed = Input.get_axis("move_down","move_up") * walkSpeed
 	var speed = sqrt((horspeed * horspeed) + (vertspeed * vertspeed))

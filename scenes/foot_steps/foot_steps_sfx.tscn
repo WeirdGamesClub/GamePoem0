@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0yww6beabffb"]
+
+[ext_resource type="AudioStream" uid="uid://q7jhhfqnpvrs" path="res://audio/steps/puddle_steps.tres" id="1_74mdm"]
+[ext_resource type="Script" uid="uid://dtfwus5geb8x2" path="res://scenes/foot_steps/foot_steps_sfx.gd" id="2_vsg5n"]
+
+[node name="FootStepsSFX" type="Node3D"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_74mdm")
+attenuation_model = 3
+volume_db = -2.0
+script = ExtResource("2_vsg5n")

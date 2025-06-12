@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=10 format=3 uid="uid://q7jhhfqnpvrs"]
+
+[ext_resource type="AudioStream" uid="uid://yr10p7f08xuc" path="res://audio/steps/puddle_step0.mp3" id="1_o6eso"]
+[ext_resource type="AudioStream" uid="uid://bee2qwsvxs4p5" path="res://audio/steps/puddle_step1.mp3" id="2_0paoo"]
+[ext_resource type="AudioStream" uid="uid://3xha4li7coxh" path="res://audio/steps/puddle_step2.mp3" id="3_hqlhg"]
+[ext_resource type="AudioStream" uid="uid://ddy3x2yys445c" path="res://audio/steps/puddle_step3.mp3" id="4_p4b1u"]
+[ext_resource type="AudioStream" uid="uid://biokkc8wm6y0" path="res://audio/steps/puddle_step4.mp3" id="5_87emx"]
+[ext_resource type="AudioStream" uid="uid://dness4jjod1og" path="res://audio/steps/puddle_step5.mp3" id="6_g4300"]
+[ext_resource type="AudioStream" uid="uid://br3mwy7x7xmvy" path="res://audio/steps/puddle_step6.mp3" id="7_hw75v"]
+[ext_resource type="AudioStream" uid="uid://clp1qcgd2cja6" path="res://audio/steps/puddle_step7.mp3" id="8_ky8cy"]
+[ext_resource type="AudioStream" uid="uid://b2c27a6bhqr6q" path="res://audio/steps/puddle_step8.mp3" id="9_j1t3n"]
+
+[resource]
+streams_count = 9
+stream_0/stream = ExtResource("1_o6eso")
+stream_1/stream = ExtResource("2_0paoo")
+stream_2/stream = ExtResource("3_hqlhg")
+stream_3/stream = ExtResource("4_p4b1u")
+stream_4/stream = ExtResource("5_87emx")
+stream_5/stream = ExtResource("6_g4300")
+stream_6/stream = ExtResource("7_hw75v")
+stream_7/stream = ExtResource("8_ky8cy")
+stream_8/stream = ExtResource("9_j1t3n")

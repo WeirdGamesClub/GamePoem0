@@ -85,6 +85,10 @@ func _physics_process(delta: float) -> void:
 		# reset corresponding array timer
 		splash_times[curr_array_index] = 0.0;
 		
+		#play SFX if moving
+		if(playervel != 0):
+			AudioSignal.foot_SFX.emit()
+		
 		# reset counters
 		timer = 0;
 		dist_traveled = 0;
