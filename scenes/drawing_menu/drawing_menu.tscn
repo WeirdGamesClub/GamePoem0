@@ -1,19 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=17 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
 [ext_resource type="Material" uid="uid://bsrame6euup8a" path="res://art/materials/blur.tres" id="2_ursla"]
 [ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]
 [ext_resource type="Texture2D" uid="uid://dqj7sqgl88drf" path="res://art/textures/paper_hole_cutout.png" id="3_oyudf"]
-[ext_resource type="Texture2D" uid="uid://cryomryy5uxj2" path="res://scenes/drawing_menu/brush_chalk.png" id="4_aaulj"]
 [ext_resource type="Material" uid="uid://bkjo273u3gy8w" path="res://scenes/drawing_menu/drawing_color_shader.tres" id="4_vk8ld"]
 [ext_resource type="PackedScene" uid="uid://d2w75hgcebnn2" path="res://scenes/drawing_menu/color_button.tscn" id="5_56lbc"]
 [ext_resource type="Texture2D" uid="uid://dd4v1duhv37j1" path="res://art/textures/crayon_texture_02_white.png" id="6_rqani"]
 [ext_resource type="Texture2D" uid="uid://5vveqv5p53nw" path="res://scenes/moss_test_scenes/images/hitdabricks.jpg" id="7_rdw8d"]
+[ext_resource type="AudioStream" uid="uid://is010fk751gl" path="res://audio/drawing.mp3" id="8_ca4ua"]
 [ext_resource type="Texture2D" uid="uid://54aegjalli6a" path="res://art/sprites/crayon_rect_2.png" id="8_oyudf"]
 [ext_resource type="Texture2D" uid="uid://dhrfkkj2wvdal" path="res://art/textures/drawing_frame.png" id="9_21hyc"]
 [ext_resource type="Script" uid="uid://b5dh4rckluhpc" path="res://scenes/drawing_menu/erase_button.gd" id="9_416s1"]
 [ext_resource type="Theme" uid="uid://daj8x2m8ugs77" path="res://scenes/drawing_menu/menu_text_theme.tres" id="9_bmxw4"]
+[ext_resource type="AudioStream" uid="uid://dyb6654j7wd01" path="res://audio/paper/paper.tres" id="14_vk8ld"]
+[ext_resource type="AudioStream" uid="uid://c65ltcxn65trs" path="res://audio/accept.mp3" id="15_l5l6t"]
 
 [node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup", "drawingPreview")]
 script = ExtResource("2_lkd8s")
@@ -102,23 +104,25 @@ script = ExtResource("3_lkd8s")
 brushTexture = ExtResource("6_rqani")
 brushSpacing = 0.1
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Control/MarginContainer/DrawingCanvas"]
+stream = ExtResource("8_ca4ua")
+volume_db = -8.889
+
 [node name="BrushSlider" type="HSlider" parent="Control"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -191.5
-offset_top = 3.0
-offset_right = 198.5
-offset_bottom = 71.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 143.0
+offset_top = 245.0
+offset_right = 533.0
+offset_bottom = 313.0
+grow_vertical = 2
+rotation = 4.71239
 min_value = 16.0
 max_value = 128.0
-step = 20.0
-value = 56.0
+step = 16.0
+value = 64.0
 rounded = true
 tick_count = 3
 ticks_on_borders = true
@@ -128,9 +132,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
+offset_left = -98.0
 offset_top = -173.0
-offset_right = 58.0
+offset_right = 30.0
 offset_bottom = 83.0
 grow_vertical = 2
 rotation = -0.925025
@@ -143,10 +147,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = 22.0
-offset_right = 58.0
-offset_bottom = 278.0
+offset_left = -128.0
+offset_top = -45.0
+offset_bottom = 211.0
 grow_vertical = 2
 rotation = -0.925025
 size_flags_vertical = 3
@@ -154,13 +157,17 @@ icon = ExtResource("8_oyudf")
 backendColor = Color(0, 1, 0, 1)
 
 [node name="EraseButton" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 55.0
-offset_top = 535.0
-offset_right = 184.0
-offset_bottom = 706.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 126.0
+offset_right = 125.0
+offset_bottom = 297.0
+grow_vertical = 2
 text = " "
-icon = ExtResource("4_aaulj")
+icon = ExtResource("9_21hyc")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -291,11 +298,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "No"
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Control/Accept Panel"]
+stream = ExtResource("15_l5l6t")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_vk8ld")
+volume_db = -10.667
+
 [connection signal="finish_drawing" from="." to="Control/Accept Panel/DrawingPreview" method="set_texture"]
 [connection signal="value_changed" from="Control/BrushSlider" to="Control/MarginContainer/DrawingCanvas" method="change_brush_size"]
 [connection signal="pressed" from="Control/EraseButton" to="Control/EraseButton" method="_on_pressed"]
 [connection signal="pressed" from="Control/Accept Button" to="." method="query_accept"]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/YesButton" to="." method="save_drawing"]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/MarginContainer/DrawingCanvas" method="set_process" binds= [true]]
-[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_visible" binds= [false]]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_process" binds= [false]]
+[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_visible" binds= [false]]

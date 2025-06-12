@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://dyb6654j7wd01"]
+
+[ext_resource type="AudioStream" uid="uid://d3b3iik0koi2j" path="res://audio/paper/paper_openSFX.mp3" id="1_r1x7o"]
+[ext_resource type="AudioStream" uid="uid://du5fsjdwkw2hx" path="res://audio/paper/paper_open2.mp3" id="2_ldrbo"]
+[ext_resource type="AudioStream" uid="uid://detpj3f4gibdj" path="res://audio/paper/paper_open1.mp3" id="3_ga6cj"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_r1x7o")
+stream_1/stream = ExtResource("2_ldrbo")
+stream_2/stream = ExtResource("3_ga6cj")

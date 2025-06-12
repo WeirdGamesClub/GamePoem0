@@ -14,12 +14,16 @@ var is_drawing: bool = false
 var currentPrompt : PromptResource
 var currentDrawing : Texture2D
 
+var _paper_SFX_player : AudioStreamPlayer3D
+
 const primaryBackendColor: Color = Color(1.0, 0.0, 0.0, 1.0)
 
 func _ready() -> void:
 	#disable node tree
 	get_child(0).set_process(4)
 	get_child(0).hide()
+	
+	_paper_SFX_player = get_node("AudioStreamPlayer3D")
 	
 	LevelSignal.connect("pickup_signal",start_drawing)
 	
@@ -44,6 +48,9 @@ func start_drawing(prompt: PromptResource) -> void:
 	is_drawing = true
 	InputManager.input_mode = InputManager.mode.DRAWING
 	
+	#play SFX
+	_paper_SFX_player.play()
+	
 	acceptPopup.set_process(false)
 	acceptPopup.visible = false
 	
@@ -65,6 +72,9 @@ func query_accept()->void:
 func save_drawing()->void:
 	currentPrompt.set_drawing(currentDrawing)
 	InputManager.input_mode = InputManager.mode.WALKING
+	
+	_paper_SFX_player.play()
+	
 	#close window
 	drawingCanvas.set_process(true)
 	get_child(0).set_process(false)
