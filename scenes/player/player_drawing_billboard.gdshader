@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode unshaded;
+render_mode cull_disabled;
 
 uniform float scale = 0.25;
 uniform vec4 primary_color: source_color;
@@ -7,7 +8,13 @@ uniform vec4 secondary_color: source_color;
 uniform sampler2D drawing_texture : source_color;
 
 void vertex() {
-	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+			MAIN_CAM_INV_VIEW_MATRIX[0],
+			MAIN_CAM_INV_VIEW_MATRIX[1],
+			MAIN_CAM_INV_VIEW_MATRIX[2],
+			MODEL_MATRIX[3]);
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	
 	VERTEX *= scale;
 }
 
@@ -25,4 +32,5 @@ void fragment() {
 	ALBEDO = color.rgb;
 	ALPHA = color.a;
 	ALPHA_SCISSOR_THRESHOLD = 0.5;
+
 }

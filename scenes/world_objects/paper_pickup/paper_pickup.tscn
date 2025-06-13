@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl247ivp0p7tf"]
+[gd_scene load_steps=13 format=3 uid="uid://cl247ivp0p7tf"]
 
 [ext_resource type="Script" uid="uid://b84uusxkks06d" path="res://scenes/world_objects/paper_pickup/paper_pickup.gd" id="1_mhpli"]
 [ext_resource type="Texture2D" uid="uid://c1dq6oehwxajp" path="res://art/sprites/paper_ball_512.png" id="2_srvdl"]
+[ext_resource type="Shader" uid="uid://d21073tugc81f" path="res://art/materials/prompt_vfx_billboard.gdshader" id="3_1taa8"]
+[ext_resource type="Texture2D" uid="uid://csop6e0ec5l5a" path="res://art/textures/paper_vfx.png" id="4_uuhwd"]
 
 [sub_resource type="Animation" id="Animation_0i80a"]
 length = 0.001
@@ -43,6 +45,31 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2cq8"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_or81c"]
+render_priority = 0
+shader = ExtResource("3_1taa8")
+shader_parameter/scale = 0.2
+shader_parameter/rotation_speed = 1.0
+shader_parameter/negative = true
+shader_parameter/drawing_texture = ExtResource("4_uuhwd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bp1tk"]
+material = SubResource("ShaderMaterial_or81c")
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uuhwd"]
+render_priority = 0
+shader = ExtResource("3_1taa8")
+shader_parameter/scale = 0.2
+shader_parameter/rotation_speed = 1.0
+shader_parameter/negative = false
+shader_parameter/drawing_texture = ExtResource("4_uuhwd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ivrbq"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_uuhwd")
+orientation = 2
+
 [node name="paper_pickup" type="Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 collision_layer = 2
@@ -66,5 +93,13 @@ alpha_cut = 2
 alpha_scissor_threshold = 0.3
 alpha_antialiasing_mode = 2
 texture = ExtResource("2_srvdl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.232681)
+mesh = SubResource("PlaneMesh_bp1tk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0148958, -0.0199082, -0.482111)
+mesh = SubResource("PlaneMesh_ivrbq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

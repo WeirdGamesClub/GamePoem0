@@ -315,5 +315,5 @@ volume_db = -10.667
 [connection signal="pressed" from="Control/Accept Button" to="." method="query_accept"]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/YesButton" to="." method="save_drawing"]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/MarginContainer/DrawingCanvas" method="set_process" binds= [true]]
-[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_visible" binds= [false]]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_process" binds= [false]]
+[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_visible" binds= [false]]

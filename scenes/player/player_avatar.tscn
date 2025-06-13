@@ -1,25 +1,38 @@
-[gd_scene load_steps=10 format=3 uid="uid://brcfccn3ndiuo"]
+[gd_scene load_steps=14 format=3 uid="uid://brcfccn3ndiuo"]
 
 [ext_resource type="Script" uid="uid://1ymj6ndbfrj5" path="res://scenes/player/player_movement.gd" id="1_bce2e"]
 [ext_resource type="Texture2D" uid="uid://8g5g52sk4xfl" path="res://art/sprites/placeholder_player.png" id="2_mej13"]
 [ext_resource type="PackedScene" uid="uid://b0yww6beabffb" path="res://scenes/foot_steps/foot_steps_sfx.tscn" id="3_bce2e"]
-[ext_resource type="Script" uid="uid://vu0jtyua6v5g" path="res://scenes/world_objects/drawn_environments/drawn_environ_PLAYER.gd" id="4_5pseq"]
-[ext_resource type="Resource" uid="uid://nauwjwymt84i" path="res://resources/happiness_prompt.tres" id="5_e0ah2"]
-[ext_resource type="Shader" uid="uid://cf4v3rqsp4xag" path="res://scenes/world_objects/drawn_environments/drawing_environ_billboard.gdshader" id="5_wfy18"]
+[ext_resource type="Shader" uid="uid://cf4v3rqsp4xag" path="res://scenes/player/player_billboard.gdshader" id="4_e0ah2"]
+[ext_resource type="Texture2D" uid="uid://b5c50odqi1fgr" path="res://art/drawing_placeholder.png" id="5_4vuam"]
+[ext_resource type="Script" uid="uid://cbrmkluh6s0to" path="res://scenes/world_objects/drawn_environments/drawn_environ.gd" id="5_e0ah2"]
+[ext_resource type="Shader" uid="uid://b1giwhgx3xqvl" path="res://scenes/player/player_drawing_billboard.gdshader" id="5_wfy18"]
+[ext_resource type="Resource" uid="uid://nauwjwymt84i" path="res://resources/happiness_prompt.tres" id="6_e0ah2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfy18"]
 radius = 1.08842
 height = 2.17684
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0ah2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4vuam"]
+render_priority = 0
+shader = ExtResource("4_e0ah2")
+shader_parameter/scale = 0.25
+shader_parameter/drawing_texture = ExtResource("2_mej13")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4vuam"]
+material = SubResource("ShaderMaterial_4vuam")
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kats"]
 render_priority = 0
 shader = ExtResource("5_wfy18")
 shader_parameter/scale = 0.25
 shader_parameter/primary_color = Color(0, 0, 0, 1)
 shader_parameter/secondary_color = Color(0, 0, 0, 1)
+shader_parameter/drawing_texture = ExtResource("5_4vuam")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_4vuam"]
-material = SubResource("ShaderMaterial_e0ah2")
+[sub_resource type="PlaneMesh" id="PlaneMesh_e0ah2"]
+material = SubResource("ShaderMaterial_4kats")
 orientation = 2
 
 [node name="player_avatar" type="Node3D"]
@@ -33,20 +46,24 @@ script = ExtResource("1_bce2e")
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_wfy18")
 
-[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0.234386, 0)
-billboard = 1
-texture = ExtResource("2_mej13")
-
 [node name="FootStepsSFX" parent="CharacterBody3D" instance=ExtResource("3_bce2e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0048393)
 
+[node name="outline_sprite" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.25, -0.000316132, 8.88225e-05, 0.000316157, 0.25, -7.10147e-05, -8.87336e-05, 7.11258e-05, 0.25, 0, 0.204425, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_4vuam")
+skeleton = NodePath("")
+
 [node name="MirrorDrawing" type="Node3D" parent="CharacterBody3D"]
-script = ExtResource("4_5pseq")
-prompt = ExtResource("5_e0ah2")
+visible = false
+script = ExtResource("5_e0ah2")
+prompt = ExtResource("6_e0ah2")
 primary_color = Color(0.95, 0.8607, 0.5035, 1)
 secondary_color = Color(0.854612, 0.435478, 0.603118, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/MirrorDrawing"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.25, 0)
-mesh = SubResource("PlaneMesh_4vuam")
+transform = Transform3D(0.25, -0.000316132, 8.88225e-05, 0.000316157, 0.25, -7.10147e-05, -8.87336e-05, 7.11258e-05, 0.25, 0, 0.204425, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_e0ah2")
+skeleton = NodePath("")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhjwrs2arkdus"]
+[gd_scene load_steps=15 format=3 uid="uid://bhjwrs2arkdus"]
 
 [ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylindrical_world/cylidrical_world.tscn" id="1_bovvr"]
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_urvlt"]
@@ -11,10 +11,6 @@
 [ext_resource type="Shader" uid="uid://ddlgdi8x6djdj" path="res://art/materials/screen_space_backdrop.gdshader" id="11_7pb6i"]
 [ext_resource type="Script" uid="uid://da5whr0wwhubu" path="res://scenes/levels/desaturate.gd" id="11_xfk5q"]
 [ext_resource type="Texture2D" uid="uid://bqhtfdt4fhf7f" path="res://art/textures/game_poem_background.png" id="12_xfk5q"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmjfq"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_qogh7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfk5q"]
 render_priority = 0
@@ -41,17 +37,6 @@ walkSpeed = 0.4
 horizontalConstraints = 2.8
 upper_rot_bound = 40.0
 lower_rot_bound = 65.0
-
-[node name="Sprite3D" parent="player_avatar/CharacterBody3D" index="1"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.138402, 0)
-billboard = 2
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="player_avatar/CharacterBody3D" index="2"]
-transform = Transform3D(0.22007, 0, 0, 0, 0.22007, 0, 0, 0, 0.22007, 0, 0.0100601, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_rmjfq")
-mesh = SubResource("SphereMesh_qogh7")
-skeleton = NodePath("../..")
 
 [node name="cylidrical_world" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_bovvr")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
