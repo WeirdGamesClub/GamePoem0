@@ -13,6 +13,7 @@ config_version=5
 config/name="GamePoem0"
 run/main_scene="uid://bhjwrs2arkdus"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://art/sprites/icon.svg"
 
 [audio]
@@ -60,5 +61,8 @@ move_right={
 
 [rendering]
 
+rendering_device/fallback_to_vulkan=false
+rendering_device/fallback_to_d3d12=false
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

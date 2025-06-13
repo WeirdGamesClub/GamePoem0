@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=20 format=3 uid="uid://cggirilar04rf"]
 
+[ext_resource type="Script" uid="uid://divjm7vh3v5ku" path="res://scenes/drawing_menu/fade.gd" id="2_jhsg7"]
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
 [ext_resource type="Material" uid="uid://bsrame6euup8a" path="res://art/materials/blur.tres" id="2_ursla"]
@@ -16,6 +17,8 @@
 [ext_resource type="Theme" uid="uid://daj8x2m8ugs77" path="res://scenes/drawing_menu/menu_text_theme.tres" id="9_bmxw4"]
 [ext_resource type="Texture2D" uid="uid://dv7scncqk2du7" path="res://art/sprites/eraser.png" id="10_vk8ld"]
 [ext_resource type="AudioStream" uid="uid://dyb6654j7wd01" path="res://audio/paper/paper.tres" id="14_vk8ld"]
+[ext_resource type="Script" uid="uid://d2snb7d8qu2no" path="res://scenes/drawing_menu/accept_drawing.gd" id="16_friqn"]
+[ext_resource type="AudioStream" uid="uid://c65ltcxn65trs" path="res://audio/accept.mp3" id="17_ymptv"]
 
 [node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup", "drawingPreview")]
 script = ExtResource("2_lkd8s")
@@ -182,13 +185,17 @@ script = ExtResource("9_416s1")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 384.0
 offset_top = 72.0
+offset_right = -351.0
 offset_bottom = 127.0
 grow_horizontal = 2
 theme = ExtResource("9_bmxw4")
 theme_override_colors/default_color = Color(0.1364, 0.32984, 0.62, 1)
-text = "TOTLE"
+text = "This is a rather long title to test"
 fit_content = true
+scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -208,7 +215,6 @@ grow_vertical = 0
 text = "accept"
 
 [node name="Accept Panel" type="Panel" parent="Control"]
-visible = false
 material = ExtResource("2_ursla")
 layout_mode = 1
 anchors_preset = 15
@@ -297,13 +303,18 @@ grow_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Yes"
+script = ExtResource("16_friqn")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Control/Accept Panel/HBoxContainer/YesButton"]
+stream = ExtResource("17_ymptv")
 
 [node name="NoButton" type="Button" parent="Control/Accept Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "No"
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Control/Accept Panel"]
+[node name="ControlFade" type="Node" parent="."]
+script = ExtResource("2_jhsg7")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("14_vk8ld")
@@ -311,9 +322,8 @@ volume_db = -10.667
 
 [connection signal="finish_drawing" from="." to="Control/Accept Panel/DrawingPreview" method="set_texture"]
 [connection signal="value_changed" from="Control/BrushSlider" to="Control/MarginContainer/DrawingCanvas" method="change_brush_size"]
-[connection signal="pressed" from="Control/EraseButton" to="Control/EraseButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/EraseButton" to="Control/MarginContainer/DrawingCanvas" method="change_color" binds= [Color(0, 0, 0, 0.01)]]
 [connection signal="pressed" from="Control/Accept Button" to="." method="query_accept"]
 [connection signal="pressed" from="Control/Accept Panel/HBoxContainer/YesButton" to="." method="save_drawing"]
-[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/MarginContainer/DrawingCanvas" method="set_process" binds= [true]]
-[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_process" binds= [false]]
-[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="Control/Accept Panel" method="set_visible" binds= [false]]
+[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/YesButton" to="Control/Accept Panel/HBoxContainer/YesButton" method="play"]
+[connection signal="pressed" from="Control/Accept Panel/HBoxContainer/NoButton" to="." method="retur_to_drawing"]

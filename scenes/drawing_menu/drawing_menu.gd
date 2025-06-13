@@ -14,14 +14,22 @@ var is_drawing: bool = false
 var currentPrompt : PromptResource
 var currentDrawing : Texture2D
 
+var _base_control : Control
+var _fade : ControlFade
+
 var _paper_SFX_player : AudioStreamPlayer3D
 
 const primaryBackendColor: Color = Color(1.0, 0.0, 0.0, 1.0)
 
 func _ready() -> void:
 	#disable node tree
-	get_child(0).set_process(4)
-	get_child(0).hide()
+	_base_control = get_child(0)
+	_base_control.set_process(4)
+	_base_control.modulate = Color.TRANSPARENT
+	
+	acceptPopup.visible = false
+	
+	_fade = get_node("ControlFade")
 	
 	_paper_SFX_player = get_node("AudioStreamPlayer3D")
 	
@@ -43,8 +51,9 @@ func start_drawing(prompt: PromptResource) -> void:
 	drawingCanvas.start_drawing(primaryBackendColor)
 	
 	#enable node tree
-	get_child(0).set_process(0)
-	get_child(0).show()
+	_base_control.set_process(0)
+	_fade.fade_in(_base_control)
+	
 	is_drawing = true
 	InputManager.input_mode = InputManager.mode.DRAWING
 	
@@ -68,6 +77,11 @@ func query_accept()->void:
 	drawingCanvas.set_process(false)
 	currentDrawing = drawingCanvas.pull_drawing()
 	emit_signal("finish_drawing",currentDrawing)
+
+func retur_to_drawing()-> void:
+	acceptPopup.set_process(false)
+	acceptPopup.visible = false
+	drawingCanvas.set_process(true)
 	
 func save_drawing()->void:
 	currentPrompt.set_drawing(currentDrawing)
@@ -77,6 +91,7 @@ func save_drawing()->void:
 	
 	#close window
 	drawingCanvas.set_process(true)
-	get_child(0).set_process(false)
-	get_child(0).hide()
+	_base_control.set_process(false)
+
+	_fade.fade_out(_base_control,5)
 	pass
