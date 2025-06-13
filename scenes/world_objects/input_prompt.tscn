@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://jq2lvugaywxm"]
+
+[ext_resource type="Script" uid="uid://c3o3dj7vt0tuu" path="res://scenes/world_objects/input_prompt.gd" id="1_nhytx"]
+[ext_resource type="Texture2D" uid="uid://y3xqxhvcdu3u" path="res://art/icons/keyboard_arrows_none.svg" id="1_squab"]
+
+[node name="Input prompt" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.989776, 0.142629, 0, -0.142629, 0.989776, 0, 0, 0)
+script = ExtResource("1_nhytx")
+rounds_to_expire = 0.5
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.175, -1.5299e-08, 6.6874e-16, 0, -7.64949e-09, -0.175, 1.5299e-08, -0.175, 7.64949e-09, 0, 0.5, 0)
+texture = ExtResource("1_squab")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, -5.58794e-09, 0.13, 0, -0.13, -5.58794e-09, 0, 0.506, 0.0440418)
+text = "to move"
+outline_size = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cx003asolw0md"]
+[gd_scene load_steps=29 format=3 uid="uid://cx003asolw0md"]
 
 [ext_resource type="Script" uid="uid://bpppjmgi2m5ls" path="res://scenes/cylindrical_world/splash_handler_TWO.gd" id="1_ifovr"]
 [ext_resource type="Shader" uid="uid://ck5aoj0bww7cd" path="res://art/materials/ripples_riti_style.gdshader" id="1_x8j7g"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://15dvlxj7l8n4" path="res://scenes/cylindrical_world/desaturate_signal.gd" id="16_2ib5o"]
 [ext_resource type="Script" uid="uid://ccdxss01v2ed6" path="res://scenes/cylindrical_world/resaturate_signal.gd" id="17_sb866"]
 [ext_resource type="Texture2D" uid="uid://bxoh0awjujqnv" path="res://art/sprites/placeholder_mirror.png" id="19_gtfkq"]
+[ext_resource type="PackedScene" uid="uid://jq2lvugaywxm" path="res://scenes/world_objects/input_prompt.tscn" id="21_5xq1m"]
 [ext_resource type="Script" uid="uid://bdbifm7mj4xyj" path="res://scenes/cylindrical_world/mirror.gd" id="21_qlrxy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_233me"]
@@ -772,6 +773,9 @@ disabled = true
 transform = Transform3D(2.4807, 0, 0, 0, -2.98023e-08, -1.19442, 0, 1.19442, -2.98023e-08, 0, 0.999999, 2.38419e-07)
 material_override = SubResource("StandardMaterial3D_gtfkq")
 mesh = SubResource("PlaneMesh_qlrxy")
+
+[node name="Input prompt" parent="." instance=ExtResource("21_5xq1m")]
+transform = Transform3D(1, 0, 0, 0, 0.989776, 0.142629, 0, -0.142629, 0.989776, -0.0960914, 0, 0)
 
 [connection signal="body_entered" from="desaturate/desaturate_collider" to="desaturate/desaturate_collider" method="_on_body_entered"]
 [connection signal="body_entered" from="resaturate/resaturate_collider" to="resaturate/resaturate_collider" method="_on_body_entered"]

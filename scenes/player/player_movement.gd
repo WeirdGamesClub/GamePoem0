@@ -50,6 +50,9 @@ func get_speed() -> float: #this ones for moss
 	var vertspeed = Input.get_axis("move_down","move_up") * walkSpeed
 	var speed = sqrt((horspeed * horspeed) + (vertspeed * vertspeed))
 	return speed
+	
+func get_absoulte_progress() ->float:
+	return abs(round_count + currentround_angle_travelled_degrees /360)
 		
 func _physics_process(delta: float) -> void:
 	if(InputManager.input_mode != InputManager.mode.WALKING): 
