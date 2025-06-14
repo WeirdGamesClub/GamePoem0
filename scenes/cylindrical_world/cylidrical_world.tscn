@@ -775,7 +775,7 @@ material_override = SubResource("StandardMaterial3D_gtfkq")
 mesh = SubResource("PlaneMesh_qlrxy")
 
 [node name="Input prompt" parent="." instance=ExtResource("21_5xq1m")]
-transform = Transform3D(1, 0, 0, 0, 0.989776, 0.142629, 0, -0.142629, 0.989776, -0.0960914, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.980164, 0.198188, 0, -0.198188, 0.980164, -0.225984, 0, 0)
 
 [connection signal="body_entered" from="desaturate/desaturate_collider" to="desaturate/desaturate_collider" method="_on_body_entered"]
 [connection signal="body_entered" from="resaturate/resaturate_collider" to="resaturate/resaturate_collider" method="_on_body_entered"]

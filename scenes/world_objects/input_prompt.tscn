@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jq2lvugaywxm"]
 
 [ext_resource type="Script" uid="uid://c3o3dj7vt0tuu" path="res://scenes/world_objects/input_prompt.gd" id="1_nhytx"]
-[ext_resource type="Texture2D" uid="uid://y3xqxhvcdu3u" path="res://art/icons/keyboard_arrows_none.svg" id="1_squab"]
+[ext_resource type="Texture2D" uid="uid://q7jvupyx43m7" path="res://art/icons/keyboard_arrows_none.svg" id="1_squab"]
 
 [node name="Input prompt" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.989776, 0.142629, 0, -0.142629, 0.989776, 0, 0, 0)

@@ -36,6 +36,10 @@ func _ready() -> void:
 	currentBrush = brushImage.duplicate()
 	colorImage = Image.create(512,512,false,Image.FORMAT_RGBA8)
 	currentSize = brushSize
+	
+		
+	#TEST
+	change_brush_size(56)
 
 	drawingTexture = ImageTexture.create_from_image(drawingImage)
 	self.set_texture(drawingTexture)
@@ -78,10 +82,6 @@ func start_drawing(startingColor: Color) -> void:
 	drawingImage.fill(imageBackgroundColor)
 	drawingTexture.update(drawingImage)
 	
-
-	
-	#TEST
-	change_brush_size(56)
 	
 	change_color(startingColor)
 	brushTimer = 0
