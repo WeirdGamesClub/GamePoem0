@@ -16,6 +16,9 @@ var cyllinderCenter : Vector3
 var cyllinder_rotate_axis : Vector3
 var currentround_angle_travelled_degrees: float = 0 
 var round_count: int = 0
+
+var _current_wave = 1
+var _new_wave = 1
 	
 func _get_angle_between_vecs(vecA_normalized: Vector3, vecB_normalized: Vector3)->float:
 	var angle = acos(vecA_normalized.dot((vecB_normalized)));
@@ -52,7 +55,7 @@ func get_speed() -> float: #this ones for moss
 	return speed
 	
 func get_absoulte_progress() ->float:
-	return abs(round_count + currentround_angle_travelled_degrees /360)
+	return abs(round_count + (currentround_angle_travelled_degrees /360))
 		
 func _physics_process(delta: float) -> void:
 	if(InputManager.input_mode != InputManager.mode.WALKING): 
@@ -103,6 +106,8 @@ func _physics_process(delta: float) -> void:
 		currentround_angle_travelled_degrees = currentround_angle_travelled_degrees - _get_angle_between_vecs(cylNormalBeforeUpdate, cylNormalAfterUpdate)
 
 	if(currentround_angle_travelled_degrees >= 360|| currentround_angle_travelled_degrees <= -360):
-		round_count = round_count + 1;
+		if(_current_wave != WaveManager.current_wave):
+			_current_wave = WaveManager.current_wave
+			round_count = round_count + 1;
 		currentround_angle_travelled_degrees = 0
 	move_and_slide()
