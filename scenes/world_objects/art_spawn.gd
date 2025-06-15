@@ -14,7 +14,8 @@ func _ready() -> void:
 	player = $"/root/Level/player_avatar/CharacterBody3D"
 	collision_shape = get_child(0).get_node("CollisionShape3D")
 	visible = false
-	collision_shape.disabled = true
+	if(collision_shape):
+		collision_shape.disabled = true
 	if(get_child(0) is PaperPickup):
 		pickup = get_child(0)
 

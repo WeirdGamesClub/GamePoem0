@@ -61,7 +61,7 @@ mesh = SubResource("CylinderMesh_a4lc5")
 [node name="wave1" type="Node3D" parent="."]
 
 [node name="Input UI" parent="wave1" instance=ExtResource("21_5xq1m")]
-transform = Transform3D(1, 0, 0, 0, 0.980164, 0.198188, 0, -0.198188, 0.980164, -0.225984, 0, 0)
+transform = Transform3D(1.215, 0, 0, 0, 0.993171, 0.135921, 0, -0.116671, 1.15704, -0.225984, 0, 0)
 
 [node name="W01_Tree_Prompt" parent="wave1" instance=ExtResource("4_oc4bw")]
 transform = Transform3D(1, 0, 0, 0, 0.899359, 0.43721, 0, -0.43721, 0.899359, 0, 0, 0)
@@ -149,22 +149,22 @@ wave = 4
 NumRoundsToAppear = 1
 AdditionalFractionRound = 0.5
 
-[node name="resaturate" type="Node3D" parent="wave4"]
+[node name="wave5" type="Node3D" parent="."]
+
+[node name="resaturate" type="Node3D" parent="wave5"]
 transform = Transform3D(1, 0, 0, 0, 0.719995, 0.69398, 0, -0.69398, 0.719995, 0, 0, 0)
 script = ExtResource("15_qfn8x")
 AdditionalFractionRound = 0.5
 EnableCollision = true
-wave = 4
+wave = 5
 
-[node name="resaturate_collider" type="Area3D" parent="wave4/resaturate"]
+[node name="resaturate_collider" type="Area3D" parent="wave5/resaturate"]
 transform = Transform3D(0.999997, -0.000466578, -0.00260263, 0.000437452, 0.999938, -0.0111761, 0.00260768, 0.0111749, 0.999934, 0, 0, 0)
 script = ExtResource("17_sb866")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wave4/resaturate/resaturate_collider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wave5/resaturate/resaturate_collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
 shape = SubResource("BoxShape3D_i88jw")
-
-[node name="wave5" type="Node3D" parent="."]
 
 [node name="Easel" parent="wave5" instance=ExtResource("24_brmfa")]
 transform = Transform3D(1, 0, 0, 0, 0.983963, -0.178373, 0, 0.178373, 0.983963, 0.036514, 0, 0)
@@ -185,6 +185,55 @@ AdditionalFractionRound = 0.5
 
 [node name="Mirror" parent="wave5" instance=ExtResource("23_brmfa")]
 transform = Transform3D(1, 0, 0, 0, -0.628126, -0.778112, 0, 0.778112, -0.628126, 0, 0, 0)
+
+[node name="credits" type="Node3D" parent="wave5"]
+transform = Transform3D(1, 0, 0, 0, 0.881303, 0.472551, 0, -0.472551, 0.881303, 0.115, 0, 0)
+script = ExtResource("15_qfn8x")
+NumRoundsToAppear = 2
+AdditionalFractionRound = 0.75
+wave = 5
+
+[node name="word" type="Node3D" parent="wave5/credits"]
+transform = Transform3D(2.5, 0, 0, 0, 0.990748, 0.339289, 0, -0.135716, 2.47687, 0, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="wave5/credits/word"]
+transform = Transform3D(0.1, 0, 0, 0, 0, 0.1, 0, -0.1, 1.86265e-09, -0.075, 0.5, 0.014)
+text = "game poem by"
+outline_size = 3
+
+[node name="moss" type="Node3D" parent="wave5/credits"]
+transform = Transform3D(2, 0, 0, 0, 0.91496, 0.807091, 0, -0.403545, 1.82992, -0.12, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="wave5/credits/moss"]
+transform = Transform3D(0.1, 0, 0, 0, 1.19249e-09, 0.1, 0, -0.1, 1.19249e-09, 0.137, 0.5, 0)
+text = "annabel sun
+"
+outline_size = 3
+
+[node name="li" type="Node3D" parent="wave5/credits"]
+transform = Transform3D(2.5, 0, 0, 0, 0.680721, 1.83136, 0, -0.732543, 1.7018, 0.547, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="wave5/credits/li"]
+transform = Transform3D(0.1, 0, 0, 0, 1.19249e-09, 0.1, 0, -0.1, 1.19249e-09, -0.195, 0.5, 0)
+text = "art li baum"
+outline_size = 3
+
+[node name="thanks" type="Node3D" parent="wave5/credits"]
+transform = Transform3D(3, 0, 0, 0, 0.40833, 2.7385, 0, -0.912834, 1.22499, 0.48, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="wave5/credits/thanks"]
+transform = Transform3D(0.1, 0, 0, 0, 1.19249e-09, 0.1, 0, -0.1, 1.19249e-09, -0.195112, 0.514437, 0)
+text = "thank you !"
+outline_size = 3
+
+[node name="riti" type="Node3D" parent="wave5/credits"]
+transform = Transform3D(2.5, 0, 0, 0, 0.739631, 1.68253, 0, -0.673012, 1.84908, 0.145, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="wave5/credits/riti"]
+transform = Transform3D(0.1, 0, 0, 0, 1.19249e-09, 0.1, 0, -0.1, 1.19249e-09, -0.195112, 0.514437, 0)
+text = "riti bhatwal
+"
+outline_size = 3
 
 [node name="drawing_environment" type="Node3D" parent="."]
 
@@ -1183,7 +1232,7 @@ mesh = SubResource("SphereMesh_i88jw")
 skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="wave3/Node3D/desaturate/desaturate_collider" to="wave3/Node3D/desaturate/desaturate_collider" method="_on_body_entered"]
-[connection signal="body_entered" from="wave4/resaturate/resaturate_collider" to="wave4/resaturate/resaturate_collider" method="_on_body_entered"]
+[connection signal="body_entered" from="wave5/resaturate/resaturate_collider" to="wave5/resaturate/resaturate_collider" method="_on_body_entered"]
 
 [editable path="wave1/W01_Tree_Prompt"]
 [editable path="wave5/Easel"]

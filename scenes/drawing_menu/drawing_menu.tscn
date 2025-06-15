@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=31 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Script" uid="uid://divjm7vh3v5ku" path="res://scenes/drawing_menu/fade.gd" id="2_jhsg7"]
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="2_klehf"]
@@ -22,6 +22,8 @@
 [ext_resource type="AudioStream" uid="uid://dyb6654j7wd01" path="res://audio/paper/paper.tres" id="14_vk8ld"]
 [ext_resource type="Script" uid="uid://d2snb7d8qu2no" path="res://scenes/drawing_menu/accept_drawing.gd" id="16_friqn"]
 [ext_resource type="AudioStream" uid="uid://c65ltcxn65trs" path="res://audio/accept.mp3" id="17_ymptv"]
+[ext_resource type="Texture2D" uid="uid://c8yvsiqdgafbe" path="res://art/icons/mouse_left_outline.svg" id="21_3r34h"]
+[ext_resource type="Script" uid="uid://cog1r031ohumv" path="res://scenes/drawing_menu/icon_expire.gd" id="22_3r34h"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_uianl"]
 size = Vector2(40, 40)
@@ -357,6 +359,21 @@ stream = ExtResource("17_ymptv")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "No"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -142.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("21_3r34h")
+script = ExtResource("22_3r34h")
+rounds_to_expire = 0.5
 
 [node name="ControlFade" type="Node" parent="."]
 script = ExtResource("2_jhsg7")
