@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5q4gda2o4046"]
+
+[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/world_objects/art_spawn.gd" id="1_t2r0u"]
+[ext_resource type="Texture2D" uid="uid://bp1iu025oddnm" path="res://art/sprites/easel.png" id="2_hf7we"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkjx4"]
+size = Vector3(1.99506, 4.04333, 0.68811)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtfkq"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("2_hf7we")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qlrxy"]
+resource_local_to_scene = true
+
+[node name="Easel" type="Node3D"]
+
+[node name="Art_Spawn" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.503952, 0)
+script = ExtResource("1_t2r0u")
+NumRoundsToAppear = 2
+AdditionalFractionRound = 0.5
+EnableCollision = true
+
+[node name="mirror_area3D" type="Area3D" parent="Art_Spawn"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Art_Spawn/mirror_area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103119, 1.66779, -0.0182495)
+shape = SubResource("BoxShape3D_pkjx4")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Art_Spawn/mirror_area3D"]
+transform = Transform3D(1.98461, 0, 0, 0, -8.675e-08, -1.98461, 0, 1.98461, -8.675e-08, 0, 1.72273, 2.38419e-07)
+material_override = SubResource("StandardMaterial3D_gtfkq")
+mesh = SubResource("PlaneMesh_qlrxy")
+
+[connection signal="body_entered" from="Art_Spawn/mirror_area3D" to="Art_Spawn/mirror_area3D" method="_on_body_entered"]

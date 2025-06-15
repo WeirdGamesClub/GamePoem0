@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://okadcyh37a0q"]
+
+[ext_resource type="Script" uid="uid://bfcwt88tcu7p" path="res://scenes/world_objects/art_spawn.gd" id="1_fprsd"]
+[ext_resource type="Script" uid="uid://bdbifm7mj4xyj" path="res://scenes/cylindrical_world/mirror.gd" id="2_dkqgd"]
+[ext_resource type="Texture2D" uid="uid://bxoh0awjujqnv" path="res://art/sprites/placeholder_mirror.png" id="3_fprsd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkjx4"]
+size = Vector3(4.5, 2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtfkq"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_fprsd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qlrxy"]
+resource_local_to_scene = true
+
+[node name="Mirror" type="Node3D"]
+
+[node name="Art_Spawn" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.503952, 0)
+script = ExtResource("1_fprsd")
+NumRoundsToAppear = 2
+EnableCollision = true
+
+[node name="mirror_area3D" type="Area3D" parent="Art_Spawn"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("2_dkqgd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Art_Spawn/mirror_area3D"]
+transform = Transform3D(0.999177, 0.0391232, -0.0106931, -0.0391326, 0.999234, -0.000670931, 0.0106586, 0.00108882, 0.999943, 0, 1.119, 0)
+shape = SubResource("BoxShape3D_pkjx4")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Art_Spawn/mirror_area3D"]
+transform = Transform3D(2.4807, 0, 0, 0, -2.98023e-08, -1.19442, 0, 1.19442, -2.98023e-08, 0, 0.999999, 2.38419e-07)
+material_override = SubResource("StandardMaterial3D_gtfkq")
+mesh = SubResource("PlaneMesh_qlrxy")
+
+[connection signal="body_entered" from="Art_Spawn/mirror_area3D" to="Art_Spawn/mirror_area3D" method="_on_body_entered"]

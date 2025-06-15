@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PromptResource" load_steps=2 format=3 uid="uid://coh0cnmc38pnw"]
+
+[ext_resource type="Script" uid="uid://cqjd82wai0r3o" path="res://resources/prompt.gd" id="1_ikgma"]
+
+[resource]
+script = ExtResource("1_ikgma")
+title = "anything."
+primary_color = Color(0.817254, 0.177972, 0.247717, 1)
+secondary_color = Color(0.250972, 0.822716, 0.8192, 1)
