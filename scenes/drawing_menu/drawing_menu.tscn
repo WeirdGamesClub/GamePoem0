@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=21 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Script" uid="uid://divjm7vh3v5ku" path="res://scenes/drawing_menu/fade.gd" id="2_jhsg7"]
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
 [ext_resource type="Material" uid="uid://bsrame6euup8a" path="res://art/materials/blur.tres" id="2_ursla"]
+[ext_resource type="Texture2D" uid="uid://bkh76dvbqbg34" path="res://art/textures/paper_wider_top.png" id="3_jhsg7"]
 [ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]
-[ext_resource type="Texture2D" uid="uid://dqj7sqgl88drf" path="res://art/textures/paper_hole_cutout.png" id="3_oyudf"]
 [ext_resource type="Material" uid="uid://bkjo273u3gy8w" path="res://scenes/drawing_menu/drawing_color_shader.tres" id="4_vk8ld"]
 [ext_resource type="PackedScene" uid="uid://d2w75hgcebnn2" path="res://scenes/drawing_menu/color_button.tscn" id="5_56lbc"]
 [ext_resource type="Texture2D" uid="uid://dd4v1duhv37j1" path="res://art/textures/crayon_texture_02_white.png" id="6_rqani"]
@@ -19,6 +19,8 @@
 [ext_resource type="AudioStream" uid="uid://dyb6654j7wd01" path="res://audio/paper/paper.tres" id="14_vk8ld"]
 [ext_resource type="Script" uid="uid://d2snb7d8qu2no" path="res://scenes/drawing_menu/accept_drawing.gd" id="16_friqn"]
 [ext_resource type="AudioStream" uid="uid://c65ltcxn65trs" path="res://audio/accept.mp3" id="17_ymptv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jhsg7"]
 
 [node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup", "drawingPreview")]
 script = ExtResource("2_lkd8s")
@@ -80,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.335, 0.335)
 pivot_offset = Vector2(1337.5, 1050)
-texture = ExtResource("3_oyudf")
+texture = ExtResource("3_jhsg7")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -123,12 +125,13 @@ offset_bottom = 313.0
 grow_vertical = 2
 rotation = 4.71239
 scale = Vector2(1.20526, 1.20526)
+theme_override_styles/slider = SubResource("StyleBoxTexture_jhsg7")
 min_value = 16.0
 max_value = 128.0
 step = 16.0
-value = 64.0
+value = 32.0
 rounded = true
-tick_count = 3
+tick_count = 8
 ticks_on_borders = true
 
 [node name="PrimaryColorButton" parent="Control" instance=ExtResource("5_56lbc")]
@@ -215,6 +218,7 @@ grow_vertical = 0
 text = "accept"
 
 [node name="Accept Panel" type="Panel" parent="Control"]
+visible = false
 material = ExtResource("2_ursla")
 layout_mode = 1
 anchors_preset = 15

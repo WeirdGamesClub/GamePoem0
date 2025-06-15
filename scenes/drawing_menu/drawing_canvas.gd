@@ -39,7 +39,7 @@ func _ready() -> void:
 	
 		
 	#TEST
-	change_brush_size(56)
+	change_brush_size(32)
 
 	drawingTexture = ImageTexture.create_from_image(drawingImage)
 	self.set_texture(drawingTexture)
