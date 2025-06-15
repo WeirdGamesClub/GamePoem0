@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=29 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Script" uid="uid://divjm7vh3v5ku" path="res://scenes/drawing_menu/fade.gd" id="2_jhsg7"]
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="2_klehf"]
@@ -15,12 +15,48 @@
 [ext_resource type="Texture2D" uid="uid://dhrfkkj2wvdal" path="res://art/textures/drawing_frame.png" id="9_21hyc"]
 [ext_resource type="Script" uid="uid://b5dh4rckluhpc" path="res://scenes/drawing_menu/erase_button.gd" id="9_416s1"]
 [ext_resource type="Theme" uid="uid://daj8x2m8ugs77" path="res://scenes/drawing_menu/menu_text_theme.tres" id="9_bmxw4"]
+[ext_resource type="Texture2D" uid="uid://dslk2iegfot2v" path="res://art/sprites/slider_dot.png" id="9_l52q3"]
+[ext_resource type="Texture2D" uid="uid://dqfa2obkwrmwx" path="res://art/sprites/slider_tick_rotated.png" id="10_uianl"]
 [ext_resource type="Texture2D" uid="uid://dv7scncqk2du7" path="res://art/sprites/eraser.png" id="10_vk8ld"]
+[ext_resource type="Texture2D" uid="uid://3l3ovp56oiqr" path="res://art/sprites/slider_smaller.png" id="11_pjih1"]
 [ext_resource type="AudioStream" uid="uid://dyb6654j7wd01" path="res://audio/paper/paper.tres" id="14_vk8ld"]
 [ext_resource type="Script" uid="uid://d2snb7d8qu2no" path="res://scenes/drawing_menu/accept_drawing.gd" id="16_friqn"]
 [ext_resource type="AudioStream" uid="uid://c65ltcxn65trs" path="res://audio/accept.mp3" id="17_ymptv"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jhsg7"]
+[sub_resource type="QuadMesh" id="QuadMesh_uianl"]
+size = Vector2(40, 40)
+center_offset = Vector3(7, 22, 0)
+
+[sub_resource type="MeshTexture" id="MeshTexture_pjih1"]
+mesh = SubResource("QuadMesh_uianl")
+base_texture = ExtResource("9_l52q3")
+image_size = Vector2(13, 43)
+
+[sub_resource type="QuadMesh" id="QuadMesh_pjih1"]
+size = Vector2(30, 30)
+center_offset = Vector3(65, 0, 0)
+
+[sub_resource type="MeshTexture" id="MeshTexture_3r34h"]
+mesh = SubResource("QuadMesh_pjih1")
+base_texture = ExtResource("10_uianl")
+image_size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l52q3"]
+texture = ExtResource("11_pjih1")
+expand_margin_top = 9.0
+expand_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(15.2479, 5.04546, 477.686, 23.1405)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pjih1"]
+texture = ExtResource("11_pjih1")
+expand_margin_top = 9.0
+expand_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(15.2479, 5.04546, 477.686, 23.1405)
+modulate_color = Color(0.6916, 0.8372, 0.91, 1)
 
 [node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup", "drawingPreview")]
 script = ExtResource("2_lkd8s")
@@ -118,14 +154,19 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 124.0
-offset_top = 245.0
-offset_right = 514.0
-offset_bottom = 313.0
+offset_left = 134.0
+offset_top = 306.0
+offset_right = 614.0
+offset_bottom = 349.0
 grow_vertical = 2
 rotation = 4.71239
 scale = Vector2(1.20526, 1.20526)
-theme_override_styles/slider = SubResource("StyleBoxTexture_jhsg7")
+theme_override_icons/grabber = SubResource("MeshTexture_pjih1")
+theme_override_icons/grabber_highlight = SubResource("MeshTexture_pjih1")
+theme_override_icons/tick = SubResource("MeshTexture_3r34h")
+theme_override_styles/slider = SubResource("StyleBoxTexture_l52q3")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_pjih1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_pjih1")
 min_value = 16.0
 max_value = 128.0
 step = 16.0
