@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cryomryy5uxj2"
 path.s3tc="res://.godot/imported/brush_chalk.png-1a1151cefc6bd70d0443277cb3dac6aa.s3tc.ctex"
+path.etc2="res://.godot/imported/brush_chalk.png-1a1151cefc6bd70d0443277cb3dac6aa.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://scenes/drawing_menu/brush_chalk.png"
-dest_files=["res://.godot/imported/brush_chalk.png-1a1151cefc6bd70d0443277cb3dac6aa.s3tc.ctex"]
+dest_files=["res://.godot/imported/brush_chalk.png-1a1151cefc6bd70d0443277cb3dac6aa.s3tc.ctex", "res://.godot/imported/brush_chalk.png-1a1151cefc6bd70d0443277cb3dac6aa.etc2.ctex"]
 
 [params]
 

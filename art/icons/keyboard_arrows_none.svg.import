@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bngxypi7jdu3h"
-path.s3tc="res://.godot/imported/icon.svg-993c025d1cbd2fb615e441659e63a8e6.s3tc.ctex"
-path.etc2="res://.godot/imported/icon.svg-993c025d1cbd2fb615e441659e63a8e6.etc2.ctex"
+uid="uid://crpbyq4jndj5y"
+path.s3tc="res://.godot/imported/keyboard_arrows_none.svg-d294d7062df3f5b677445cceb701ca15.s3tc.ctex"
+path.etc2="res://.godot/imported/keyboard_arrows_none.svg-d294d7062df3f5b677445cceb701ca15.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/sprites/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-993c025d1cbd2fb615e441659e63a8e6.s3tc.ctex", "res://.godot/imported/icon.svg-993c025d1cbd2fb615e441659e63a8e6.etc2.ctex"]
+source_file="res://art/icons/keyboard_arrows_none.svg"
+dest_files=["res://.godot/imported/keyboard_arrows_none.svg-d294d7062df3f5b677445cceb701ca15.s3tc.ctex", "res://.godot/imported/keyboard_arrows_none.svg-d294d7062df3f5b677445cceb701ca15.etc2.ctex"]
 
 [params]
 

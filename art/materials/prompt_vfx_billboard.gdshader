@@ -3,7 +3,8 @@ render_mode unshaded;
 render_mode cull_disabled;
 
 uniform float scale = 0.25;
-uniform float rotation_speed = 1.0;
+uniform float rotation_speed = 0.6;
+uniform float offset = 0.0;
 uniform bool negative = false;
 uniform sampler2D drawing_texture : source_color;
 
@@ -15,7 +16,7 @@ void vertex() {
 			MODEL_MATRIX[3]);
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
 	
-	float time = TIME * rotation_speed;
+	float time = TIME * rotation_speed + offset;
 	if(negative) {
 		time = -time;
 	}

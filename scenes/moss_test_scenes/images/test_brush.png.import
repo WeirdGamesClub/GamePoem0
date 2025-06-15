@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsiv3gccrvbix"
 path.s3tc="res://.godot/imported/test_brush.png-2e754f9410f65c63e8bae9959fca77bf.s3tc.ctex"
+path.etc2="res://.godot/imported/test_brush.png-2e754f9410f65c63e8bae9959fca77bf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://scenes/moss_test_scenes/images/test_brush.png"
-dest_files=["res://.godot/imported/test_brush.png-2e754f9410f65c63e8bae9959fca77bf.s3tc.ctex"]
+dest_files=["res://.godot/imported/test_brush.png-2e754f9410f65c63e8bae9959fca77bf.s3tc.ctex", "res://.godot/imported/test_brush.png-2e754f9410f65c63e8bae9959fca77bf.etc2.ctex"]
 
 [params]
 

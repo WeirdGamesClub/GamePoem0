@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://u5vmifxyv7vc"
 path.s3tc="res://.godot/imported/CustomUVChecker_byValle_1K.png-131fcf32bc3758ecc0e8f7f7d1783762.s3tc.ctex"
+path.etc2="res://.godot/imported/CustomUVChecker_byValle_1K.png-131fcf32bc3758ecc0e8f7f7d1783762.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://scenes/moss_test_scenes/images/CustomUVChecker_byValle_1K.png"
-dest_files=["res://.godot/imported/CustomUVChecker_byValle_1K.png-131fcf32bc3758ecc0e8f7f7d1783762.s3tc.ctex"]
+dest_files=["res://.godot/imported/CustomUVChecker_byValle_1K.png-131fcf32bc3758ecc0e8f7f7d1783762.s3tc.ctex", "res://.godot/imported/CustomUVChecker_byValle_1K.png-131fcf32bc3758ecc0e8f7f7d1783762.etc2.ctex"]
 
 [params]
 

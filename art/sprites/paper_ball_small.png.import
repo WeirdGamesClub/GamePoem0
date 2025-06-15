@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhp0a3wm2bbgm"
 path.s3tc="res://.godot/imported/paper_ball_small.png-91f715b3cd398dcd89a75d64c71ec818.s3tc.ctex"
+path.etc2="res://.godot/imported/paper_ball_small.png-91f715b3cd398dcd89a75d64c71ec818.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/sprites/paper_ball_small.png"
-dest_files=["res://.godot/imported/paper_ball_small.png-91f715b3cd398dcd89a75d64c71ec818.s3tc.ctex"]
+dest_files=["res://.godot/imported/paper_ball_small.png-91f715b3cd398dcd89a75d64c71ec818.s3tc.ctex", "res://.godot/imported/paper_ball_small.png-91f715b3cd398dcd89a75d64c71ec818.etc2.ctex"]
 
 [params]
 

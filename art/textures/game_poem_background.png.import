@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqhtfdt4fhf7f"
 path.s3tc="res://.godot/imported/game_poem_background.png-bb57d464b72bbeeac283d56ab9e76a6d.s3tc.ctex"
+path.etc2="res://.godot/imported/game_poem_background.png-bb57d464b72bbeeac283d56ab9e76a6d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/textures/game_poem_background.png"
-dest_files=["res://.godot/imported/game_poem_background.png-bb57d464b72bbeeac283d56ab9e76a6d.s3tc.ctex"]
+dest_files=["res://.godot/imported/game_poem_background.png-bb57d464b72bbeeac283d56ab9e76a6d.s3tc.ctex", "res://.godot/imported/game_poem_background.png-bb57d464b72bbeeac283d56ab9e76a6d.etc2.ctex"]
 
 [params]
 

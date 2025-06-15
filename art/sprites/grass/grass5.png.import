@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5vveqv5p53nw"
-path.s3tc="res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.s3tc.ctex"
-path.etc2="res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.etc2.ctex"
+uid="uid://b8ap54abvunh0"
+path.s3tc="res://.godot/imported/grass5.png-ea021f63a8b16eb9989a8ae597af61c2.s3tc.ctex"
+path.etc2="res://.godot/imported/grass5.png-ea021f63a8b16eb9989a8ae597af61c2.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/moss_test_scenes/images/hitdabricks.jpg"
-dest_files=["res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.s3tc.ctex", "res://.godot/imported/hitdabricks.jpg-df5f6fc29f8da236a1c080e0426a5621.etc2.ctex"]
+source_file="res://art/sprites/grass/grass5.png"
+dest_files=["res://.godot/imported/grass5.png-ea021f63a8b16eb9989a8ae597af61c2.s3tc.ctex", "res://.godot/imported/grass5.png-ea021f63a8b16eb9989a8ae597af61c2.etc2.ctex"]
 
 [params]
 

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bter6k533frck"]
+
+[ext_resource type="Texture2D" uid="uid://c4ro6k7akax2j" path="res://art/sprites/grass/grass6.png" id="1_ch443"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iww2r"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_ch443")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5d1pb"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_iww2r")
+
+[node name="grass_lavender" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0361862, 0, 0, 0, 0.00981266, -0.0348303, 0, 0.0348303, 0.00981266, 0, 0.524036, 0)
+mesh = SubResource("PlaneMesh_5d1pb")
+skeleton = NodePath("")
