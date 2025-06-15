@@ -9,3 +9,5 @@ signal prompt_removed(reference:Node3D)
 
 signal desaturate()
 signal resaturate()
+
+signal mirror()

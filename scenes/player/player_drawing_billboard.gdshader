@@ -6,6 +6,7 @@ uniform float scale = 0.25;
 uniform vec4 primary_color: source_color;
 uniform vec4 secondary_color: source_color;
 uniform sampler2D drawing_texture : source_color;
+uniform float alpha_multiplier = 1.0;
 
 void vertex() {
 	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
@@ -30,7 +31,6 @@ void fragment() {
 	}
 	
 	ALBEDO = color.rgb;
-	ALPHA = color.a;
-	ALPHA_SCISSOR_THRESHOLD = 0.5;
+	ALPHA = color.a * alpha_multiplier;
 
 }

@@ -4,6 +4,7 @@ render_mode cull_disabled;
 
 uniform float scale = 0.25;
 uniform sampler2D drawing_texture : source_color;
+uniform float alpha_multiplier = 1.0;
 
 void vertex() {
 	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
@@ -20,7 +21,6 @@ void fragment() {
 	// Called for every pixel the material is visible on.
 	vec4 texture_sample = texture(drawing_texture, UV);
 	ALBEDO = texture_sample.rgb;
-	ALPHA = texture_sample.a;
-	ALPHA_SCISSOR_THRESHOLD = 0.5;
+	ALPHA = texture_sample.a * alpha_multiplier;
 
 }
