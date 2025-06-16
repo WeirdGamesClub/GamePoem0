@@ -14,7 +14,7 @@ config/name="GamePoem0"
 run/main_scene="uid://bhjwrs2arkdus"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://art/sprites/icon.svg"
+config/icon="uid://cbxvhoccc2it7"
 
 [audio]
 

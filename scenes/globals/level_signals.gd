@@ -11,3 +11,6 @@ signal desaturate()
 signal resaturate()
 
 signal mirror()
+
+signal birds()
+signal sun()

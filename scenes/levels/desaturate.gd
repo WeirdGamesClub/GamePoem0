@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func desaturate() -> void:
 	tween = get_tree().create_tween()
-	tween.tween_property(environment, "adjustment_saturation", 0.2, desaturation_timer)
+	tween.tween_property(environment, "adjustment_saturation", 0.4, desaturation_timer)
 	
 func resaturate() -> void:
 	if tween:

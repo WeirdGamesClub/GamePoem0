@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_fouy7")
 title = "your favorite character!"
-primary_color = Color(0.82, 0.521657, 0.3362, 1)
-secondary_color = Color(0.245164, 0.569382, 0.765948, 1)
+primary_color = Color(0.838095, 0.449576, 0.131531, 1)
+secondary_color = Color(0.1449, 0.444045, 0.63, 1)

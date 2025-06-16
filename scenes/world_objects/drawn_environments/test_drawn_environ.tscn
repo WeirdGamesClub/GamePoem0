@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dd4v1duhv37j1" path="res://art/textures/crayon_texture_02_white.png" id="5_o785q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pkjx4"]
+size = Vector3(1.22835, 1.54105, 0.234253)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bfeg2"]
 resource_local_to_scene = true
@@ -26,6 +27,7 @@ primary_color = Color(0.87, 0.576375, 0.2175, 1)
 secondary_color = Color(0, 0.586684, 0.885803, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86327, 0)
 shape = SubResource("BoxShape3D_pkjx4")
 disabled = true
 

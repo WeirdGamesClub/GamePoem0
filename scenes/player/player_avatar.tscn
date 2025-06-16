@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cbrmkluh6s0to" path="res://scenes/world_objects/drawn_environments/drawn_environ.gd" id="5_e0ah2"]
 [ext_resource type="Shader" uid="uid://b1giwhgx3xqvl" path="res://scenes/player/player_drawing_billboard.gdshader" id="5_wfy18"]
 [ext_resource type="Resource" uid="uid://nauwjwymt84i" path="res://resources/happiness_prompt.tres" id="6_e0ah2"]
-[ext_resource type="Script" path="res://scenes/player/mirror_script.gd" id="9_8yesn"]
+[ext_resource type="Script" uid="uid://h7fh3q87ackb" path="res://scenes/player/mirror_script.gd" id="9_8yesn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfy18"]
 radius = 1.08842

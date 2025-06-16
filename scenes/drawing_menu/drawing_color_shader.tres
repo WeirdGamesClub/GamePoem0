@@ -6,3 +6,4 @@
 shader = ExtResource("1_ndrn1")
 shader_parameter/primary_color = Color(0.95, 0.8607, 0.5035, 1)
 shader_parameter/secondary_color = Color(0.854612, 0.435478, 0.603118, 1)
+shader_parameter/alpha = 1.0

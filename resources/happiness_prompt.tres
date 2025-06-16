@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_725ww")
 title = "what makes you happy?"
-primary_color = Color(0.95, 0.8607, 0.5035, 1)
-secondary_color = Color(0.854612, 0.435478, 0.603118, 1)
+primary_color = Color(0.95, 0.8113, 0.2565, 1)
+secondary_color = Color(0.96, 0.31248, 0.2784, 1)

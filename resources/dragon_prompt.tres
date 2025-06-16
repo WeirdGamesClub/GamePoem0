@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_h3gnn")
 title = "a dragon."
-primary_color = Color(0.96, 0.4, 0.288, 1)
-secondary_color = Color(0.38, 0.76, 0.608, 1)
+primary_color = Color(0.38, 0.76, 0.608, 1)
+secondary_color = Color(0.96, 0.4, 0.288, 1)

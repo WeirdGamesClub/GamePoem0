@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://daj8x2m8ugs77"]
+
+[ext_resource type="FontFile" uid="uid://cw6dww0fiao8g" path="res://art/BalsamiqSans-Regular.ttf" id="1_ysufo"]
+
+[resource]
+default_font = ExtResource("1_ysufo")
+default_font_size = 37

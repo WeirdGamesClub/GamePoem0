@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_smtu2")
 title = "a spaceship!"
-primary_color = Color(0.787779, 0.273894, 0.195738, 1)
-secondary_color = Color(0.251252, 0.40035, 0.75487, 1)
+primary_color = Color(0.251252, 0.40035, 0.75487, 1)
+secondary_color = Color(0.787779, 0.273894, 0.195738, 1)

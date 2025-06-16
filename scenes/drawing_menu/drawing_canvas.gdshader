@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform vec4 primary_color: source_color;
 uniform vec4 secondary_color: source_color;
+uniform float alpha = 1.0;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -19,5 +20,5 @@ void fragment() {
 		color = secondary_color;
 	}
 	
-	COLOR = color;
+	COLOR = vec4(color.rgb, color.a * alpha);
 }

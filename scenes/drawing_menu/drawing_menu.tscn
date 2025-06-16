@@ -1,29 +1,31 @@
-[gd_scene load_steps=31 format=3 uid="uid://cggirilar04rf"]
+[gd_scene load_steps=37 format=3 uid="uid://cggirilar04rf"]
 
 [ext_resource type="Script" uid="uid://divjm7vh3v5ku" path="res://scenes/drawing_menu/fade.gd" id="2_jhsg7"]
 [ext_resource type="Texture2D" uid="uid://dhsalw6vqbdyo" path="res://art/textures/wahoo.jpg" id="2_klehf"]
 [ext_resource type="Script" uid="uid://glqprfg2igj4" path="res://scenes/drawing_menu/drawing_menu.gd" id="2_lkd8s"]
 [ext_resource type="Material" uid="uid://bsrame6euup8a" path="res://art/materials/blur.tres" id="2_ursla"]
-[ext_resource type="Texture2D" uid="uid://bkh76dvbqbg34" path="res://art/textures/paper_wider_top.png" id="3_jhsg7"]
 [ext_resource type="Script" uid="uid://bcclitgetle4w" path="res://scenes/drawing_menu/drawing_canvas.gd" id="3_lkd8s"]
+[ext_resource type="Texture2D" uid="uid://s3cnq1u3avan" path="res://art/textures/paper_cutout.png" id="3_sofg1"]
 [ext_resource type="Material" uid="uid://bkjo273u3gy8w" path="res://scenes/drawing_menu/drawing_color_shader.tres" id="4_vk8ld"]
 [ext_resource type="PackedScene" uid="uid://d2w75hgcebnn2" path="res://scenes/drawing_menu/color_button.tscn" id="5_56lbc"]
-[ext_resource type="Texture2D" uid="uid://dd4v1duhv37j1" path="res://art/textures/crayon_texture_02_white.png" id="6_rqani"]
 [ext_resource type="Texture2D" uid="uid://5vveqv5p53nw" path="res://scenes/moss_test_scenes/images/hitdabricks.jpg" id="7_rdw8d"]
+[ext_resource type="Texture2D" uid="uid://bgeqcf4o2x5ou" path="res://art/textures/crayon_texture_03.png" id="7_wrl33"]
 [ext_resource type="AudioStream" uid="uid://is010fk751gl" path="res://audio/drawing.mp3" id="8_ca4ua"]
 [ext_resource type="Texture2D" uid="uid://54aegjalli6a" path="res://art/sprites/crayon_rect_2.png" id="8_oyudf"]
 [ext_resource type="Texture2D" uid="uid://dhrfkkj2wvdal" path="res://art/textures/drawing_frame.png" id="9_21hyc"]
 [ext_resource type="Script" uid="uid://b5dh4rckluhpc" path="res://scenes/drawing_menu/erase_button.gd" id="9_416s1"]
-[ext_resource type="Theme" uid="uid://daj8x2m8ugs77" path="res://scenes/drawing_menu/menu_text_theme.tres" id="9_bmxw4"]
+[ext_resource type="Theme" uid="uid://daj8x2m8ugs77" path="res://art/text_theme.tres" id="9_bmxw4"]
 [ext_resource type="Texture2D" uid="uid://dslk2iegfot2v" path="res://art/sprites/slider_dot.png" id="9_l52q3"]
 [ext_resource type="Texture2D" uid="uid://dqfa2obkwrmwx" path="res://art/sprites/slider_tick_rotated.png" id="10_uianl"]
 [ext_resource type="Texture2D" uid="uid://dv7scncqk2du7" path="res://art/sprites/eraser.png" id="10_vk8ld"]
 [ext_resource type="Texture2D" uid="uid://3l3ovp56oiqr" path="res://art/sprites/slider_smaller.png" id="11_pjih1"]
 [ext_resource type="AudioStream" uid="uid://dyb6654j7wd01" path="res://audio/paper/paper.tres" id="14_vk8ld"]
 [ext_resource type="Script" uid="uid://d2snb7d8qu2no" path="res://scenes/drawing_menu/accept_drawing.gd" id="16_friqn"]
+[ext_resource type="Texture2D" uid="uid://bo0oab3dhmn5u" path="res://art/sprites/button.png" id="17_sofg1"]
 [ext_resource type="AudioStream" uid="uid://c65ltcxn65trs" path="res://audio/accept.mp3" id="17_ymptv"]
 [ext_resource type="Texture2D" uid="uid://c8yvsiqdgafbe" path="res://art/icons/mouse_left_outline.svg" id="21_3r34h"]
 [ext_resource type="Script" uid="uid://cog1r031ohumv" path="res://scenes/drawing_menu/icon_expire.gd" id="22_3r34h"]
+[ext_resource type="Texture2D" uid="uid://cmocubq6byyxj" path="res://art/sprites/yesnobutton.png" id="22_wrl33"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_uianl"]
 size = Vector2(40, 40)
@@ -59,6 +61,20 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(15.2479, 5.04546, 477.686, 23.1405)
 modulate_color = Color(0.6916, 0.8372, 0.91, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sofg1"]
+texture = ExtResource("17_sofg1")
+modulate_color = Color(0.78495, 0.783, 0.9, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrl33"]
+texture = ExtResource("17_sofg1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_amtvi"]
+texture = ExtResource("22_wrl33")
+modulate_color = Color(0.78495, 0.783, 0.9, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lyvga"]
+texture = ExtResource("22_wrl33")
 
 [node name="DrawingMenu" type="CanvasLayer" node_paths=PackedStringArray("primary_button", "secondary_button", "prompt_title", "drawingCanvas", "acceptPopup", "drawingPreview")]
 script = ExtResource("2_lkd8s")
@@ -120,7 +136,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.335, 0.335)
 pivot_offset = Vector2(1337.5, 1050)
-texture = ExtResource("3_jhsg7")
+texture = ExtResource("3_sofg1")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -144,7 +160,7 @@ layout_mode = 2
 texture = ExtResource("2_klehf")
 expand_mode = 1
 script = ExtResource("3_lkd8s")
-brushTexture = ExtResource("6_rqani")
+brushTexture = ExtResource("7_wrl33")
 brushSpacing = 0.1
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Control/MarginContainer/DrawingCanvas"]
@@ -252,13 +268,35 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -351.0
-offset_top = -112.0
-offset_right = -288.0
-offset_bottom = -67.0
+offset_left = -209.0
+offset_top = -137.0
+offset_right = -35.0
+offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_font_sizes/font_size = 26
+theme_override_styles/hover = SubResource("StyleBoxTexture_sofg1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sofg1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wrl33")
 text = "accept"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color(0.137255, 0.329412, 0.619608, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -397.0
+offset_top = -577.0
+offset_right = -315.0
+offset_bottom = -486.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("21_3r34h")
+script = ExtResource("22_3r34h")
+rounds_to_expire = 0.5
 
 [node name="Accept Panel" type="Panel" parent="Control"]
 visible = false
@@ -284,9 +322,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -237.0
-offset_top = 10.0
+offset_top = 24.0
 offset_right = 240.0
-offset_bottom = 156.0
+offset_bottom = 170.0
 grow_horizontal = 2
 theme = ExtResource("9_bmxw4")
 text = "is this Acceptable?"
@@ -339,16 +377,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -186.0
-offset_top = -82.0
-offset_right = 188.0
-offset_bottom = -46.0
+offset_left = -201.0
+offset_top = -90.0
+offset_right = 199.0
+offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="YesButton" type="Button" parent="Control/Accept Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("9_bmxw4")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxTexture_amtvi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_amtvi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lyvga")
 text = "Yes"
 script = ExtResource("16_friqn")
 
@@ -358,25 +401,15 @@ stream = ExtResource("17_ymptv")
 [node name="NoButton" type="Button" parent="Control/Accept Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxTexture_amtvi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_amtvi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lyvga")
 text = "No"
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -125.0
-offset_top = -142.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("21_3r34h")
-script = ExtResource("22_3r34h")
-rounds_to_expire = 0.5
-
-[node name="ControlFade" type="Node" parent="."]
+[node name="ControlFade" type="Node" parent="." node_paths=PackedStringArray("drawing")]
 script = ExtResource("2_jhsg7")
+drawing = NodePath("../Control/MarginContainer/DrawingCanvas")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("14_vk8ld")

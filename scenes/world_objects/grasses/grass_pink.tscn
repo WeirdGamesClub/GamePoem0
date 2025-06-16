@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c0ti08jrmcvwd" path="res://art/sprites/grass/grass7.png" id="1_l6prv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12nwr"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.13
+alpha_antialiasing_mode = 0
 shading_mode = 0
 albedo_texture = ExtResource("1_l6prv")
 
@@ -14,6 +16,7 @@ material = SubResource("StandardMaterial3D_12nwr")
 [node name="grass_pink" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+process_mode = 4
 transform = Transform3D(0.0385066, 0, 0, 0, 0.0107959, -0.0369623, 0, 0.0369623, 0.0107959, 0, 0.527038, 0)
 mesh = SubResource("PlaneMesh_5d1pb")
 skeleton = NodePath("")

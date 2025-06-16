@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_wgm4t")
 title = "your childhood obsession."
-primary_color = Color(0.718865, 0.511803, 0.79242, 1)
-secondary_color = Color(0.399501, 0.601054, 0.27711, 1)
+primary_color = Color(0.507959, 0.484295, 0.891145, 1)
+secondary_color = Color(0.910015, 0.720033, 0.391837, 1)

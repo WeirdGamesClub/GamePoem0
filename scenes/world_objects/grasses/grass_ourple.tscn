@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://b8ap54abvunh0" path="res://art/sprites/grass/grass5.png" id="1_rughh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yesew"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.32
+alpha_antialiasing_mode = 0
 shading_mode = 0
 albedo_texture = ExtResource("1_rughh")
 
@@ -14,6 +16,7 @@ material = SubResource("StandardMaterial3D_yesew")
 [node name="grass_ourple" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+process_mode = 4
 transform = Transform3D(0.0431089, 0, 0, 0, 0.0123799, -0.0412931, 0, 0.0412931, 0.0123799, 0.000152644, 0.524494, -0.000815481)
 mesh = SubResource("PlaneMesh_5d1pb")
 skeleton = NodePath("")

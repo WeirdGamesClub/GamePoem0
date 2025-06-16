@@ -1,6 +1,7 @@
 extends Node
 class_name ControlFade
 @export var control : Control
+@export var drawing: DrawingCanvas
 
 var fade_time : float =1 
 
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 			_alpha = lerp(_alpha,1.0,_timer/fade_time)
 
 	control.modulate = Color(1.0,1.0,1.0,_alpha)
+	drawing.material.set_shader_parameter("alpha", _alpha)
 
 
 func fade_in(c : Control, time: float = 3 ) -> void:

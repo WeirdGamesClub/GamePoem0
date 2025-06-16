@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqj7sqgl88drf"
-path="res://.godot/imported/paper_hole_cutout.png-a14375af8ac16ebc2707cf4310314d75.ctex"
+uid="uid://bo0oab3dhmn5u"
+path="res://.godot/imported/button.png-42055dd2203934aac2fdad372b0f30a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/textures/paper_hole_cutout.png"
-dest_files=["res://.godot/imported/paper_hole_cutout.png-a14375af8ac16ebc2707cf4310314d75.ctex"]
+source_file="res://art/sprites/button.png"
+dest_files=["res://.godot/imported/button.png-42055dd2203934aac2fdad372b0f30a0.ctex"]
 
 [params]
 
