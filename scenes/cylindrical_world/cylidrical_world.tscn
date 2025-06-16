@@ -519,7 +519,6 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_12nwr")
 
 [node name="cylidrical_world" type="Node3D" node_paths=PackedStringArray("ground_mesh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_ifovr")
 ground_mesh = NodePath("world_mesh")
 
@@ -569,10 +568,8 @@ wave = 2
 [node name="wave4" type="Node3D" parent="."]
 
 [node name="wave3" type="Node3D" parent="wave4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="desaturate" type="Node3D" parent="wave4/wave3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("15_qfn8x")
 EnableCollision = true
 wave = 3
@@ -618,7 +615,6 @@ AdditionalFractionRound = 0.5
 [node name="wave5" type="Node3D" parent="."]
 
 [node name="resaturate" type="Node3D" parent="wave5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("15_qfn8x")
 AdditionalFractionRound = 0.5
 EnableCollision = true
