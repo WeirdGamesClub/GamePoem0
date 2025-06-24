@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://bhjwrs2arkdus"]
+[gd_scene load_steps=31 format=3 uid="uid://42875tta3uum"]
 
 [ext_resource type="PackedScene" uid="uid://cx003asolw0md" path="res://scenes/cylindrical_world/cylidrical_world.tscn" id="1_bovvr"]
 [ext_resource type="Script" uid="uid://nai7n87650wj" path="res://scenes/globals/level_signals.gd" id="1_urvlt"]
 [ext_resource type="PackedScene" uid="uid://brcfccn3ndiuo" path="res://scenes/player/player_avatar.tscn" id="2_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://cggirilar04rf" path="res://scenes/drawing_menu/drawing_menu.tscn" id="3_b2cq8"]
-[ext_resource type="Script" uid="uid://cidwloh47223y" path="res://scenes/levels/bird_manager.gd" id="8_8iyoh"]
+[ext_resource type="PackedScene" uid="uid://dv4koayxgmydw" path="res://scenes/mobile/virtual_controls.tscn" id="4_qhnmj"]
+[ext_resource type="Script" path="res://scenes/levels/bird_manager.gd" id="8_8iyoh"]
 [ext_resource type="PackedScene" uid="uid://cthv4b3wddim6" path="res://scenes/world_objects/spawnable_drawing.tscn" id="8_icy5c"]
 [ext_resource type="Resource" uid="uid://c4vkqit1l86en" path="res://resources/birds_prompt.tres" id="9_rmjfq"]
 [ext_resource type="Resource" uid="uid://cxvm2swfdoadh" path="res://resources/sun_prompt.tres" id="10_7pb6i"]
@@ -12,10 +13,10 @@
 [ext_resource type="Script" uid="uid://coljmuyt62ceq" path="res://scenes/levels/animation_autoplay.gd" id="10_xfk5q"]
 [ext_resource type="Shader" uid="uid://ddlgdi8x6djdj" path="res://art/materials/screen_space_backdrop.gdshader" id="11_7pb6i"]
 [ext_resource type="Script" uid="uid://da5whr0wwhubu" path="res://scenes/levels/desaturate.gd" id="11_xfk5q"]
-[ext_resource type="Script" uid="uid://b7og0bovgcqtu" path="res://scenes/levels/sun_manager.gd" id="12_mq31s"]
+[ext_resource type="Script" path="res://scenes/levels/sun_manager.gd" id="12_mq31s"]
 [ext_resource type="Resource" uid="uid://db33eq44o10i5" path="res://resources/spaceship_prompt.tres" id="12_qogh7"]
 [ext_resource type="Texture2D" uid="uid://bqhtfdt4fhf7f" path="res://art/textures/game_poem_background.png" id="12_xfk5q"]
-[ext_resource type="Script" uid="uid://bb323uyu047wd" path="res://scenes/levels/spaceship_manager.gd" id="14_5mi6g"]
+[ext_resource type="Script" path="res://scenes/levels/spaceship_manager.gd" id="14_5mi6g"]
 [ext_resource type="Resource" uid="uid://nauwjwymt84i" path="res://resources/happiness_prompt.tres" id="15_b8j7q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfk5q"]
@@ -179,6 +180,8 @@ transform = Transform3D(-0.146221, 0, 0.989252, 0, 1, 0, -0.989252, 0, -0.146221
 transform = Transform3D(-0.337424, -0.755208, 0.561966, -0.00830753, 0.599343, 0.800449, -0.941316, 0.265422, -0.208506, -0.245521, -0.216154, 0.394425)
 shadow_enabled = true
 shadow_opacity = 0.9
+
+[node name="VirtualControls" parent="." instance=ExtResource("4_qhnmj")]
 
 [node name="DrawingMenu" parent="." instance=ExtResource("3_b2cq8")]
 

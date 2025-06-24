@@ -18,7 +18,7 @@ var currentround_angle_travelled_degrees: float = 0
 var round_count: int = 0
 
 var _current_wave = 1
-var _new_wave = 1
+#var _new_wave = 1
 	
 func _get_angle_between_vecs(vecA_normalized: Vector3, vecB_normalized: Vector3)->float:
 	var angle = acos(vecA_normalized.dot((vecB_normalized)));

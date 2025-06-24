@@ -280,7 +280,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_sofg1")
 theme_override_styles/normal = SubResource("StyleBoxTexture_wrl33")
 text = "accept"
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="ControlPrompt" type="TextureRect" parent="Control"]
 modulate = Color(0.137255, 0.329412, 0.619608, 1)
 layout_mode = 1
 anchors_preset = 3
@@ -408,8 +408,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_amtvi")
 theme_override_styles/normal = SubResource("StyleBoxTexture_lyvga")
 text = "No"
 
-[node name="ControlFade" type="Node" parent="." node_paths=PackedStringArray("drawing")]
+[node name="ControlFade" type="Node" parent="." node_paths=PackedStringArray("control", "drawing")]
 script = ExtResource("2_jhsg7")
+control = NodePath("../Control")
 drawing = NodePath("../Control/MarginContainer/DrawingCanvas")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

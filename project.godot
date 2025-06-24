@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="reflect, create, revolve"
-run/main_scene="uid://bhjwrs2arkdus"
+run/main_scene="uid://42875tta3uum"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 config/icon="uid://cbxvhoccc2it7"
@@ -26,6 +26,10 @@ LevelSignal="*res://scenes/globals/level_signals.tscn"
 InputManager="*res://scenes/globals/input_manager.tscn"
 AudioSignal="*res://scenes/globals/audio_signal.gd"
 WaveManager="*res://scenes/globals/wave_manager.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [display]
 
